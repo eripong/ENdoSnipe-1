@@ -1,0 +1,122 @@
+Call  ,2009/03/03 16:29:00.109,"insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)","jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb","unknown","unknown","root","unknown","","JavelinDataLoggerThread@62(java.lang.Thread@21990a)"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+args[2] = [VALUE] 1,0,0,false,(UNSUPPORTED),javelin_2009_03_03_162754_515_18054.jvn,2009-03-03 16:27:54.515,2009-03-03 16:27:54.515,null,1,insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?),null,jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb,null,-1,unknown,null,root,-1,0,,JavelinDataLoggerThread@62(java.lang.Thread@21990a),null,-1
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 58984375000
+thread.currentThreadUserTime = 22203125000
+thread.threadInfo.blockedTime = 4518
+thread.threadInfo.blockedCount = 1690
+thread.threadInfo.waitedTime = 158368
+thread.threadInfo.waitedCount = 239
+garbageCollector.collectionCount = 3739
+garbageCollector.collectionTime = 21557
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 4
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+<<javelin.StackTrace_START>>
+jp.co.acroquest.endosnipe.javelin.util.c.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.f.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcess(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcessSQLArgs(Unknown Source)
+org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java)
+org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:169)
+jp.co.acroquest.endosnipe.data.dao.JavelinLogDao.insert(JavelinLogDao.java:97)
+jp.co.acroquest.endosnipe.collector.JavelinDataLogger.logJavelinData(JavelinDataLogger.java:121)
+jp.co.acroquest.endosnipe.collector.JavelinDataLogger.run(JavelinDataLogger.java:70)
+java.lang.Thread.run(Unknown Source)
+<<javelin.StackTrace_END>>
+Return,2009/03/03 16:29:00.109,"insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)","jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb","unknown","unknown","root","unknown","","JavelinDataLoggerThread@62(java.lang.Thread@21990a)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 58984375000
+thread.currentThreadUserTime = 22203125000
+thread.threadInfo.blockedTime = 4518
+thread.threadInfo.blockedCount = 1690
+thread.threadInfo.waitedTime = 158368
+thread.threadInfo.waitedCount = 239
+garbageCollector.collectionCount = 3740
+garbageCollector.collectionTime = 21561
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 4
+<<javelin.JMXInfo_END>>
+Call  ,2009/03/03 16:29:01.546,"insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)","jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb","unknown","unknown","root","unknown","","JavelinDataLoggerThread@62(java.lang.Thread@21990a)"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+args[2] = [VALUE] 1,0,0,false,(UNSUPPORTED),javelin_2009_03_03_162754_968_18084.jvn,2009-03-03 16:27:54.968,2009-03-03 16:27:54.968,null,1,insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?),null,jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb,null,-1,unknown,null,root,-1,0,,JavelinDataLoggerThread@62(java.lang.Thread@21990a),null,-1
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 59218750000
+thread.currentThreadUserTime = 22281250000
+thread.threadInfo.blockedTime = 4802
+thread.threadInfo.blockedCount = 1696
+thread.threadInfo.waitedTime = 158368
+thread.threadInfo.waitedCount = 239
+garbageCollector.collectionCount = 3745
+garbageCollector.collectionTime = 21580
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+<<javelin.StackTrace_START>>
+jp.co.acroquest.endosnipe.javelin.util.c.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.f.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcess(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcessSQLArgs(Unknown Source)
+org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java)
+org.apache.commons.dbcp.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:169)
+jp.co.acroquest.endosnipe.data.dao.JavelinLogDao.insert(JavelinLogDao.java:97)
+jp.co.acroquest.endosnipe.collector.JavelinDataLogger.logJavelinData(JavelinDataLogger.java:121)
+jp.co.acroquest.endosnipe.collector.JavelinDataLogger.run(JavelinDataLogger.java:70)
+java.lang.Thread.run(Unknown Source)
+<<javelin.StackTrace_END>>
+Return,2009/03/03 16:29:01.546,"insert into JAVELIN_LOG (HOST_ID, SESSION_ID, SEQUENCE_ID, COMPRESSED, JAVELIN_LOG, LOG_FILE_NAME, START_TIME, END_TIME, SESSION_DESC, LOG_TYPE, CALLEE_NAME, CALLEE_SIGNATURE, CALLEE_CLASS, CALLEE_FIELD_TYPE, CALLEE_OBJECTID, CALLER_NAME, CALLER_SIGNATURE, CALLER_CLASS, CALLER_OBJECTID, ELAPSED_TIME, MODIFIER, THREAD_NAME, THREAD_CLASS, THREAD_OBJECTID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)","jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb","unknown","unknown","root","unknown","","JavelinDataLoggerThread@62(java.lang.Thread@21990a)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 59218750000
+thread.currentThreadUserTime = 22281250000
+thread.threadInfo.blockedTime = 4802
+thread.threadInfo.blockedCount = 1696
+thread.threadInfo.waitedTime = 158368
+thread.threadInfo.waitedCount = 239
+garbageCollector.collectionCount = 3745
+garbageCollector.collectionTime = 21580
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>
+Call  ,2009/03/03 16:29:03.000,"select * from JAVELIN_MEASUREMENT_ITEM where MEASUREMENT_ITEM_ID = ?","jdbc:h2:D:/Project/workspace/endosnipe-demo/jvn_db/endosnipedb/endosnipedb","unknown","unknown","root","unknown","","SystemResourceThread@48(java.util.TimerThread@4c409d)"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] select * from JAVELIN_MEASUREMENT_ITEM where MEASUREMENT_ITEM_ID = ?
+args[2] = [VALUE] 1
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 18421875000
+thread.currentThreadUserTime = 14890625000
+thread.threadInfo.blockedTime = 10753
+thread.threadInfo.blockedCount = 4689
+thread.threadInfo.waitedTime = 409842
+thread.threadInfo.waitedCount = 1882
+garbageCollector.collectionCount = 3753
+garbageCollector.collectionTime = 21609
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+<<javelin.StackTrace_START>>
+jp.co.acroquest.endosnipe.javelin.util.c.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.f.a(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcess(Unknown Source)
+jp.co.acroquest.endosnipe.javelin.jdbc.stats.JdbcJavelinRecorder.preProcessSQLArgs(Unknown Source)
+org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java)
+jp.co.acroquest.endosnipe.data.dao.JavelinMeasurementItemDao.selectById(JavelinMeasurementItemDao.java:92)
+jp.co.acroquest.endosnipe.util.ResourceDataDaoUtil.selectByTerm(ResourceDataDaoUtil.java:181)
+jp.co.acroquest.endosnipe.bottleneckeye.editors.graph.GraphEditorTab.loadNextSystemResource(Unknown Source)
+jp.co.acroquest.endosnipe.bottleneckeye.editors.graph.l.run(Unknown Source)

@@ -1,0 +1,234 @@
+
+      ■ ENdoSnipe DataCollector サービスインストール手順書 (Linux) ■
+
+                                                    Acroquest Technology株式会社
+
+１．はじめに
+
+  　本書は、ENdoSnipe DataCollector サービス (Linux 版) の利用手順について
+  説明します。
+  　 ENdoSnipe DataCollector サービスを使用することで、Javelin の計測した情報
+  を データベースへ蓄積し、あとで ArrowVision、PerformanceDoctor を用いて解析
+  することができます。
+  　これにより、Eclipse をインストールできないマシンにおいても、データ収集が
+  できるようになります。
+
+
+２．インストール手順
+  インストールはルート権限のあるユーザで行ってください。
+  
+  (1) endosnipe-datacollector-x.y.z.tar.gz (x.y.z はバージョン) を展開してく
+      ださい。
+      
+      # tar zxvf endosnipe-datacollector-x.y.z.tar.gz
+      
+  (2) 展開してできた ENdoSnipe フォルダを /usr/local 配下へコピーします。
+      
+      # cp -rp ENdoSnipe /usr/local
+  
+  (3) 必要に応じて、/usr/local/ENdoSnipe/DataCollector/bin ディレクトリにパス
+      を通しておいてください。(パスについてわからない方は何もしなくても構いま
+      せん)
+  
+  (4) DataCollector の実行には、JAVA_HOME 環境変数が設定されていることが必要
+      です。DataCollector を実行するユーザにおいて、JAVA_HOME 環境変数が設定
+      されていることを確認してください。
+      
+      以下のようなコマンドを実行することで確認できます。
+      
+      > set | grep JAVA_HOME
+      
+      以下のように表示されれば、JAVA_HOME 環境変数が設定されています。(環境変
+      数の値はご使用の Java のバージョンによって異なります)
+      
+      JAVA_HOME=/usr/java/jdk1.6.0_13
+      
+      JAVA_HOME 環境変数が設定されていない場合、実行ユーザのホームディレクト
+      リにある .bashrc ファイルへ以下の行を追加して JAVA_HOME 環境変数を設定
+      してください。(環境変数の値はご使用の Java のバージョンによって異なりま
+      すので、事前に確認してください)
+      
+      JAVA_HOME=/usr/java/jdk1.6.0_13; export JAVA_HOME
+      
+  (5) 以上でDataCollectorのインストール作業は完了です。
+  
+  
+３．DataCollector 起動方法
+
+  (1) 以下のコマンドを実行します。
+      # /usr/local/ENdoSnipe/DataCollector/bin/endosnipe-dc start
+      (インストール時にパスを通してある場合はディレクトリ指定は不要です)
+      
+      以下のように表示されれば、サービス起動成功です。
+      
+      Starting ENdoSnipe DataCollector:                          [  OK  ]
+
+
+４．DataCollector 終了方法
+
+  (1) 以下のコマンドを実行します。
+      # /usr/local/ENdoSnipe/DataCollector/bin/endosnipe-dc stop
+      (インストール時にパスを通してある場合はディレクトリ指定は不要です)
+      
+      以下のように表示されれば、サービス終了成功です。
+      
+      Stopping ENdoSnipe DataCollector:                          [  OK  ]
+
+
+５．DataCollector 実行状況確認方法
+
+  (1) 以下のコマンドを実行すると、サービスの実行状況が表示されます。
+      # /usr/local/ENdoSnipe/DataCollector/bin/endosnipe-dc status
+      (インストール時にパスを通してある場合はディレクトリ指定は不要です)
+
+
+６．アンインストール手順
+
+  (1) インストールディレクトリを削除します。
+      # rm -rf /usr/local/ENdoSNipe
+
+      なお、データベースは DataCollector/data ディレクトリに存在しますので、
+      データベースを保存する場合はこのディレクトリを事前に待避しておいてくだ
+      さい。
+      
+  (2) 以上でアンインストールは完了です。
+
+
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+                    以下、必要な場合のみ参照してください
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+７．Linux サービスへの登録方法
+
+  　 DataCollector を Linux サービスとして登録すると、以下のことが行えるよう
+  になります。
+  
+  (1) service コマンドで起動/終了制御が行えるようになります。
+  (2) Linux 起動時に DataCollector を自動起動できるようになります。
+  (2) ntsysv コマンドで Linux 起動時の DataCollector 起動を制御できるようにな
+      ります。
+  
+  　これ以降の章では、DataCollector の Linux サービスへの登録方法について説明
+  します。
+  　なお、本バージョンでは RedHat 系 Linux(RHEL、Fedora、CentOS) を対象として
+  います。
+  
+  
+８．コンパイル環境の確認
+
+  　 Linux 版の ENdoSnipeDataCollector は、Apache Commons プロジェクトの提供
+  する jsvc コマンド (http://commons.apache.org/daemon/jsvc.html) を利用して
+  実行されます。
+  　 jsvc コマンドはお客様の実行環境においてコンパイルが必要であるため、
+  DataCollector サービスのインストール作業前に、以下の環境が揃っていることを
+  確認してください。
+
+  (1) ANSI-C 準拠の C コンパイラ (GCC を推奨します)
+  (2) GNU AutoConf コマンド
+  (2) Java SDK (Version 5.0 以降)
+
+
+９．サービスインストール手順
+  インストールはルート権限のあるユーザで行ってください。
+  
+  (1) jsvc コマンドのコンパイルを行います。以下のように順次コマンドを実行して
+      ください。
+      
+      # cd /usr/local/ENdoSnipe/DataCollector/bin/
+      # tar zxvf jsvc.tar.gz
+      # cd jsvc-src/
+      # chmod +x ./configure
+      # ./configure --with-java=/usr/java/default/
+        ※ ここで --with-java オプションに指定するのは Java のインストール先
+           ディレクトリです。お客様の環境によって異なる場合がありますので、環
+           境に合わせて変更してください。
+        ※ --with-java で指定した Java のバージョンと、DataCollector サービス
+           実行時に使用する Java のバージョンが異なる場合、DataCollector サー
+           ビスが実行できない場合がありますので、コンパイル時と実行時の Java
+           は同じバージョンのものを使用するようにしてください。
+        ※ また、DataCollector サービスインストール後に Java のバージョンを変
+           更する場合も、jsvc コマンドを再コンパイルすることをお勧めします。
+        
+        configure コマンドの実行は、以下のように表示されれば成功です。
+        
+          *** All done ***
+          Now you can issue "make"
+        
+      # make
+      # mv jsvc ..
+      # cd ../../../../
+  
+  (2) endosnipe-dc-service スクリプトの設定
+  
+      Java のインストール先が /usr/java/default 以外の場合や、DataCollector 
+      サービスを /usr/local 以外のディレクトリにインストールした場合、
+      endosnipe-dc スクリプトを修正する必要があります。
+      (本マニュアル通りにインストール作業を行っている場合、本項目の作業は必要
+      ありません)
+      
+      以下のようにして vi エディタ等で endosnipe-dc-service スクリプトを開き
+      ます。
+      
+      # vi (インストール先)/ENdoSnipe/DataCollector/bin/endosnipe-dc-service
+      
+      以下の箇所をお客様の環境に合わせて変更し、保存してください。
+      
+      # Adapt the following lines to your configuration
+      JAVA_HOME=/usr/java/default
+      DC_HOME=/usr/local/ENdoSnipe/DataCollector
+      
+      たとえば、Java のインストール先が /usr/java/jdk1.6.0_13、DataCollector
+      サービスのインストール先が /home/endosnipe の場合、以下のように修正しま
+      す。
+      
+      # Adapt the following lines to your configuration
+      JAVA_HOME=/usr/java/jdk1.6.0_13
+      DC_HOME=/home/endosnipe
+  
+  (3) 自動起動を行う場合、起動スクリプトを登録します。
+      
+      # cd /etc/init.d
+      # ln -s /usr/local/ENdoSnipe/DataCollector/bin/endosnipe-dc-service .
+      # chkconfig --add endosnipe-dc-service
+      
+      ntsysv コマンドにおいてサービス一覧に endosnipe-dc-service が表示される
+      ので、自動起動の ON/OFF を切り替えることができます。
+
+
+１０．サービス開始方法
+
+  (1) 以下のコマンドを実行します。
+      # service endosnipe-dc-service start
+      
+      以下のように表示されれば、サービス起動成功です。
+      
+      Starting ENdoSnipe DataCollector:                          [  OK  ]
+
+
+１１．サービス終了方法
+
+  (1) 以下のコマンドを実行します。
+      # service endosnipe-dc-service stop
+      
+      以下のように表示されれば、サービス終了成功です。
+      
+      Stopping ENdoSnipe DataCollector:                          [  OK  ]
+
+
+１２．サービス実行状況確認方法
+
+  (1) 以下のコマンドを実行すると、サービスの実行状況が表示されます。
+      # service endosnipe-dc-service status
+
+
+１３．アンインストール時の注意事項
+  　 DataCollector をサービスとして登録している場合、本体のアンインストールを
+  行う前に以下の手順を実施してサービス登録から削除してください。
+  
+  (1) サービス登録を削除します。
+      # chkconfig --del endosnipe-dc-service
+      
+  (2) /etc/init.d へのシンボリックリンクを削除します。
+      # rm /etc/init.d/endosnipe-dc-service
+
+
+                                                                        以上

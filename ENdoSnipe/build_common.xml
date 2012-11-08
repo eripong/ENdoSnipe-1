@@ -1,0 +1,326 @@
+<!--
+  ENdoSNipe 共通ビルドスクリプト
+  本スクリプトは、各プロジェクトのビルドスクリプトからインポートされます。
+-->
+<project>
+    <!-- 環境固有設定ファイルの読込 -->
+    <property file="../ENdoSnipe/build.properties" />
+
+    <property name="manifest.path" value="../${ant.project.name}/META-INF/MANIFEST.MF" />
+    <property name="log4j.properties.path" value="../${ant.project.name}/src/main/resources/log4j.properties" />
+
+    <!-- 各プロジェクトのディレクトリ設定 -->
+    <property name="endosnipe-arrowvision.dir" value="../ENdoSnipeArrowVision" />
+    <property name="endosnipe-bottleneckeye.dir" value="../ENdoSnipeBottleneckEye" />
+    <property name="endosnipe-common.dir" value="../ENdoSnipeCommon" />
+    <property name="endosnipe-communicator.dir" value="../ENdoSnipeCommunicator" />
+    <property name="endosnipe-dataaccessor.dir" value="../ENdoSnipeDataAccessor" />
+    <property name="endosnipe-datacollector.dir" value="../ENdoSnipeDataCollector" />
+    <property name="endosnipe-reporter.dir" value="../ENdoSnipeReporter" />
+
+    <!-- 各プロジェクトの jar ファイルパス -->
+    <property name="endosnipe-arrowvision.jar" value="${endosnipe-arrowvision.dir}/dist/arrowvision.jar" />
+    <property name="endosnipe-arrowvision_pro.jar" value="${endosnipe-arrowvision.dir}/dist/arrowvision_pro.jar" />
+    <property name="endosnipe-bottleneckeye.jar" value="${endosnipe-bottleneckeye.dir}/dist/jp.co.acroquest.endosnipe.bottleneckeye-${version}.jar" />
+    <property name="endosnipe-common.jar" value="${endosnipe-common.dir}/dist/endosnipe-common-${version}.jar" />
+    <property name="endosnipe-common-fortest.jar" value="${endosnipe-common.dir}/dist/endosnipe-common-fortest-${version}.jar" />
+    <property name="endosnipe-communicator.jar" value="${endosnipe-communicator.dir}/dist/endosnipe-communicator-${version}.jar" />
+    <property name="endosnipe-dataaccessor.jar" value="${endosnipe-dataaccessor.dir}/dist/endosnipe-dataaccessor-${version}.jar" />
+    <property name="endosnipe-datacollector.jar" value="${endosnipe-datacollector.dir}/dist/endosnipe-datacollector-${version}.jar" />
+    <property name="endosnipe-reporter.jar" value="${endosnipe-reporter.dir}/dist/endosnipe-reporter.jar" />
+
+    <!-- 依存ライブラリの存在チェック -->
+    <available file="${endosnipe-common.jar}" type="file" property="endosnipe-common.present" />
+    <available file="${endosnipe-common-fortest.jar}" type="file" property="endosnipe-common-fortest.present" />
+    <available file="${endosnipe-communicator.jar}" type="file" property="endosnipe-communicator.present" />
+    <available file="${endosnipe-dataaccessor.jar}" type="file" property="endosnipe-dataaccessor.present" />
+    <available file="${endosnipe-datacollector.jar}" type="file" property="endosnipe-datacollector.present" />
+    <available file="${endosnipe-reporter.jar}" type="file" property="endosnipe-reporter.present" />
+
+    <!-- EndoSnipe-Common の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-common-needs-compile" if="endosnipe-common.present">
+        <uptodate property="endosnipe-common.compiled" targetfile="${endosnipe-common.jar}">
+            <srcfiles dir="${endosnipe-common.dir}/src" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- EndoSnipe-Common-fortest の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-common-fortest-needs-compile" if="endosnipe-common-fortest.present">
+        <uptodate property="endosnipe-common-fortest.compiled" targetfile="${endosnipe-common-fortest.jar}">
+            <srcfiles dir="${endosnipe-common.dir}/src/test" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- EndoSnipe-Communicator の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-communicator-needs-compile" if="endosnipe-communicator.present">
+        <uptodate property="endosnipe-communicator.compiled" targetfile="${endosnipe-communicator.jar}">
+            <srcfiles dir="${endosnipe-communicator.dir}/src" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- EndoSnipe-DataAccessor の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-dataaccessor-needs-compile" if="endosnipe-dataaccessor.present">
+        <uptodate property="endosnipe-dataaccessor.compiled" targetfile="${endosnipe-dataaccessor.jar}">
+            <srcfiles dir="${endosnipe-dataaccessor.dir}/src" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- EndoSnipe-DataCollector の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-datacollector-needs-compile" if="endosnipe-datacollector.present">
+        <uptodate property="endosnipe-datacollector.compiled" targetfile="${endosnipe-datacollector.jar}">
+            <srcfiles dir="${endosnipe-datacollector.dir}/src" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- EndoSnipe-Reporter の再コンパイルが必要かチェック -->
+    <target name="check-endosnipe-reporter-needs-compile" if="endosnipe-reporter.present">
+        <uptodate property="endosnipe-reporter.compiled" targetfile="${endosnipe-reporter.jar}">
+            <srcfiles dir="${endosnipe-reporter.dir}/src" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <!-- 依存ライブラリのコンパイル -->
+    <target name="compileENdoSnipeCommon" unless="endosnipe-common.compiled" depends="check-endosnipe-common-needs-compile">
+        <echo>ENdoSnipeCommonのコンパイルを行います...</echo>
+        <ant dir="${endosnipe-common.dir}" antfile="${endosnipe-common.dir}/build.xml" inheritall="false" />
+    </target>
+
+    <target name="compileENdoSnipeCommonFortest" unless="endosnipe-common-fortest.compiled" depends="check-endosnipe-common-fortest-needs-compile">
+        <echo>ENdoSnipeCommonテスト用ライブラリのコンパイルを行います...</echo>
+        <ant dir="${endosnipe-common.dir}" antfile="${endosnipe-common.dir}/build.xml" inheritall="false" />
+    </target>
+
+    <target name="compileENdoSnipeCommunicator" unless="endosnipe-communicator.compiled" depends="check-endosnipe-communicator-needs-compile">
+        <echo>ENdoSnipeCommunicatorのコンパイルを行います...</echo>
+        <ant dir="${endosnipe-communicator.dir}" antfile="${endosnipe-communicator.dir}/build.xml" inheritall="false" />
+    </target>
+
+    <target name="compileENdoSnipeDataAccessor" unless="endosnipe-dataaccessor.compiled" depends="check-endosnipe-dataaccessor-needs-compile">
+        <echo>ENdoSnipeDataAccessorのコンパイルを行います...</echo>
+        <ant dir="${endosnipe-dataaccessor.dir}" antfile="${endosnipe-dataaccessor.dir}/build.xml" inheritall="false" />
+    </target>
+
+    <target name="compileENdoSnipeDataCollector" unless="endosnipe-datacollector.compiled" depends="check-endosnipe-datacollector-needs-compile">
+        <echo>ENdoSnipeDataCollectorのコンパイルを行います...</echo>
+        <ant dir="${endosnipe-datacollector.dir}" antfile="${endosnipe-datacollector.dir}/build.xml" inheritall="false" />
+    </target>
+
+    <target name="compileENdoSnipeReporter" unless="endosnipe-reporter.compiled" depends="check-endosnipe-reporter-needs-compile">
+        <echo>ENdoSnipeDataCollectorのコンパイルを行います...</echo>
+        <!-- <ant dir="${endosnipe-reporter.dir}" antfile="${endosnipe-reporter.dir}/build.xml" inheritall="false" /> -->
+    </target>
+
+    <!-- log4j.properties のトレースレベルに INFO 以下が含まれていないか確認 -->
+    <target name="checkLog4jProperties" depends="doCheckLog4jProperties" unless="doCheckLog4jProperties.success">
+        <fail message="トレースレベルがリリースに適していません." />
+    </target>
+
+    <target name="doCheckLog4jProperties">
+        <condition property="doCheckLog4jProperties.success">
+            <scriptcondition language="groovy">
+                <![CDATA[
+            String path = project.getProperty("log4j.properties.path")
+            File file = new File(path);
+            if(!file.exists()){
+                System.out.printf("【警告】チェック対象ファイルが見つかりません.(%s)\n", file.getAbsolutePath());
+                self.setValue(true);
+                return;
+            }
+            
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            
+            System.out.print(file.getAbsolutePath() + " をチェック中...");
+            String line = null;
+            int count = 1;
+            boolean result = true;
+            while((line=reader.readLine())!=null){
+                if(line.startsWith("log4j.category")) {
+                    if(line.endsWith("=TRACE") || line.endsWith("=DEBUG")) {
+                        if(result) {
+                            System.out.print("\n");
+                        }
+                        printf("%3d 行目: デバッグレベルが不適切です. %s\n", count ,line);
+                        result = false;
+                    }
+                }
+                count++;
+            }
+            reader.close();
+            self.setValue(result);
+            if(result) {
+                        System.out.println("OK.");
+            }
+       ]]>
+            </scriptcondition>
+        </condition>
+    </target>
+
+    <!-- build.bat のバージョンを build.properties へ転記します -->
+    <target name="copyVerToBuildProperties" depends="doCopyVerToBuildProperties" unless="copyVerToBuildProperties.success">
+        <fail message="build.bat からのバージョン取得に失敗しました." />
+    </target>
+
+    <target name="doCopyVerToBuildProperties">
+        <condition property="copyVerToBuildProperties.success">
+            <scriptcondition language="groovy">
+                <![CDATA[
+                String batPath = "../ENdoSnipe/build.bat";
+                String propPath = "../ENdoSnipe/build.properties";
+                
+                // build.bat からバージョン番号の取得
+                File batFile = new File(batPath);
+                if(batFile.exists() == false) {
+                    printf("【エラー】%s が存在しません.", batFile.getAbsolutePath());
+                    self.setValue(false);
+                    return;
+                }
+                
+                String version = null;
+                String build = null;
+                BufferedReader br = null;
+                try{
+                    br = new BufferedReader(new FileReader(batFile));
+                    String line;
+                    while((line = br.readLine()) != null) {
+                        if(line.startsWith("set VER=")) {
+                            version = line.substring(8);
+                        }
+                        if(line.startsWith("set BUILD=")) {
+                            build = line.substring(10);
+                        }
+                    }
+                } finally {
+                    br.close();
+                }
+                
+                if(version == null) {
+                    printf("【エラー】%s からバージョンが取得できませんでした.", batFile.getAbsolutePath());
+                    self.setValue(false);
+                    return;
+                }
+                if(build == null) {
+                    printf("【エラー】%s からビルド番号が取得できませんでした.", batFile.getAbsolutePath());
+                    self.setValue(false);
+                    return;
+                }
+                
+                // build.properties への反映
+                File propFile = new File(propPath);
+                if(propFile.exists() == false) {
+                    printf("【エラー】%s が存在しません.", propFile.getAbsolutePath());
+                    self.setValue(false);
+                    return;
+                }
+            
+                StringWriter outWriter = new StringWriter(8192);
+                boolean changed = false;
+                try{
+                    br = new BufferedReader(new FileReader(propFile));
+                    String line;
+                    while((line = br.readLine()) != null) {
+                        if(line.startsWith("version=")) {
+                            if(version.equals(line.substring(8)) == false) {
+                                line = "version=" + version;
+                                changed = true;
+                            }
+                        }
+                        if(line.startsWith("build=")) {
+                            if(build.equals(line.substring(6)) == false) {
+                                line = "build=" + build;
+                                changed = true;
+                            }
+                        }
+                        outWriter.write(line + "\n");
+                    }
+                } finally {
+                    br.close();
+                }
+                
+                if(changed == false) {
+                    println("build.properties の更新を行いませんでした.");
+                    self.setValue(true);
+                    return;
+                }
+                
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(propFile));
+                try {
+                    bw.write(outWriter.getBuffer().toString());
+                    
+                    // 読み込んだプロパティを更新する
+                    project.setProperty("version", version);
+                    project.setProperty("build", build);
+                
+                    println("更新に成功しました.");
+                } finally {
+                    bw.close();
+                }
+                
+                self.setValue(true);
+            ]]>
+            </scriptcondition>
+        </condition>
+    </target>
+
+    <!-- build.properties のバージョンを MANIFEST.MF へ転記します -->
+    <target name="copyVerToMANIFEST" depends="copyVerToBuildProperties, doCopyVerToMANIFEST" unless="doCopyVerToMANIFEST.success">
+        <fail message="MANIFEST.MF へのバージョン転記に失敗しました." />
+    </target>
+    <target name="doCopyVerToMANIFEST">
+        <condition property="doCopyVerToMANIFEST.success">
+            <scriptcondition language="groovy">
+                <![CDATA[
+                // build.properties からバージョン取得
+                String manifestPath = project.getProperty("manifest.path");
+                String version = project.getProperty("version");
+                String build = project.getProperty("build");
+                String label = version + "." + build;
+                
+                File infFile = new File(manifestPath);
+                if(infFile.exists() == false) {
+                    printf("【エラー】%s が存在しません.", infFile.getAbsolutePath());
+                    self.setValue(false);
+                    return;
+                }
+                
+                printf("%s のバージョンを %s に更新します...\n", infFile.getAbsolutePath(), label);
+                
+                StringWriter outWriter = new StringWriter(8192);
+                boolean changed = false;
+                BufferedReader br = null;
+                try{
+                    br = new BufferedReader(new FileReader(infFile));
+                    String line;
+                    while((line = br.readLine()) != null) {
+                        if(line.startsWith("Bundle-Version: ")) {
+                            if(label.equals(line.substring(16)) == false) {
+                                line = "Bundle-Version: " + label;
+                                changed = true;
+                            }
+                        }
+                        outWriter.write(line + "\n");
+                    }
+                } finally {
+                    br.close();
+                }
+                
+                if(changed == false) {
+                    println("更新を行いませんでした.");
+                    self.setValue(true);
+                    return;
+                }
+                
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(infFile));
+                try {
+                    bw.write(outWriter.getBuffer().toString());
+                    println("更新に成功しました.");
+                } finally {
+                    bw.close();
+                }
+                self.setValue(true);
+            ]]>
+            </scriptcondition>
+        </condition>
+    </target>
+</project>

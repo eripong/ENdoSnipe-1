@@ -1,0 +1,80 @@
+
+     ■ ENdoSnipe DataCollector サービスインストール手順書 (Windows) ■
+
+                                                Acroquest Technology株式会社
+
+１．はじめに
+
+  　本書は、ENdoSnipe DataCollector サービス (Windows 版) の利用手順について
+  説明します。
+  　 ENdoSnipe DataCollector サービスを使用することで、Javelin の計測した情報
+  を データベースへ蓄積し、あとで ArrowVision、PerformanceDoctor を用いて解析
+  することができます。
+  　これにより、Eclipse をインストールできないマシンにおいても、データ収集が
+  できるようになります。
+
+
+２．インストール手順
+
+  (1) endosnipe-datacollector-x.y.z.zip (x.y.z はバージョン) を展開してくださ
+      い。
+  (2) 展開してできた DataCollector フォルダを任意のフォルダ (ただし、フォルダ
+      名にスペースが含まれないこと)に移動します(通常は C:\ へ移動してください)。
+  (3) DataCollector/bin フォルダを開き、Install_DataCollectorService.bat をダ
+      ブルクリックします。これで、DataCollector が Windows サービスとして登録
+      されます。
+  (4) [コントロールパネル]-[管理ツール]-[サービス] を開き、サービス一覧に
+      「ENdoSnipeDataCollector」が表示されていれば、インストール成功です。
+  (5) DataCollector/bin フォルダを開き、Start_DataCollectorServiceMonitor.bat
+      を Windows のスタートアップフォルダに登録します。
+
+
+３．サービス開始方法(モニタを使用する場合)
+
+  (1) DataCollector/bin フォルダを開き、Start_DataCollectorServiceMonitor.bat
+      をダブルクリックしてください。タスクトレイに「ENdoSnipeDataCollector」
+      アイコンが表示されます。
+  (2) 「ENdoSnipeDataCollector」アイコンを右クリックし「Start service」を選択
+      します。
+  (3) アイコンの表示が「■」から「|>」 (右向き三角印) に変化すれば、サービス
+      が開始しています。
+
+
+４．サービス開始方法(コントロールパネルを使用する場合)
+
+  (1) [コントロールパネル]-[管理ツール]-[サービス] を開きます。
+  (2) サービス一覧から「ENdoSnipeDataCollector」を選択して右クリックメニュー
+      を開き、「開始」を選択します。
+
+
+５．サービス終了方法(モニタを使用する場合)
+
+  (1) モニタが起動していない場合、DataCollector/bin フォルダを開き、
+      Start_DataCollectorServiceMonitor.bat をダブルクリックしてください。タ
+      スクトレイに「ENdoSnipeDataCollector」アイコンが表示されます。
+  (2) 「ENdoSnipeDataCollector」アイコンを右クリックし「Stop service」を選択
+      します。
+  (3) アイコンの表示が「|>」 (右向き三角印) から「■」に変化すれば、サービス
+      が終了しています。
+
+
+６．サービス終了方法(コントロールパネルを使用する場合)
+
+  (1) [コントロールパネル]-[管理ツール]-[サービス] を開きます。
+  (2) サービス一覧から「ENdoSnipeDataCollector」を選択して右クリックメニュー
+      を開き、「停止」を選択します。
+
+
+７．アンインストール手順
+
+  (1) DataCollector サービスが実行中の場合、停止させてください。
+  (2) DataCollector/bin フォルダを開き、Uninstall_DataCollectorService.bat を
+      実行します。これで DataCollector が Windows サービスから削除されます。
+  (3) [コントロールパネル]-[管理ツール]-[サービス] を開き、サービス一覧に
+      「ENdoSnipeDataCollector」が表示されていないことを確認してください。
+  (4) インストール時にコピーした DataCollector フォルダを削除します。データベー
+      スは DataCollector/data フォルダに存在しますので、データベースを保存す
+      る場合はこのフォルダを事前に待避しておいてください。
+  (5) 以上でアンインストールは完了です。
+  
+                                                                        以上

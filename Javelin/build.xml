@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Javelin" default="release" basedir=".">
+    <import file="../ENdoSnipe/build_common.xml" />
+
+    <!-- Project settings -->
+    <property name="jarname" value="javelin" />
+    <property name="zipname" value="Javelin" />
+
+    <!-- Local system paths -->
+    <property name="src.dir" location="src/main/java" />
+    <property name="src.test.dir" location="src/test/java" />
+    <property name="src.servlet-api.dir" location="src/main/servlet-api" />
+    <property name="resources.dir" location="src/main/resources" />
+    <property name="resources.test.dir" location="src/test/resources" />
+    <property name="classes.dir" location="classes" />
+    <property name="classes.test.dir" location="classes-test" />
+    <property name="classes.servlet-api.dir" location="classes-servlet-api" />
+    <property name="lib.dir" value="lib" />
+    <property name="lib-compile.dir" location="${lib.dir}/compile" />
+    <property name="lib-opt.dir" location="${lib.dir}/opt" />
+    <property name="lib-tool.dir" location="${lib.dir}/tool" />
+    <property name="lib-dependency.dir" location="${lib.dir}/dependency" />
+    <property name="license.dir" value="license" />
+    <property name="image.dir"   value="image" />
+    <property name="conf.dir"    value="conf" />
+    <property name="bin.dir"     value="bin" />
+    <property name="dist.dir"    location="dist" />
+    <property name="temp.dir"    value="${dist.dir}/temp" />
+    <property name="package.dir" value="package" />
+    <property name="doc.dir"     value="doc" />
+    <property name="report.dir" location="junit-report" />
+    <property name="servlet-api.jar" value="servlet.jar" />
+	
+
+    <!-- Javadoc settings -->
+    <property name="javadoc.package" value="*" />
+    <property name="javadoc.title" value="${ant.project.name}" />
+    <property name="copyright" value="Copyright (c) Acroquest Co., Ltd. All rights reserved." />
+
+
+    <!-- classpath settings -->
+    <path id="compile.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+            <exclude name="${lib-tool.dir}/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- テストクラスコンパイル用のクラスパス -->
+    <path id="compile.test.classpath">
+        <path refid="compile.classpath" />
+        <pathelement location="${classes.dir}" />
+        <fileset dir="${lib-tool.dir}">
+            <include name="junit-*.jar" />
+        </fileset>
+    </path>
+
+    <target name="prepare" depends="clean, copyVerToBuildProperties">
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${classes.test.dir}" />
+        <mkdir dir="${classes.servlet-api.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${temp.dir}/${lib.dir}" />
+        <mkdir dir="${temp.dir}/${conf.dir}" />
+        <mkdir dir="${temp.dir}/${bin.dir}" />
+        <mkdir dir="${temp.dir}/${license.dir}" />
+        <mkdir dir="${temp.dir}/${package.dir}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${classes.dir}" />
+        <delete dir="${classes.test.dir}" />
+        <delete dir="${classes.servlet-api.dir}" />
+        <delete dir="${dist.dir}" />
+        <delete dir="${report.dir}" />
+    </target>
+
+    <!-- ServletAPI のコンパイル -->
+    <target name="check-servlet-api-needs-compile">
+        <uptodate property="servlet-api.compiled" targetfile="${lib-opt.dir}/${servlet-api.jar}">
+            <srcfiles dir="${src.servlet-api.dir}" includes="**/*.*" />
+        </uptodate>
+    </target>
+
+    <target name="compileServletAPI" depends="prepare" unless="servlet-api.compiled">
+        <javac srcdir="${src.servlet-api.dir}" destdir="${classes.servlet-api.dir}" />
+        <copy todir="${classes.servlet-api.dir}">
+            <fileset dir="${src.servlet-api.dir}">
+                <exclude name="**/*.java" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- ServletAPI の Jar 生成 -->
+    <target name="jarServletAPI" depends="compileServletAPI">
+        <jar jarfile="${lib-opt.dir}/${servlet-api.jar}" basedir="${classes.servlet-api.dir}" />
+    </target>
+
+    <!-- Normal build of application -->
+    <target name="compile" depends="prepare, compileENdoSnipeCommon, compileENdoSnipeCommunicator, jarServletAPI">
+        <!-- Copy depending libraries -->
+        <copy file="${endosnipe-common.jar}" todir="${lib-dependency.dir}" failonerror="yes" />
+        <copy file="${endosnipe-communicator.jar}" todir="${lib-dependency.dir}" failonerror="yes" />
+        <copy file="${endosnipe-dataaccessor.jar}" todir="${lib-dependency.dir}" failonerror="yes" />
+        <copy todir="${lib-dependency.dir}">
+            <fileset dir="${endosnipe-common.dir}/lib">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+
+        <javac destdir="${classes.dir}" fork="true" debug="true" target="1.5">
+            <classpath refid="compile.classpath" />
+            <src>
+                <pathelement path="${src.dir}" />
+            </src>
+        </javac>
+        <copy todir="${classes.dir}" includeEmptyDirs="no">
+            <fileset dir="${resources.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        <propertyfile file="${classes.dir}/version.properties">
+            <entry key="version" value="${version}" />
+        </propertyfile>
+
+    </target>
+
+    <!-- テストソースのコンパイル -->
+    <target name="compile-test" depends="compile" description="テストソースをコンパイルする">
+        <!-- ${src.test}から${classes.test}に、Javaコードをコンパイルする -->
+        <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" debug="on">
+            <classpath>
+                <path refid="compile.test.classpath" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes.test.dir}">
+            <fileset dir="${resources.test.dir}" />
+        </copy>
+    </target>
+
+    <!-- JUnit テストの実行 -->
+    <target name="runtest" depends="compile-test">
+        <mkdir dir="${report.dir}" />
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="compile.classpath" />
+                <pathelement location="${classes.dir}" />
+                <pathelement location="${classes.test.dir}" />
+            </classpath>
+            <formatter type="plain" />
+            <batchtest fork="no" todir="${report.dir}">
+                <fileset dir="${src.test.dir}">
+                    <include name="**/*Test.java" />
+                    <exclude name="**/Abstract*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- Jarの生成 -->
+    <target name="jar" depends="compile">
+        <jar basedir="${classes.dir}" jarfile="${dist.dir}/${jarname}.jar" manifest="MANIFEST1.MF">
+            <exclude name="test/**" />
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- リリースアーカイブの生成 -->
+    <target name="dist" depends="jar" description="Build a plugin distributable">
+        <copy todir="${temp.dir}/${conf.dir}">
+            <fileset dir="${conf.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+        
+        <copy todir="${temp.dir}/${bin.dir}">
+            <fileset dir="${bin.dir}">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <copy todir="${temp.dir}/${lib.dir}">
+            <fileset file="${dist.dir}/${jarname}.jar" />
+            <fileset dir="${lib.dir}">
+                <include name="*.jar" />
+                <include name="license/*.*" />
+            </fileset>
+            <fileset dir="${lib-dependency.dir}">
+                <include name="endosnipe-*.jar" />
+            </fileset>
+        </copy>
+
+		<!-- 依存ライブラリをjavelin.jarに一本化する。 -->
+		<unjar dest="${temp.dir}/${package.dir}">
+		    <fileset dir="${temp.dir}/${lib.dir}">
+		        <include name="**/*.jar"/>
+		    </fileset>
+		</unjar>
+
+    	<!-- libディレクトリの内容をいったん、クリアする。 -->
+        <delete dir="${temp.dir}/${lib.dir}" />
+        <mkdir dir="${temp.dir}/${lib.dir}" />
+    	
+        <jar basedir="${temp.dir}/${package.dir}" 
+        	jarfile="${temp.dir}/${lib.dir}/${jarname}.jar" manifest="MANIFEST1.MF">
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+
+        <!-- マニフェスト中のBoot-Class-Path属性に対応していないプラットフォーム用のjar作成。 -->
+        <jar basedir="${temp.dir}/${package.dir}" 
+        	jarfile="${temp.dir}/${lib.dir}/${jarname}-nobootpath.jar" manifest="MANIFEST2.MF">
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+    	
+        <delete dir="${temp.dir}/${package.dir}" />
+    	
+        <copy todir="${temp.dir}/lib">
+            <fileset dir="${lib.dir}">
+                <include name="*.dll" />
+                <include name="*.so" />
+            </fileset>
+        </copy>
+    	
+        <copy todir="${temp.dir}/opt/lib">
+            <fileset dir="${lib-opt.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+    	
+        <mkdir dir="${temp.dir}/logs" />
+        <touch file="${temp.dir}/logs/deleteme.txt" />
+        <mkdir dir="${temp.dir}/traces" />
+        <touch file="${temp.dir}/traces/deleteme.txt" />
+        <mkdir dir="${temp.dir}/data" />
+        <touch file="${temp.dir}/data/deleteme.txt" />
+        <touch file="${temp.dir}/license/deleteme.txt" />
+
+        <!-- Create zipfile. -->
+        <zip destfile="${dist.dir}/${zipname}_${version}.zip">
+            <zipfileset prefix="${zipname}" dir="${temp.dir}" includes="**" />
+        </zip>
+
+<!--
+    	<delete dir="${temp.dir}" />
+-->
+    	
+    </target>
+
+    <!-- ビルド -->
+    <target name="release" depends="dist" />
+
+    <!-- Javadoc 生成 -->
+    <target name="javadoc" depends="prepare" description="Javadoc を生成する">
+        <!-- 過去に出力した Javadoc を削除 -->
+        <delete includeEmptyDirs="true" failonerror="false">
+            <fileset dir="${doc.dir}" />
+        </delete>
+
+        <!-- Javadoc 出力ディレクトリ作成 -->
+        <mkdir dir="${doc.dir}" />
+
+        <!-- Javadoc 生成 -->
+        <javadoc packagenames="${javadoc.package}" sourcepath="${src.dir}" classpathref="project.classpath" destdir="${doc.dir}" access="protected" encoding="Windows-31J" docencoding="Shift_JIS" locale="ja_JP" windowtitle="${javadoc.title}" bottom="${copyright}" />
+    </target>
+
+</project>

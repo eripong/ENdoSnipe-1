@@ -1,0 +1,154 @@
+#!/bin/bash
+
+#-----------------------------------------------------------------------------
+# Control Script for ENdoSnipe DataCollector
+#-----------------------------------------------------------------------------
+
+FILEPWD=`echo $0 | sed -e 's#\(.*\)/.*#\1#'`
+pushd $FILEPWD > /dev/null
+PID_FILE=datacollector.pid
+
+#---------------------------------------
+# Adapt the following lines to your configuration
+#---------------------------------------
+JAVA=$JAVA_HOME/bin/java
+PROP=../conf/collector.properties
+LOG4J=../conf/log4j.properties
+
+if [ -z $JAVA_HOME ]; then
+  echo "JAVA_HOME isn't set. Please set JAVA_HOME."
+  exit 1
+fi
+
+#---------------------------------------
+RES_COL=60
+MOVE_TO_COL="echo -en \\033[${RES_COL}G"
+SETCOLOR_SUCCESS="echo -en \\033[1;32m"
+SETCOLOR_FAILURE="echo -en \\033[1;31m"
+SETCOLOR_WARNING="echo -en \\033[1;33m"
+SETCOLOR_NORMAL="echo -en \\033[0;39m"
+
+success() {
+  $MOVE_TO_COL
+  echo -n "["
+  $SETCOLOR_SUCCESS
+  echo -n "  OK  "
+  $SETCOLOR_NORMAL
+  echo "]"
+}
+
+failure() {
+  $MOVE_TO_COL
+  echo -n "["
+  $SETCOLOR_FAILURE
+  echo -n "FAILED"
+  $SETCOLOR_NORMAL
+  echo "]"
+}
+
+scriptend() {
+  popd > /dev/null
+  exit $1
+}
+
+case "$1" in
+  start)
+    #---------------------
+    # Start DataCollector
+    #--------------------
+    echo -n "Starting ENdoSnipe DataCollector: "
+    if [ -f $PID_FILE ]; then
+      failure
+      echo "ENdoSnipe DataCollector is already running."
+      scriptend 1
+    fi
+    
+    $JAVA -Dcollector.property=$PROP -Dlog4j.configuration=file:../conf/log4j.properties -jar ../lib/endosnipe-datacollector.jar start &
+
+    COUNT=0
+    OKCOUNT=0
+    while :
+    do
+      PSCOUNT=`ps -ef | grep endosnipe-datacollector.jar | grep -vc grep`
+      if [ $PSCOUNT -eq 1 ]; then
+        OKCOUNT=`expr $OKCOUNT + 1`
+        if [ $OKCOUNT -gt 5 ]; then
+          PSOUT=`ps -ef | grep endosnipe-datacollector.jar | grep -v grep`
+          PID=`echo $PSOUT | awk '{print $2}'`
+
+          echo $PID > $PID_FILE
+          success
+          scriptend 0
+        else
+          sleep 1
+          echo -n "*"
+        fi
+      else
+        COUNT=`expr $COUNT + 1`
+        if [ $COUNT -gt 10 ]; then
+          failure
+          echo "Please see logs/DataCollector.log for detail."
+          scriptend 1
+        else
+          sleep 1
+          echo -n "."
+        fi
+      fi
+    done
+    ;;
+
+  stop)
+    #--------------------
+    # Stop DataCollector
+    #--------------------
+    echo -n "Stopping ENdoSnipe DataCollector: "
+    if [ ! -f $PID_FILE ]; then
+      failure
+      echo "ENdoSnipe DataCollector is not running."
+      scriptend 1
+    fi
+
+    PID=`cat $PID_FILE`
+    kill $PID
+
+    ENDCOUNT=0
+    while :
+    do
+      PSCOUNT=`ps -ef | grep endosnipe-datacollector.jar | grep -vc grep`
+      
+      if [ $PSCOUNT -eq 0 ]; then
+        rm -f $PID_FILE
+        success
+        scriptend 0
+      else
+        ENDCOUNT=`expr $ENDCOUNT + 1`
+        
+        if [ $ENDCOUNT -gt 20 ]; then
+          filure
+          echo "Please see logs/DataCollector.log for detail."
+          scriptend 1
+        else
+          echo -n "."
+          sleep 1
+        fi
+      fi
+    done
+    ;;
+
+  status)
+    #----------------------
+    # Check running status
+    #----------------------
+    if [ -f $PID_FILE ]; then
+      echo "ENdoSnipe DataCollector is already running."
+    else
+      echo "ENdoSnipe DataCollector is not running."
+    fi
+    scriptend 0
+    ;;
+
+  *)
+    echo "Usage endosnipe-dc {start|stop|status}"
+    scriptend 1;;
+esac
+

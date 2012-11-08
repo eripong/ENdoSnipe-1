@@ -1,0 +1,13 @@
+#djUnit Plugin Settings
+#Tue Oct 26 18:00:28 JST 2010
+CoverageIncludedPatterns=jp\\.co\\.acroquest\\.endosnipe\\.common\\..+;
+VirtualMockIgnoreLibrary=false
+CoverageExcludedPatterns=.*Test$;.*Test\\$.*$;
+UseMarker=true
+UseVirtualMock=true
+UseCoverage=false
+BytecodeLibrary=ASM
+VirtualMockNotIgnorePatterns=
+UseNoverify=false
+CoverageWorkingDirectory=/coverage
+CoverageReportCharset=

@@ -1,0 +1,222 @@
+/*
+ WGP  0.1  - Web Graphical Platform
+ Copyright (c) 2012, WGP.LICENSES.COM
+ Dual licensed under the MIT and GPL licenses
+ http://www.opensource.org/licenses/mit-license.php
+ http://www.gnu.org/licenses/gpl-2.0.html
+ Date: 2012-04-29
+*/
+#resizable { 
+	width: 150px; 
+	height: 150px; 
+	padding: 0.5em; 
+}
+
+#resizable h3 { 
+	text-align: center; 
+	margin: 0; 
+}
+
+.ui-resizable-helper { 
+	border: 2px dotted #00F; 
+}
+
+.ie-message {
+	position:absolute;
+	left:560px;
+	top:20px;
+	width:230px;
+}
+
+#myArea {
+	background-color:#CCFFFF;
+}
+
+#date_area {
+	padding-top:10px;
+	margin-left:10px;
+	width:600px;
+	height:60px;
+}
+
+#date_area .input_area{
+	margin-top:-10px;
+	font-size: 13px; 
+}
+
+#date_area input{
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+#setting_area{
+	margin-top:-8px;
+	margin-left:10px;
+}
+
+#operation_area{
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+/* �p����ݒ� */
+.link{
+	position:relative;
+	float:left;
+	top:-10px;
+}
+
+.link_pan{
+	position:relative;
+	float:left;
+	top:3px;
+}
+
+.widget-area { 
+	width:800px;
+	height:370px; 
+	background:#FAFAF0; 
+	border:solid 1px; 
+	margin-top:40px; 
+	font-size: 13px; 
+
+	/* �p��*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;  
+	//shadow
+    -webkit-box-shadow: 2px 2px 2px #888888;
+	-moz-box-shadow: 2px 2px 2px #888888;
+}
+
+.widget-header1 { 
+	width:800px;
+	color:#FAFAFA; 
+	font-size: 15px; 
+	font-weight: bold; 
+	margin-bottom: 1px; 
+	padding-top: 1px; 
+	padding-bottom: 1px;
+	border:solid 0px; 
+	text-align: center;
+
+	//ridius
+	-webkit-border-top-left-radius: 10px;  
+	-webkit-border-top-right-radius: 10px;  
+	-moz-border-radius-topleft: 10px;  
+	-moz-border-radius-topright: 10px;  
+
+	// �w�i
+	background:#666666; 
+	background-color:#666666; 
+}
+
+.widget-header2 { 
+	color:#FAFAFA; 
+	font-size: 15px; 
+	font-weight: bold; 
+	margin-bottom:1px; 
+	margin-top:-28px; 
+	padding-bottom:1px;
+	border:solid 0px; 
+	text-align: center;
+
+	// �p��
+	-webkit-border-top-left-radius: 10px;  
+	-webkit-border-top-right-radius: 10px;  
+	-moz-border-radius-topleft: 10px;  
+	-moz-border-radius-topright: 10px;  
+
+	// �w�i
+	background:#44449f;
+	background-color:#44449f;
+}
+
+.widget-header3 { 
+	color:#FAFAFA; 
+	font-size: 15px; 
+	font-weight: bold; 
+	margin-bottom:2px; 
+	padding-top:4px; 
+	padding-bottom:4px;
+	border:solid 0px; 
+	text-align: center;
+
+	// �p��
+	-webkit-border-top-left-radius: 10px;  
+	-webkit-border-top-right-radius: 10px;  
+	-moz-border-radius-topleft: 10px;  
+	-moz-border-radius-topright: 10px;  
+
+	// �w�i
+	background:#333377; 
+	background:-webkit-gradient(
+	    linear,
+	    left bottom,
+	    right top,
+	    color-stop(0.08, rgb(50, 150, 50)),
+	    color-stop(0.54, rgb(100,200, 100))
+	);
+	background:-moz-linear-gradient(
+	    left bottom,
+		rgb(50, 150, 50) 8%,
+	    rgb(100, 200, 100) 54%
+	);
+}
+
+.widget-header4 { 
+	color:#FAFAFA; 
+	font-size: 15px; 
+	font-weight: bold; 
+	margin-bottom:2px; 
+	padding-top:4px; 
+	padding-bottom:4px;
+	border:solid 0px; 
+	text-align: center;
+
+	// �p��
+	-webkit-border-top-left-radius: 10px;  
+	-webkit-border-top-right-radius: 10px;  
+	-moz-border-radius-topleft: 10px;  
+	-moz-border-radius-topright: 10px;  
+
+	// �w�i
+	background:#333377; 
+	background:-webkit-gradient(
+	    linear,
+	    left bottom,
+	    right top,
+	    color-stop(0.08, rgb(150, 50, 50)),
+	    color-stop(0.54, rgb(200,100, 100))
+	);
+	background:-moz-linear-gradient(
+	    left bottom,
+		rgb(150, 50, 50) 8%,
+	    rgb(200, 100, 100) 54%
+	);
+}
+
+.widget-graphwrapper { 
+	margin:  3px auto 0px auto; 
+	padding: 3px 10px 0px 0px; 
+	border:  solid 1px; 
+
+	// �w�i
+	background:#ffffff; 
+	background-color:#ffffff; 
+
+}
+
+.initial_max_graph_range { 
+	visibility:hidden; height:0px; 
+}
+
+.labels { 
+	visibility:hidden; 
+	height:0px;
+	white-space:nowrap;
+}
+

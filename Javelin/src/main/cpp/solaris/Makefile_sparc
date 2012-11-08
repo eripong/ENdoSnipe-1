@@ -1,0 +1,28 @@
+CC=gcc
+CFLAGS=-std=gnu89 -I/usr/java/include -I/usr/java/include/solaris
+LDFLAGS=-lkstat
+
+all: libresource_reader_solaris_sparc_32.so libresource_reader_solaris_sparcv9_64.so resourcereader_32 resourcereader_64
+#all: libresource_reader_solaris_sparc_32.so resourcereader_32
+
+clean:
+	rm *.o *.so resourcereader_32 resourcereader_64
+
+solaris_resource_reader_sparc_32.o : solaris_resource_reader.c
+	$(CC) -c -m32 $(CFLAGS) $? -o $@
+
+solaris_resource_reader_sparcv9_64.o : solaris_resource_reader.c
+	$(CC) -c -m64 $(CFLAGS) $? -o $@
+
+libresource_reader_solaris_sparc_32.so : solaris_resource_reader_sparc_32.o
+	$(CC) -G -m32 $(LDFLAGS) $? -o $@
+
+libresource_reader_solaris_sparcv9_64.so : solaris_resource_reader_sparcv9_64.o
+	$(CC) -G -m64 $(LDFLAGS) $? -o $@
+
+resourcereader_64 : solaris_resource_reader.c
+	$(CC) -m64 $(CFLAGS) $(LDFLAGS) -DSTANDALONE $? -o $@
+
+resourcereader_32 : solaris_resource_reader.c
+	$(CC) -m32 $(CFLAGS) $(LDFLAGS) -DSTANDALONE $? -o $@
+

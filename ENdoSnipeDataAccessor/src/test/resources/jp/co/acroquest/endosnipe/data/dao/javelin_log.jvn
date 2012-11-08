@@ -1,0 +1,31 @@
+Call  ,2009/04/08 14:35:19.531,"/view/emp/empEdit.html","/ENdoSnipe-demo","unknown","unknown","root","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime.delta = 687500000
+thread.currentThreadUserTime.delta = 609375000
+garbageCollector.collectionCount.delta = 29
+garbageCollector.collectionTime.delta = 47
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1219
+<<javelin.ExtraInfo_END>>
+Call  ,2009/04/08 14:35:20.437,"initialize","jp.co.acroquest.endosnipe.demo.web.emp.EmpEditPage","unknown","/view/emp/empEdit.html","/ENdoSnipe-demo","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime.delta = 62500000
+thread.currentThreadUserTime.delta = 31250000
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 3
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 219
+<<javelin.ExtraInfo_END>>
+Call  ,2009/04/08 14:35:20.515,"SELECT EMP.id, EMP.hiredate, EMP.emp_no, EMP.emp_name, EMP.mgr_id, EMP.sal, EMP.dept_id, EMP.version_no FROM EMP WHERE  EMP.ID = ?","jdbc:h2:tcp://localhost:9092/endosnipedemo","unknown","initialize","jp.co.acroquest.endosnipe.demo.web.emp.EmpEditPage","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] SELECT EMP.id, EMP.hiredate, EMP.emp_no, EMP.emp_name, EMP.mgr_id, EMP.sal, EMP.dept_id, EMP.version_no FROM EMP WHERE  EMP.ID = ?
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+Return,2009/04/08 14:35:20.515,"SELECT EMP.id, EMP.hiredate, EMP.emp_no, EMP.emp_name, EMP.mgr_id, EMP.sal, EMP.dept_id, EMP.version_no FROM EMP WHERE  EMP.ID = ?","jdbc:h2:tcp://localhost:9092/endosnipedemo","unknown","initialize","jp.co.acroquest.endosnipe.demo.web.emp.EmpEditPage","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"
+Return,2009/04/08 14:35:20.656,"initialize","jp.co.acroquest.endosnipe.demo.web.emp.EmpEditPage","unknown","/view/emp/empEdit.html","/ENdoSnipe-demo","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"
+Return,2009/04/08 14:35:20.750,"/view/emp/empEdit.html","/ENdoSnipe-demo","unknown","unknown","root","unknown","","http-8080-1@34(java.lang.Thread@7affa7)"

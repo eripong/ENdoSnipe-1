@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FindBugsFilter>
+
+	<Match classregex=".*">
+		<BugCode name="EI, EI2" />
+	</Match>
+
+	<Match classregex=".*ConcurrentAccessMonitor">
+		<BugCode name="IMSE" />
+	</Match>
+		
+	<Match>
+		<Class name="~.*Test" />
+		<BugCode name="UwF, NP" />
+	</Match>
+
+</FindBugsFilter>

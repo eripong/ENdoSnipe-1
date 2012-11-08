@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ENdoSnipe" default="release" basedir="../">
+    <property file="ENdoSnipe/build.properties" />
+
+    <!-- プロパティ定義 -->
+    <property name="endosnipe-common.dir" value="ENdoSnipeCommon" />
+    <property name="endosnipe-communicator.dir" value="ENdoSnipeCommunicator" />
+    <property name="endosnipe-dataaccessor.dir" value="ENdoSnipeDataAccessor" />
+    <property name="endosnipe-datacollector.dir" value="ENdoSnipeDataCollector" />
+    <property name="javelin.dir" value="Javelin" />
+    <property name="release.dir" value="ENdoSnipe/release" />
+    <property name="plugin.jar" value="jp.co.acroquest.*.jar" />
+    <property name="datacollector.zip" value="endosnipe-datacollector-*.zip" />
+    <property name="datacollector.tar.gz" value="endosnipe-datacollector-*.tar.gz" />
+    
+    <target name="prepare">
+        <mkdir dir="${release.dir}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${release.dir}" />
+    </target>
+
+    <!-- 各プロジェクトをビルドして成果物を dist 配下へコピーする -->
+    <target name="all_build" depends="clean, prepare,
+        build_ENdoSnipeCommon, build_ENdoSnipeDataAccessor,
+        build_ENdoSnipeCommunicator, build_ENdoSnipeDataCollector,
+        build_Javelin">
+        <copy todir="${release.dir}">
+            <fileset dir="${endosnipe-common.dir}/dist">
+                <include name="${plugin.jar}" />
+            </fileset>
+            <fileset dir="${endosnipe-communicator.dir}/dist">
+                <include name="${plugin.jar}" />
+            </fileset>
+            <fileset dir="${endosnipe-dataaccessor.dir}/dist">
+                <include name="${plugin.jar}" />
+            </fileset>
+            <fileset dir="${endosnipe-datacollector.dir}/dist">
+                <include name="${plugin.jar}" />
+                <include name="${datacollector.zip}" />
+                <include name="${datacollector.tar.gz}" />
+            </fileset>
+            <fileset dir="${javelin.dir}/dist">
+                <include name="Javelin_*.zip" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- リリース物件を作成する -->
+    <target name="release" depends="all_build" description="リリース物件を作成する" />
+
+    <!-- ENdoSnipeCommon をビルドする -->
+    <target name="build_ENdoSnipeCommon">
+        <ant antfile="build.xml" dir="${endosnipe-common.dir}" />
+    </target>
+
+    <!-- ENdoSnipeDataAccessor をビルドする -->
+    <target name="build_ENdoSnipeDataAccessor">
+        <ant antfile="build.xml" dir="${endosnipe-dataaccessor.dir}" inheritall="false"/>
+    </target>
+
+    <!-- ENdoSnipeCommunicator をビルドする -->
+    <target name="build_ENdoSnipeCommunicator">
+        <ant antfile="build.xml" dir="${endosnipe-communicator.dir}" inheritall="false"/>
+    </target>
+
+    <!-- ENdoSnipeDataCollector をビルドする -->
+    <target name="build_ENdoSnipeDataCollector">
+        <ant antfile="build.xml" dir="${endosnipe-datacollector.dir}" inheritall="false"/>
+    </target>
+
+    <!-- Javelin をビルドする -->
+    <target name="build_Javelin">
+        <ant antfile="build.xml" dir="${javelin.dir}" target="release" inheritall="false"/>
+    </target>
+
+    <!-- WebDashboard をビルドする -->
+    <target name="build_WebDashboard">
+        <ant antfile="build.xml" dir="${endosnipe-webdashboard.dir}" inheritall="false"/>
+    </target>
+
+</project>

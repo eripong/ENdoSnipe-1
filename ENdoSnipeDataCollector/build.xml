@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ENdoSnipeDataCollector" default="release" basedir=".">
+    <import file="../ENdoSnipe/build_common.xml" />
+
+    <!-- このビルド用のグローバルプロパティを設定する -->
+    <property name="distname" value="endosnipe-datacollector" />
+    <property name="pluginname" value="jp.co.acroquest.endosnipe.collector" />
+
+    <property name="src" location="src/main/java" />
+    <property name="src.test" location="src/test/java" />
+    <property name="resources" location="src/main/resources" />
+    <property name="resources.test" location="src/test/resources" />
+    <property name="classes" location="classes" />
+    <property name="classes.test" location="classes-test" />
+    <property name="lib" location="lib" />
+    <!-- コンパイル時に必要なライブラリのディレクトリ -->
+    <property name="lib-dependency.dir" value="${lib}/dependency" />
+    <!-- DataCollectorサービス実行時に必要なライブラリのディレクトリ -->
+    <property name="lib-service.dir" value="${lib}/service" />
+    <property name="scripts.dir" value="scripts" />
+    <property name="conf.dir" value="conf" />
+    <property name="doc.dir" value="doc" />
+    <property name="licenses.dir" value="licenses" />
+    <property name="dist" location="dist" />
+    <property name="report" location="junit-report" />
+
+    <property name="plugin-temp" location="plugin-temp" />
+    <property name="service-temp" location="service-temp" />
+    <property name="service-temp-lib" location="service-temp/lib" />
+    <property name="service-temp-release" location="service-temp/release" />
+    <property name="unix-base.dir" value="ENdoSnipe/DataCollector" />
+
+	<taskdef classpath="${lib}\djunit.jar" resource="djunittasks.properties" />
+		
+	<!-- 本体コンパイル用のクラスパス -->
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <!-- テストクラスコンパイル用のクラスパス -->
+    <path id="classpath-test">
+        <path refid="classpath" />
+        <pathelement location="${classes}" />
+        <fileset dir="${lib-dependency.dir}">
+            <include name="junit-*.jar" />
+        </fileset>
+        <fileset dir="${lib-service.dir}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <!-- サービス実行時のクラスパス -->
+    <path id="classpath-service">
+    	<!-- conf/log4j.properties をクラスパスに含める -->
+    	<pathelement path="${service-temp}/conf" />
+        <fileset dir="${service-temp-lib}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <target name="init" depends="clean, doCheckLog4jProperties, copyVerToMANIFEST">
+        <!-- タイムスタンプを作成する -->
+        <tstamp />
+        <!-- コンパイルで使用するビルドディレクトリ構造を作成する -->
+        <mkdir dir="${classes}" />
+        <mkdir dir="${classes.test}" />
+    </target>
+
+    <!-- コンパイル -->
+    <target name="compile" depends="init, compileENdoSnipeCommon, compileENdoSnipeDataAccessor, compileENdoSnipeCommunicator" description="ソースをコンパイルする">
+        <!-- 依存ライブラリをコピー -->
+        <mkdir dir="${lib-dependency.dir}" />
+        <copy file="${endosnipe-common.jar}" todir="${lib-service.dir}" failonerror="yes" />
+        <copy file="${endosnipe-common-fortest.jar}" todir="${lib-dependency.dir}" failonerror="yes" />
+        <copy file="${endosnipe-communicator.jar}" todir="${lib-service.dir}" failonerror="yes" />
+        <copy file="${endosnipe-dataaccessor.jar}" todir="${lib-service.dir}" failonerror="yes" />
+
+        <!-- ${src}から${classes}に、Javaコードをコンパイルする -->
+        <javac srcdir="${src}" destdir="${classes}" debug="on">
+            <classpath>
+                <path refid="classpath" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes}">
+            <fileset dir="${resources}" />
+        </copy>
+    </target>
+
+    <!-- テストソースのコンパイル -->
+    <target name="compile-test" depends="compile" description="テストソースをコンパイルする">
+        <!-- ${src.test}から${classes.test}に、Javaコードをコンパイルする -->
+        <javac srcdir="${src.test}" destdir="${classes.test}" debug="on">
+            <classpath>
+                <path refid="classpath-test" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes.test}">
+            <fileset dir="${resources.test}" />
+        </copy>
+        <copy todir="${classes.test}">
+            <fileset dir="${conf.dir}">
+                <include name="*.conf" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- JUnit テストの実行 -->
+    <target name="runtest" depends="compile-test">
+        <mkdir dir="${report}" />
+
+        <djunit printsummary="yes" virtualMock="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath" />
+                <pathelement location="${classes}" />
+                <pathelement location="${classes.test}" />
+            </classpath>
+            <formatter type="plain" />
+            <batchtest todir="${report}">
+                <fileset dir="${src.test}">
+                    <include name="**/*Test.java" />
+                    <exclude name="**/Abstract*Test.java" />
+                </fileset>
+            </batchtest>
+        </djunit>
+    </target>
+
+    <!-- 配布物の生成 -->
+    <target name="dist" depends="runtest" description="配布物を生成する">
+        <!-- distributionディレクトリを作成する -->
+        <mkdir dir="${dist}" />
+
+        <!-- jarを作成する -->
+        <jar jarfile="${dist}/${distname}-${version}.jar" basedir="${classes}">
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- プラグインの生成 -->
+    <target name="pluginDist" depends="dist" description="プラグインを生成する">
+        <mkdir dir="${plugin-temp}" />
+        <copy todir="${plugin-temp}">
+            <fileset dir="${classes}" />
+        </copy>
+
+        <copy todir="${plugin-temp}/lib">
+            <fileset dir="${lib}">
+                <exclude name="endosnipe-*.jar" />
+                <exclude name="junit-*.jar" />
+                <exclude name="source/**" />
+                <exclude name="dependency/*.jar" />
+            </fileset>
+        </copy>
+
+        <copy todir="${plugin-temp}">
+            <fileset dir="." includes="plugin*.properties" />
+        </copy>
+        <copy todir="${plugin-temp}">
+            <fileset file="plugin.xml" />
+        </copy>
+        <mkdir dir="${plugin-temp}conf" />
+        <copy todir="${plugin-temp}/conf">
+            <fileset dir="${conf.dir}">
+                <include name="*.properties" />
+                <include name="*.conf" />
+            </fileset>
+        </copy>
+
+        <jar jarfile="${dist}/${pluginname}_${version}.jar" basedir="${plugin-temp}" manifest="META-INF/MANIFEST.MF" />
+
+        <delete dir="${plugin-temp}" />
+    </target>
+
+    <!-- サービス配布パッケージの生成 -->
+    <target name="serviceDist" depends="dist" description="サービス配布パッケージを生成する">
+        <mkdir dir="${service-temp}" />
+        <mkdir dir="${service-temp-lib}" />
+        <mkdir dir="${service-temp-release}" />
+
+        <!-- 必要なライブラリをコピーする -->
+        <copy todir="${service-temp-lib}">
+            <fileset dir="${lib-service.dir}">
+                <include name="*.jar" />
+            	<exclude name="org.eclipse.*.jar" />
+            </fileset>
+            <fileset dir="${endosnipe-common.dir}/lib">
+                <include name="commons-logging-*.jar" />
+                <include name="log4j-*.jar" />
+            </fileset>
+            <fileset dir="${endosnipe-dataaccessor.dir}/lib">
+                <include name="commons-dbcp-*.jar" />
+                <include name="commons-io-*.jar" />
+                <include name="commons-pool-*.jar" />
+                <include name="h2-*.jar" />
+            </fileset>
+            <fileset dir="${lib}/opt">
+                <include name="mail.jar" />
+                <include name="activation.jar" />
+                <include name="SNMP4J.jar" />
+            </fileset>
+        </copy>
+
+    	<!-- サービス用jarに含めるクラスパスを作成する -->
+        <pathconvert property="service.class.path" refid="classpath-service" dirsep="/" pathsep=" ">
+            <map from="${service-temp-lib}/" to="" />
+        	<map from="${service-temp}" to=".." />
+        </pathconvert>
+
+        <!-- サービス用jarを作成する -->
+        <jar jarfile="${dist}/${distname}.jar" basedir="${classes}" excludes="**/log4j.properties">
+            <manifest>
+                <attribute name="Main-Class" value="jp.co.acroquest.endosnipe.collector.Bootstrap" />
+                <attribute name="Class-Path" value="${service.class.path}" />
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+
+        <!-- リリース用アーカイブの作成準備 -->
+        <mkdir dir="${service-temp-release}/DataCollector" />
+        <mkdir dir="${service-temp-release}/DataCollector/bin" />
+        <copy todir="${service-temp-release}/DataCollector/bin">
+            <fileset dir="${scripts.dir}/windows">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+
+        <mkdir dir="${service-temp-release}/DataCollector/conf" />
+        <copy todir="${service-temp-release}/DataCollector/conf">
+            <fileset dir="${conf.dir}">
+                <include name="*.conf" />
+                <include name="*.properties" />
+                <include name="*.txt" />
+            </fileset>
+        	<fileset dir="${resources}">
+        		<include name="log4j.properties" />
+        	</fileset>
+        </copy>
+
+        <mkdir dir="${service-temp-release}/DataCollector/data" />
+        <touch file="${service-temp-release}/DataCollector/data/deleteMe" />
+
+        <copy todir="${service-temp-release}/DataCollector">
+            <fileset dir="${doc.dir}/windows">
+                <include name="*.txt" />
+            </fileset>
+        </copy>
+
+        <mkdir dir="${service-temp-release}/DataCollector/lib" />
+        <copy todir="${service-temp-release}/DataCollector/lib">
+            <fileset dir="${dist}">
+                <include name="${distname}.jar" />
+            </fileset>
+            <fileset dir="${service-temp-lib}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+
+        <mkdir dir="${service-temp-release}/DataCollector/licenses" />
+        <copy todir="${service-temp-release}/DataCollector/licenses">
+            <fileset dir="${licenses.dir}">
+                <include name="*.*" />
+            </fileset>
+        </copy>
+
+        <mkdir dir="${service-temp-release}/DataCollector/logs" />
+        <touch file="${service-temp-release}/DataCollector/logs/deleteMe" />
+
+        <!-- ZIP アーカイブの生成 -->
+        <zip destfile="${dist}/${distname}-${version}.zip" basedir="${service-temp-release}" />
+
+        <!-- TAR アーカイブの生成 -->
+
+        <!-- ドキュメントを各種文字コードで生成 -->
+        <delete>
+            <fileset dir="${service-temp-release}/DataCollector">
+                <include name="*.txt" />
+            </fileset>
+        </delete>
+        <copy file="${doc.dir}/linux/INSTALL.txt" tofile="${service-temp-release}/DataCollector/INSTALL.euc.txt" />
+        <copy file="${doc.dir}/linux/INSTALL.txt" tofile="${service-temp-release}/DataCollector/INSTALL.utf8.txt" />
+        <fixcrlf srcdir="${service-temp-release}/DataCollector" includes="*.euc.txt" outputencoding="EUC-JP" eol="unix" />
+        <fixcrlf srcdir="${service-temp-release}/DataCollector" includes="*.utf8.txt" outputencoding="UTF-8" eol="unix" />
+
+        <tar destfile="${dist}/${distname}-${version}.tar.gz" compression="gzip">
+            <tarfileset prefix="${unix-base.dir}/bin" dir="${scripts.dir}/linux" mode="755">
+                <include name="*" />
+                <exclude name="*.tar.gz"/>
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/bin" dir="${scripts.dir}/linux" mode="644">
+                <include name="*.tar.gz"/>
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/conf" dir="${conf.dir}" mode="644">
+                <include name="*.conf" />
+                <include name="*.properties" />
+                <include name="*.txt" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/conf" dir="${resources}" mode="644">
+                <include name="log4j.properties" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/data" dir="${service-temp-release}/DataCollector/data" mode="644">
+                <include name="*" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}" dir="${service-temp-release}/DataCollector" mode="644">
+                <include name="*.txt" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/lib" dir="${service-temp-release}/DataCollector/lib" mode="644">
+                <include name="*.jar" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/licenses" dir="${licenses.dir}" mode="644">
+                <include name="*" />
+            </tarfileset>
+            <tarfileset prefix="${unix-base.dir}/logs" dir="${service-temp-release}/DataCollector/logs" mode="644">
+                <include name="*" />
+            </tarfileset>
+        </tar>
+
+        <delete dir="${service-temp}" />
+    </target>
+
+    <target name="release" depends="pluginDist, serviceDist" description="すべてのリリース配布物を生成する">
+    </target>
+
+    <target name="clean" description="クリーンアップ">
+        <!-- ${classes}と${dist}のjarを削除する -->
+
+        <delete dir="${classes}" />
+        <delete dir="${classes.test}" />
+        <delete dir="${dist}" />
+        <delete dir="${report}" />
+        <delete dir="${plugin-temp}" />
+        <delete dir="${service-temp}" />
+    </target>
+</project>

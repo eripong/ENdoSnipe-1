@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="jp.co.acroquest.endosnipe.common.ui.ENdoSnipePreferencePage"
+            id="jp.co.acroquest.endosnipe.common.ui.ENdoSnipePreferencePage"
+            name="ENdoSnipe">
+      </page>
+      <page
+            category="jp.co.acroquest.endosnipe.common.ui.ENdoSnipePreferencePage"
+            class="jp.co.acroquest.endosnipe.common.ui.ENdoSnipeCommonPreferencePage"
+            id="jp.co.acroquest.endosnipe.common.ui.ENdoSnipeLoggerPreferencePage"
+            name="%pref.commonSettings">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="jp.co.acroquest.endosnipe.common.prefs.ENdoSnipeCommonPreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

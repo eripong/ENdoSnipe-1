@@ -1,0 +1,27 @@
+
+             ■ ENdoSnipe.erd 編集上の注意点 ■
+
+・本ファイルを編集するには、AmaterasERD プラグイン (*1) が必
+  要です。
+  
+・AmaterasERD は H2 を正式にサポートしていないため、カラムの
+  型を未指定にすることができません。テーブルに新しいフィール
+  ドを追加したときは、テキストエディタで本ファイルを直接開き、
+  以下の置換を行ってください。
+  
+  <supportSize>true</supportSize>
+                ↓
+  <supportSize>false</supportSize>
+
+・本ファイルを修正したら、AmaterasERD のエディタ上で [右クリ
+  ック]-[エクスポート]-[DDL] を選択してください。同じディレク
+  トリに ENdoSnipe.ddl が出力されるので、src/main/resources 
+  に移動してください。
+
+・変更後のスキーマを正しく H2 へ投入できるかどうかは、DBInitializerTest
+  を JUnit で実行することで確認できます。
+
+(*1) AmaterasERD プラグイン
+http://amateras.sourceforge.jp/cgi-bin/fswiki/wiki.cgi?page=AmaterasERD
+
+以上

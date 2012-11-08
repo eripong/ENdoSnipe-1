@@ -1,0 +1,124 @@
+/*
+ WGP  0.1  - Web Graphical Platform
+ Copyright (c) 2012, WGP.LICENSES.COM
+ Dual licensed under the MIT and GPL licenses
+ http://www.opensource.org/licenses/mit-license.php
+ http://www.gnu.org/licenses/gpl-2.0.html
+ Date: 2012-04-29
+*/
+.perspactive_drop_Area {
+}
+
+.perspactive_util_bar {
+	height:18px;
+}
+
+.perspactive_util_bar_hide {
+	width:15px;
+	height:15px;
+	float:right;
+}
+
+.perspactive_util_bar_min {
+	width:15px;
+	height:15px;
+	float:right;
+}
+
+.perspactive_util_bar_restore {
+	width:15px;
+	height:15px;
+	float:right;
+}
+
+.perspactive_view_Area {
+	background-color:white;
+}
+
+.perspactive_drop_Area_all {
+	position:absolute;
+	top:57px;
+	left:8px;
+	border: 2px solid grey;
+}
+
+.widget_area {
+	border-radius:10px;
+	box-shadow:5px 5px 5px #555;
+	border: 1px solid grey;
+	background-color:white;
+}
+
+.widget_header {
+	border-radius:10px 10px 0px 0px;
+}
+
+.widget_title {
+	text-align:center;
+}
+
+.bar_area {
+	width: 100%;
+	height: 100%;
+}
+
+.menu_bar_area {
+	border: 1px solid grey;
+}
+
+.bar_item_area {
+	font-size: 1em;
+}
+
+.menu_bar_item_area {
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding:1px;
+}
+
+.menu_bar_item_area:hover {
+	cursor: default;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding:0px;	
+}
+
+.tool_bar_area {
+	border: 1px solid grey;
+	margin-top: 2px;
+	margin-bottom: 1px;
+}
+
+.tool_bar_item_area {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin: 2px;
+	border: 1px solid grey;
+}
+
+.map_area_view_item_area {
+	border: 1px solid grey;
+}
+
+.map_are_icon_selected {
+	background: rgb(179,220,237); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(179,220,237,1)), color-stop(50%,rgba(41,184,229,1)), color-stop(100%,rgba(188,224,238,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 ); /* IE6-9 */
+	
+}
+
+.sigma_view_area {
+	background : #222222;
+}
+
+.save_icon {
+	barckground : url(/resources/img/icon/saveIcon.png);
+}

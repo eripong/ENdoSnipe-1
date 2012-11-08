@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ENdoSnipeCommon" default="pluginDist" basedir=".">
+    <import file="../ENdoSnipe/build_common.xml" />
+
+    <!-- このビルド用のグローバルプロパティを設定する -->
+    <property name="distname" value="endosnipe-common" />
+    <property name="pluginname" value="jp.co.acroquest.endosnipe.common" />
+
+    <property name="src" location="src/main/java" />
+    <property name="src.test" location="src/test/java" />
+    <property name="resources" location="src/main/resources" />
+    <property name="resources.test" location="src/test/resources" />
+    <property name="classes" location="classes" />
+    <property name="classes.test" location="classes-test" />
+    <property name="lib" location="lib" />
+    <property name="dist" location="dist" />
+    <property name="report" location="junit-report" />
+    <property name="plugin-temp" location="plugin-temp" />
+
+    <!-- 本体コンパイル用のクラスパス -->
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="${lib}/dependency">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <!-- テスト用共通ライブラリコンパイル用のクラスパス -->
+    <path id="classpath-test">
+        <path refid="classpath" />
+        <pathelement location="${classes}" />
+    </path>
+
+    <target name="init" depends="clean, copyVerToMANIFEST">
+        <!-- タイムスタンプを作成する -->
+        <tstamp />
+        <!-- コンパイルで使用するビルドディレクトリ構造を作成する -->
+        <mkdir dir="${classes}" />
+        <mkdir dir="${classes.test}" />
+    </target>
+
+    <!-- コンパイル -->
+    <target name="compile" depends="init" description="ソースをコンパイルする">
+        <!-- ${src}から${classes}に、Javaコードをコンパイルする -->
+        <javac srcdir="${src}" destdir="${classes}" debug="on">
+            <classpath>
+                <path refid="classpath" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes}">
+            <fileset dir="${resources}" />
+        </copy>
+    </target>
+
+    <!-- テスト用共通ライブラリのコンパイル -->
+    <target name="compile-test" depends="compile" description="テスト用共通ライブラリをコンパイルする">
+        <!-- ${src.test}から${classes.test}に、Javaコードをコンパイルする -->
+        <javac srcdir="${src.test}" destdir="${classes.test}" debug="on">
+            <classpath>
+                <path refid="classpath-test" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes.test}">
+            <fileset dir="${resources.test}" />
+        </copy>
+    </target>
+
+    <!-- JUnit テストの実行 -->
+    <target name="runtest" depends="compile-test">
+        <mkdir dir="${report}" />
+            
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="classpath" />
+                <pathelement location="${classes}" />
+                <pathelement location="${classes.test}" />
+            </classpath>
+            <formatter type="plain" />
+            <batchtest fork="yes" todir="${report}">
+                <fileset dir="${src.test}">
+                    <include name="**/*Test.java" />
+                    <exclude name="**/Abstract*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- 配布物の生成 -->
+    <target name="dist" depends="runtest" description="配布物を生成する">
+        <!-- distributionディレクトリを作成する -->
+        <mkdir dir="${dist}" />
+
+        <!-- jarを作成する -->
+        <jar jarfile="${dist}/${distname}-${version}.jar" basedir="${classes}">
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+
+        <!-- テスト用共通ライブラリjarを作成する -->
+        <jar jarfile="${dist}/${distname}-fortest-${version}.jar" basedir="${classes.test}">
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="pluginDist" depends="dist" description="プラグインを生成する">
+        <mkdir dir="${plugin-temp}" />
+        <copy todir="${plugin-temp}">
+            <fileset dir="${classes}" />
+        </copy>
+
+        <copy todir="${plugin-temp}/lib">
+            <fileset dir="${lib}">
+                <include name="*.jar" />
+                <exclude name="dependency/*.jar" />
+            </fileset>
+        </copy>
+
+        <copy todir="${plugin-temp}">
+            <fileset dir="." includes="plugin*.properties" />
+            <fileset dir="." includes="plugin.xml" />
+        </copy>
+
+        <jar jarfile="${dist}/${pluginname}_${version}.jar" basedir="${plugin-temp}" manifest="META-INF/MANIFEST.MF" />
+
+        <delete dir="${plugin-temp}" />
+    </target>
+
+    <target name="clean" description="クリーンアップ">
+        <!-- ${classes}と${dist}のjarを削除する -->
+
+        <delete dir="${classes}" />
+        <delete dir="${classes.test}" />
+        <delete dir="${dist}" />
+        <delete dir="${report}" />
+        <delete dir="${plugin-temp}" />
+    </target>
+</project>

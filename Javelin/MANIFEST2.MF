@@ -1,0 +1,3 @@
+Premain-Class: jp.co.acroquest.endosnipe.javelin.JavelinTransformer
+Agent-Class: jp.co.acroquest.endosnipe.javelin.JavelinTransformer
+Can-Redefine-Classes: true

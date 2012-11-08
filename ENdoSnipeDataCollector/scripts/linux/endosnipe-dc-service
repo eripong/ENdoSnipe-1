@@ -1,0 +1,86 @@
+#!/bin/bash
+# chkconfig: 345 98 02
+# processname: endosnipe-dc-service
+# description: ENdoSnipe DataCollector Service
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Adapt the following lines to your configuration
+JAVA_HOME=/usr/java/default
+DC_HOME=/usr/local/ENdoSnipe/DataCollector
+
+TMP_DIR=/var/tmp
+PID_FILE=/var/run/endosnipe-dc-service.pid
+
+DC_OPTS=""
+CLASSPATH=$DC_HOME/lib/endosnipe-datacollector.jar
+
+case "$1" in
+  start)
+    #
+    # Start DataCollector
+    #
+    echo -n "Starting ENdoSnipe DataCollector: "
+    if [ -f $PID_FILE ] ; then
+      failure
+      echo
+      echo "ENdoSnipe DataCollector is already running."
+      exit 1
+    fi
+
+    $DC_HOME/bin/jsvc \
+    -home $JAVA_HOME \
+    -Dcollector.property=$DC_HOME/conf/collector.properties \
+    -Dlog4j.configuration=file:///$DC_HOME/conf/log4j.properties \
+    -pidfile $PID_FILE \
+    -outfile $DC_HOME/logs/DataCollector.out \
+    -errfile $DC_HOME/logs/DataCollector.err \
+    $DC_OPTS \
+    -cp $CLASSPATH \
+    jp.co.acroquest.endosnipe.collector.Bootstrap
+    RETVAL=$?
+    sleep 3
+    if [ $RETVAL -eq 0 ]; then
+      if [ -f $PID_FILE ]; then
+        touch /var/lock/subsys/endosnipe-dc-service
+        success
+      else
+        failure
+      fi
+    else
+      failure
+    fi
+    echo
+    exit $RETVAL
+    ;;
+  
+  stop)
+    #
+    # Stop DataCollector
+    #
+    echo -n "Stopping ENdoSnipe DataCollector: "
+    $DC_HOME/bin/jsvc \
+    -stop \
+    -pidfile $PID_FILE \
+    jp.co.acroquest.endosnipe.collector.Bootstrap \
+    && success || failure
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/endosnipe-dc-service
+    echo
+    exit $?
+    ;;
+
+  status)
+    if [ -f $PID_FILE ] ; then
+      echo "ENdoSnipe DataCollector is already running."
+    else
+      echo "ENdoSnipe DataCollector is not running."
+    fi
+    exit $?
+    ;;
+
+  *)
+    echo "Usage endosnipe-dc-service {start|stop|status}"
+    exit 1;;
+esac
