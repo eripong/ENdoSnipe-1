@@ -40,6 +40,7 @@ import jp.co.acroquest.endosnipe.collector.exception.InitializeException;
 import jp.co.acroquest.endosnipe.collector.listener.TelegramNotifyListener;
 import jp.co.acroquest.endosnipe.collector.request.CommunicationClientRepository;
 import jp.co.acroquest.endosnipe.collector.rotate.LogRotator;
+import jp.co.acroquest.endosnipe.common.config.JavelinConfig;
 import jp.co.acroquest.endosnipe.common.logger.ENdoSnipeLogger;
 import jp.co.acroquest.endosnipe.communicator.TelegramSender;
 import jp.co.acroquest.endosnipe.communicator.accessor.ResourceNotifyAccessor;
@@ -168,7 +169,11 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
      */
     public synchronized void start(final BehaviorMode behaviorMode)
     {
+
         LOGGER.log(ENDOSNIPE_DATA_COLLECTOR_STARTING, behaviorMode);
+
+        JavelinConfig javelinConfig = new JavelinConfig();
+        javelinConfig.setItemNamePrefix("");
 
         this.behaviorMode_ = behaviorMode;
         if (config_ != null)
@@ -207,6 +212,7 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
         javelinDataLoggerThread_ =
                                    new Thread(javelinDataLogger_, LOGGER_THREAD_NAME + "_"
                                            + Integer.toHexString(System.identityHashCode(this)));
+
         if (behaviorMode == BehaviorMode.SERVICE_MODE)
         {
             javelinDataLoggerThread_.setDaemon(true);
@@ -214,6 +220,7 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
             // BottleneckEyeへ通知する表示名の変換マップを登録
             ResourceNotifyAccessor.setConvMap(DisplayNameManager.getManager().getConvMap());
         }
+
         javelinDataLoggerThread_.start();
 
         long resourceRequestInterval = config_.getResourceInterval();
