@@ -59,10 +59,10 @@ local.properties
 *.tli
 *.tlh
 *.tmp
-*.class
 *.vspscc
 .builds
 *.dotCover
+classes/
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
@@ -162,3 +162,8 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+.class
+*.class
+
+classes/
