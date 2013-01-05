@@ -51,6 +51,8 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 		this.maxId = 0;
 		this.viewList = {};
 
+		// add title area
+		ENdoSnipe.Utility.makeLogo(this.$el.attr("id"), "Multiple Graph View");
 		// dual slider area (add div and css, and make slider)
 		$("#" + this.$el.attr("id")).append(
 				'<div id="' + id.dualSliderArea + '"></div>');
@@ -213,6 +215,5 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 			children : childrenData
 		};
 		return data;
-	},
-
+	}
 });

@@ -60,4 +60,7 @@
 						});
 	</script>
 </body>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/common.css"
+	type="text/css" media="all">
 </html>

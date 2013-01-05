@@ -128,3 +128,5 @@ wgp.constants.STATE_COLOR[wgp.constants.STATE.RFAIL] = "#C400C4";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.RKILLED] = "#777777";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKEFAIL] = "#FF6600";
 wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKKILLED] = "#FF6600";
+
+var ENdoSnipe = {};

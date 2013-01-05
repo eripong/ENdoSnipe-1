@@ -18,7 +18,7 @@
 
 
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/lib/jQuery/css/jquery-ui-1.8.19.custom.css"
+	href="<%=request.getContextPath()%>/resources/lib/jQuery-ui/css/jquery-ui-1.9.2.custom.min.css"
 	type="text/css" media="all">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/lib/jqGrid/css/ui.jqgrid.css"
@@ -33,14 +33,13 @@
 	href="<%=request.getContextPath()%>/resources/lib/wgp/css/wgp.css"
 	type="text/css" media="all">
 
-<!-- <script type="text/javascript" src="<%=request.getContextPath()%>/resources/lib/rgbcolor/rgbcolor.js"></script> -->
-
 <!-- ウィジェット用のjavaScript動的読みこみを行なう -->
 <%
 	// ウィジェットとなるjavaScriptを指定
 	//TODO 残課題 ファイルパス指定を直接記入している。
 	List<String> pathList = new ArrayList<String>();
 	pathList.add("jQuery");
+	pathList.add("jQuery-ui");
 	pathList.add("underscore");
 	pathList.add("backbone");
 	pathList.add("dygraph");

@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+/* 共通定義個所 */
+body {
+	background: no-repeat 0 0,-moz-linear-gradient(left top, #000000, #222222);
+	/*background-repeat : */
+}
+
+/* jQueryを上書き */
+.ui-widget-content {
+	background : none;
+}
+
+/* wgpの設定を上書き。 */
+.perspactive_drop_Area_all {
+	top: 5px;
+	border: none;
+}
+
+/* 半透明処理 */
+#persArea_drop_0_0 {
+	background-color: #000;    
+	opacity:0.9;
+}
+#persArea_drop_0_1 {
+	background-color: #000;
+	opacity:0.90;
+}
+#tree_area {
+	background: none;
+}
+#contents_area {
+	background-color: #000;
+}
+
+/* 半透明にしない部分の定義 */
+#persArea_bar_0_0 {
+	opacity:1.0;
+}
+#persArea_bar_0_0 div {
+	opacity:1.0;
+}
+
+/* 左ペインの定義 */
+/* jstree 定義 */
+.jstree a {
+	color : #FFFFFF;
+}
+.jstree .jstree-clicked {
+	color : #000000;
+}
+.jstree .jstree-hovered {
+	color : #000000;
+}
+
+/* 右ペインの定義 */
+/* slider定義共通 */
+.ui-slider dt span {
+	background-color : #000000;
+}
+.ui-slider li, .ui-slider dd {
+    color: #FFFFFF;
+}
+
+/* ヘッダ表示定義 */
+.contentHeader {
+	background: -moz-linear-gradient(-45deg, #696969 0%, #333333 100%) repeat scroll 0 0 transparent;
+    border: 7px outset #333333;
+    margin: 10px 0px 0px 10px;
+    overflow: auto;
+}
+
+.contentHeader h1 {
+	font-size: 25px;
+	margin: 10px 0px 10px 20px; 
+	float: left;
+}
+
+.contentHeader .logo {
+	margin: 12px 10px 10px 0px;
+	float: right;
+	width: 120px;
+	height: 26px;
+	background-image : url("../images/ENdoSnipe_logo.png");
+}
