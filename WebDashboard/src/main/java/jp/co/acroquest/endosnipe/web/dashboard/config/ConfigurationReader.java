@@ -110,8 +110,11 @@ public class ConfigurationReader
     /** ポート番号を表す接頭辞 */
     private static final String          CLIENT_MODE_ACCEPT_PORT      = "datacollector.acceptport.";
 
+    /** データベース名(serverモード) */
+    private static final String          DATABASE_NAME                = "database.name";
+
     /** データベース名を表す接頭辞 */
-    private static final String          DATABASE_NAME                = "database.name.";
+    private static final String          DATABASE_NAME_PREFIX         = "database.name.";
 
     /** データベースの種類を表す接頭辞 */
     private static final String          DATABASE_TYPE                = "database.type";
@@ -281,7 +284,7 @@ public class ConfigurationReader
                 throw new InitializeException(ex);
             }
         }
-        else if (key.startsWith(DATABASE_NAME))
+        else if (key.startsWith(DATABASE_NAME_PREFIX))
         {
             if (isValidDBName(value))
             {
@@ -327,6 +330,10 @@ public class ConfigurationReader
         else if (DATABASE_PORT.equals(key))
         {
             config.setDatabasePort(value);
+        }
+        else if (DATABASE_NAME.equals(key))
+        {
+            config.setDatabaseName(value);
         }
         else if (DATABASE_USERNAME.equals(key))
         {

@@ -82,6 +82,9 @@ public class DataBaseConfig
 
     /** データベースのポート番号 */
     private String                                databasePort_                 = DEF_DATABASE_PORT;
+    
+    /** データベース名。 */
+    private String                                databaseName_                 = DEF_DATABASE_NAME;
 
     /** データベースログインユーザ名 */
     private String                                databaseUserName_             = DEF_DATABASE_USER;
@@ -115,6 +118,9 @@ public class DataBaseConfig
 
     /** データベースのポート番号のデフォルト値 */
     private static final String                   DEF_DATABASE_PORT             = "5432";
+    
+    /** データベース名。 */
+    private static final String                   DEF_DATABASE_NAME             = null;
 
     /** データベースログインユーザ名のデフォルト値 */
     private static final String                   DEF_DATABASE_USER             = "";
@@ -344,6 +350,26 @@ public class DataBaseConfig
     }
 
     /**
+     * データベース名を取得します。
+     * 
+	 * @return データベース名。
+	 */
+	public String getDatabaseName()
+	{
+		return databaseName_;
+	}
+
+	/**
+	 * データベース名を設定します。
+	 * 
+	 * @param databaseName データベース名。
+	 */
+	public void setDatabaseName(String databaseName)
+	{
+		this.databaseName_ = databaseName;
+	}
+
+	/**
      * データベースログインユーザ名を返します。<br />
      *
      * @return ユーザ名
