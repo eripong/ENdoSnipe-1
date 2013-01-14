@@ -1,17 +1,17 @@
-             ������ ENdoSnipe �r���h�菇 ������
+             ■■■ ENdoSnipe ビルド手順 ■■■
 
-�P�D�c�[���̏���
+１．ツールの準備
   (1) JDK
-    Java5�AJava6 ���C���X�g�[������Ă��邱�Ƃ��O��ł��B
+    Java5、Java6 がインストールされていることが前提です。
     
-  (2) Ant �p���C�u����
-  �@ ENdoSnipe ���r���h���� Ant �X�N���v�g�ł́A�ꕔ Groovy 
-  �̃X�N���v�g���g�p���Ă��܂��B(log4j.properties �̓�������
-  ���`�F�b�N���邽��)
+  (2) Ant 用ライブラリ
+  　 ENdoSnipe をビルドする Ant スクリプトでは、一部 Groovy 
+  のスクリプトを使用しています。(log4j.properties の内部を自
+  動チェックするため)
 
-  �@ Ant �ɂ��r���h���s���ɂ́A�ȉ��� Jar �t�@�C���� 
-  (ANT_HOME)/lib �z���ɃR�s�[���Ă��������B
-�@�@(jar�t�@�C���́AGitHub��endosnipe/ENdoSnipe/ant_lib�ɂ���܂�)
+  　 Ant によるビルドを行うには、以下の Jar ファイルを 
+  (ANT_HOME)/lib 配下にコピーしてください。
+　　(jarファイルは、GitHubのendosnipe/ENdoSnipe/ant_libにあります)
 
     antlr-2.7.7.jar
     asm-2.2.3.jar
@@ -20,63 +20,63 @@
     commons-logging-1.1.jar
     groovy-1.6.0.jar
 
-   �@Ant �̃o�[�W������ 1.7.0 �ȍ~���K�v�ł��B
+   　Ant のバージョンは 1.7.0 以降が必要です。
 
 
-  (3)Eclipse RCP��
-     Eclipse for RCP and RAP Developers 3.7.1��
-     �C���X�g�[������Ă��邱�Ƃ��O��ł��B
+  (3)Eclipse RCP版
+     Eclipse for RCP and RAP Developers 3.7.1が
+     インストールされていることが前提です。
 
-�Q�D�r���h
-  (1)GitHub����A�ȉ��̃v���W�F�N�g��clone���Ă��������B
-�@�@(���ł�clone�ς݂̏ꍇ�͕s�v�ł��B)
+２．ビルド
+  (1)GitHubから、以下のプロジェクトをcloneしてください。
+　　(すでにclone済みの場合は不要です。)
   
      endosnipe/ENdoSnipe
   
-  (2)ENdoSnipe/build.bat ���J���A�ȉ��̊��ϐ���ݒ肵�Ă���R�~�b�g�A
-�@�@sync���Ă��������B
-     �EVER   ���o�[�W����
-     �EBUILD ���r���h�ԍ�
-     �EJAVA_HOME_50 ��Java5��JDK�̃p�X
-     �EJAVA_HOME_60 ��Java6��JDK�̃p�X
+  (2)ENdoSnipe/build.bat を開き、以下の環境変数を設定してからコミット、
+　　syncしてください。
+     ・VER   →バージョン
+     ・BUILD →ビルド番号
+     ・JAVA_HOME_50 →Java5のJDKのパス
+     ・JAVA_HOME_60 →Java6のJDKのパス
 
-  (3)ENdoSnipe/build.properties���J���A�ȉ��̐ݒ��ύX���Ă���R�~�b�g�A
-�@�@sync���Ă��������B
-�@�@eclipse.dir��Eclipse�̃p�X
-�@�@eclipsePlugin.dir��Eclipse�̃p�X
+  (3)ENdoSnipe/build.propertiesを開き、以下の設定を変更してからコミット、
+　　syncしてください。
+　　eclipse.dir→Eclipseのパス
+　　eclipsePlugin.dir→Eclipseのパス
 
-  (4)build.ps1 ���J���A�ȉ��̊��ϐ���ݒ肵�Ă���R�~�b�g�A
-�@�@sync���Ă��������B
-     �E$tags   ���^�O����
+  (4)build.ps1 を開き、以下の環境変数を設定してからコミット、
+　　syncしてください。
+     ・$tags   →タグ名称
      
-  (5)Git Shell��PowerShell���J���Abuild.ps1�̂���f�B���N�g����
-�@�@�@�ړ����Ă��������B
+  (5)Git ShellのPowerShellを開き、build.ps1のあるディレクトリに
+　　　移動してください。
   
-  (6)�ȉ��̃R�}���h���C�������s���܂��B
+  (6)以下のコマンドラインを実行します。
     > build.ps1
   
-  (7)�u���ׂẴr���h�v���Z�X���������܂����B�v�ƕ\�����ꂽ�犮���ł��B
-  �@�@build\ENdoSnipe\release�f�B���N�g���Ƀr���h���ʂ̃t�@�C����
-�@�@�@�o�͂���Ă��܂��B
+  (7)「すべてのビルドプロセスが完了しました。」と表示されたら完了です。
+  　　build\ENdoSnipe\releaseディレクトリにビルド結果のファイルが
+　　　出力されています。
 
-�@(8)���|�W�g����downloads�f�B���N�g�����ɁA
-�@�@�@�^�O���̂̃f�B���N�g�����쐬���Ă��������B
+　(8)リポジトリのdownloadsディレクトリ内に、
+　　　タグ名称のディレクトリを作成してください。
 
-�@(9)(7)�ŏo�͂��ꂽ�t�@�C�����A(6)�ō쐬�����f�B���N�g���ɔz�u���A
-�@�@�@�R�~�b�g�Async���Ă��������B
+　(9)(7)で出力されたファイルを、(6)で作成したディレクトリに配置し、
+　　　コミット、syncしてください。
 
-�R�D���[�J���r���h(�J����)
-  (1)ENdoSnipe/build.properties���J���A�ȉ��̐ݒ��ύX���Ă��������B
-�@�@eclipse.dir��Eclipse�̃p�X
-�@�@eclipsePlugin.dir��Eclipse�̃p�X
+３．ローカルビルド(開発時)
+  (1)ENdoSnipe/build.propertiesを開き、以下の設定を変更してください。
+　　eclipse.dir→Eclipseのパス
+　　eclipsePlugin.dir→Eclipseのパス
 
-  (2)�ȉ��̃R�}���h���C�������s���܂��B
+  (2)以下のコマンドラインを実行します。
     > build.bat
   
-  (3)�u���ׂẴr���h�v���Z�X���������܂����B�v�ƕ\�����ꂽ�犮���ł��B
-  �@�@ENdoSnipe\release�f�B���N�g���Ƀr���h���ʂ̃t�@�C����
-�@�@�@�o�͂���Ă��܂��B
+  (3)「すべてのビルドプロセスが完了しました。」と表示されたら完了です。
+  　　ENdoSnipe\releaseディレクトリにビルド結果のファイルが
+　　　出力されています。
 
-�ȏ�
+以上
 
 
