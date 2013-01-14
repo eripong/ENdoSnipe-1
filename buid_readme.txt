@@ -65,6 +65,18 @@
 　(9)(7)で出力されたファイルを、(6)で作成したディレクトリに配置し、
 　　　コミット、syncしてください。
 
+３．ローカルビルド(開発時)
+  (1)ENdoSnipe/build.propertiesを開き、以下の設定を変更してください。
+　　eclipse.dir→Eclipseのパス
+　　eclipsePlugin.dir→Eclipseのパス
+
+  (2)以下のコマンドラインを実行します。
+    > build.bat
+  
+  (3)「すべてのビルドプロセスが完了しました。」と表示されたら完了です。
+  　　ENdoSnipe\releaseディレクトリにビルド結果のファイルが
+　　　出力されています。
+
 以上
 
 
