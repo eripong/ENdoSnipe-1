@@ -23,7 +23,7 @@
     <property name="license.dir" value="license" />
     <property name="image.dir"   value="image" />
     <property name="conf.dir"    value="conf" />
-    <property name="bin.dir"     value="bin" />
+    <property name="bin.dir"     value="sh" />
     <property name="dist.dir"    location="dist" />
     <property name="temp.dir"    value="${dist.dir}/temp" />
     <property name="package.dir" value="package" />
@@ -178,7 +178,7 @@
             </fileset>
         </copy>
         
-        <copy todir="${temp.dir}/${bin.dir}">
+        <copy todir="${temp.dir}/bin">
             <fileset dir="${bin.dir}">
                 <include name="**/*" />
             </fileset>

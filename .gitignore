@@ -11,6 +11,10 @@ tmp/
 *~.nib
 local.properties
 .loadpath
+!/Javelin/bin
+classes-test/
+classes-servlet-api/
+junit-report/
 
 # External tool builders
 .externalToolBuilders/
