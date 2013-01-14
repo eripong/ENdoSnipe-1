@@ -26,6 +26,8 @@
 		var perspactiveView = new wgp.PerspactiveView({
 			id : "persArea",
 			collection : table
+			minimum : false,
+			close : false
 		});
 		perspactiveView.dropView("persArea_drop_0_0", "tree_area");
 		perspactiveView.dropView("persArea_drop_0_1", "contents_area");
