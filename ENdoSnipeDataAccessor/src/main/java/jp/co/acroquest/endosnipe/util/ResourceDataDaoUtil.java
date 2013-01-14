@@ -67,8 +67,8 @@ public class ResourceDataDaoUtil
             new ConcurrentHashMap<String, Integer>();
 
     /** データベース名をキーとする、系列番号とその最終挿入時刻のマップを保持するマップ */
-    private static Map<String, Map<String, Timestamp>> measurementItemUpdatedMap__ =
-            new ConcurrentHashMap<String, Map<String, Timestamp>>();
+    private static Map<String, Map<Integer, Timestamp>> measurementItemUpdatedMap__ =
+            new ConcurrentHashMap<String, Map<Integer, Timestamp>>();
 
     /** データベース名をキーとする、measurement_typeとitem_nameを":"で区切って連結した文字列をキーとする、item_idのマップを保持するマップ*/
     private static Map<String, Map<String, Integer>> measurementItemIdMap__ =
@@ -262,13 +262,6 @@ public class ResourceDataDaoUtil
         MeasurementValue baseMeasurementValue = new MeasurementValue();
         baseMeasurementValue.measurementTime = new Timestamp(resourceData.measurementTime);
 
-        Map<String, Integer> itemMap = measurementItemIdMap__.get(database);
-        if (itemMap == null)
-        {
-            itemMap = new LinkedHashMap<String, Integer>();
-            measurementItemIdMap__.put(database, itemMap);
-        }
-        
         if (DBManager.isDefaultDb() == false)
         {
             // H2以外のデータベースの場合は、パーティショニング処理を行う
@@ -293,11 +286,18 @@ public class ResourceDataDaoUtil
                                           rotatePeriodUnit, batchUnit);
             }
         }
+        Map<String, Integer> itemMap = measurementItemIdMap__.get(database);
+        if (itemMap == null)
+        {
+            itemMap = loadMeasurementItemIdMap(database, itemIdCacheSize);
+            measurementItemIdMap__.put(database, itemMap);
+        }
+        
 
         String prevTableName = null;
         
         Map<String, Timestamp> updateTargetMap = new HashMap<String, Timestamp>();
-        Map<String, Timestamp> updatedMap = getUpdatedMap(database);
+        Map<Integer, Timestamp> updatedMap = getUpdatedMap(database);
         List<MeasurementValue> updateValueList = new ArrayList<MeasurementValue>();
         for (MeasurementData measurementData : resourceData.getMeasurementMap().values())
         {
@@ -330,7 +330,7 @@ public class ResourceDataDaoUtil
                 measurementValue.value  = baseMeasurementValue.value;
                 
                 int itemId;
-                String itemMapKey = detail.displayName;
+                String itemMapKey = measurementItemName;
                 itemId = getItemId(database, itemMap, detail, itemMapKey);
                 if (itemId != -1)
                 {
@@ -368,8 +368,8 @@ public class ResourceDataDaoUtil
 
                 // 前回JAVELIN_MEASUREMENT_ITEMテーブルのLAST_INSERTEDフィールド更新から
                 // 一定期間が経過した場合に、LAST_INSERTEDフィールドを更新する対象に含める。
-                Timestamp beforeTime = updatedMap.get(measurementItemName);
-                updatedMap.put(measurementItemName, measurementValue.measurementTime);
+                Timestamp beforeTime = updatedMap.get(measurementValue.measurementItemId);
+                updatedMap.put(measurementValue.measurementItemId, measurementValue.measurementTime);
                 if (beforeTime == null
                     || measurementValue.measurementTime.getTime() > beforeTime.getTime()
                         + ITEM_UPDATE_INTERVAL)
@@ -396,6 +396,21 @@ public class ResourceDataDaoUtil
         }
         
         return result;
+    }
+
+    private static LinkedHashMap<String, Integer> loadMeasurementItemIdMap(String database,
+        int itemIdCacheSize)
+        throws SQLException
+    {
+        LinkedHashMap<String, Integer> itemIdMap = new LinkedHashMap<String, Integer>();
+        List<JavelinMeasurementItem> itemList =
+            JavelinMeasurementItemDao.selectAll(database, itemIdCacheSize);
+        for (JavelinMeasurementItem item : itemList)
+        {
+            itemIdMap.put(item.itemName, item.measurementItemId);
+        }
+        
+        return itemIdMap;
     }
 
     private static int getItemId(final String database, Map<String, Integer> itemMap,
@@ -540,15 +555,15 @@ public class ResourceDataDaoUtil
     private static void deleteOldMeasurementItems(final String database, final Timestamp date,
         final int rotatePeriod, final int rotatePeriodUnit, final int insertUnit)
     {
-        List<String> deleteIdList = new ArrayList<String>();
+        List<Integer> deleteIdList = new ArrayList<Integer>();
         
         long deleteTime = getBeforeDate(date, rotatePeriod, rotatePeriodUnit).getTimeInMillis();
-        Map<String, Timestamp> updatedMap = getUpdatedMap(database);
-        Iterator<Map.Entry<String, Timestamp>> iterator = updatedMap.entrySet().iterator();
+        Map<Integer, Timestamp> updatedMap = getUpdatedMap(database);
+        Iterator<Map.Entry<Integer, Timestamp>> iterator = updatedMap.entrySet().iterator();
         int removedItems = 0;
         while (iterator.hasNext())
         {
-            Map.Entry<String, Timestamp> entry = iterator.next();
+            Map.Entry<Integer, Timestamp> entry = iterator.next();
             if (entry.getValue().getTime() < deleteTime)
             {
                 // 最終更新時刻がローテート期間より前の場合は、
@@ -646,12 +661,12 @@ public class ResourceDataDaoUtil
      * @param database データベース名
      * @return 系列毎の最終更新時刻のマップ
      */
-    private static Map<String, Timestamp> getUpdatedMap(String database)
+    private static Map<Integer, Timestamp> getUpdatedMap(String database)
     {
-        Map<String, Timestamp> updatedMap = measurementItemUpdatedMap__.get(database);
+        Map<Integer, Timestamp> updatedMap = measurementItemUpdatedMap__.get(database);
         if (updatedMap == null)
         {
-            updatedMap = new ConcurrentHashMap<String, Timestamp>();
+            updatedMap = new ConcurrentHashMap<Integer, Timestamp>();
             measurementItemUpdatedMap__.put(database, updatedMap);
 
             // データベースに存在する系列毎の最終更新時刻情報を取得する
@@ -661,7 +676,7 @@ public class ResourceDataDaoUtil
                     JavelinMeasurementItemDao.selectAll(database);
                 for (JavelinMeasurementItem item : itemList)
                 {
-                    updatedMap.put(item.itemName, item.lastInserted);
+                    updatedMap.put(item.measurementItemId, item.lastInserted);
                 }
             }
             catch (SQLException ex)

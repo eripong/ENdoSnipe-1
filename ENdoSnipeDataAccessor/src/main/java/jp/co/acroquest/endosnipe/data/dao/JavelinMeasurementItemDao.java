@@ -210,6 +210,54 @@ public class JavelinMeasurementItemDao extends AbstractDao implements TableNames
     }
 
     /**
+     * レコードをすべて取得します。<br />
+     * 
+     * @param database データベース名
+     * @param maxCount 最大数
+     * @return {@link JavelinMeasurementItem} のリスト
+     * @throws SQLException SQL 実行時に例外が発生した場合
+     */
+    public static List<JavelinMeasurementItem> selectAll(final String database, int maxCount)
+        throws SQLException
+    {
+        List<JavelinMeasurementItem> result = new ArrayList<JavelinMeasurementItem>();
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try
+        {
+            conn = getConnection(database, true);
+            stmt = conn.createStatement();
+            String sql = "select * from " + JAVELIN_MEASUREMENT_ITEM +
+                         " order by MEASUREMENT_ITEM_NAME";
+            rs = stmt.executeQuery(sql);
+            int count = 0;
+            while (rs.next() == true)
+            {
+                if (maxCount <= count)
+                {
+                    break;
+                }
+                count++;
+                JavelinMeasurementItem item = new JavelinMeasurementItem();
+                // CHECKSTYLE:OFF
+                item.measurementItemId = rs.getInt(1);
+                item.itemName = rs.getString(2);
+                item.lastInserted = rs.getTimestamp(3);
+                // CHECKSTYLE:ON
+                result.add(item);
+            }
+        }
+        finally
+        {
+            SQLUtil.closeResultSet(rs);
+            SQLUtil.closeStatement(stmt);
+            SQLUtil.closeConnection(conn);
+        }
+        return result;
+    }
+
+    /**
      * 指定した項目名のレコードを全て取得します。<br />
      * 
      * @param database データベース名
@@ -296,7 +344,7 @@ public class JavelinMeasurementItemDao extends AbstractDao implements TableNames
      * @throws SQLException SQL 実行時に例外が発生した場合
      */
     public static void deleteByMeasurementItemId(final String database,
-        final List<String> measurementItemIdList)
+        final List<Integer> measurementItemIdList)
         throws SQLException
     {
         Connection conn = null;
@@ -311,9 +359,9 @@ public class JavelinMeasurementItemDao extends AbstractDao implements TableNames
             pstmt = conn.prepareStatement(sql);
             PreparedStatement delegated = getDelegatingStatement(pstmt);
 
-            for (String measurementItemId : measurementItemIdList)
+            for (Integer measurementItemId : measurementItemIdList)
             {
-                delegated.setString(1, measurementItemId);
+                delegated.setInt(1, measurementItemId);
                 delegated.addBatch();
             }
             pstmt.executeBatch();
