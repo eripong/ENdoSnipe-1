@@ -1,32 +1,42 @@
-/////////////////////////////////////////////////////////
-//               Following is constant                 //
-/////////////////////////////////////////////////////////
-
-halook.common = {};
-halook.common.dualslider = {};
-halook.common.dualslider.scaleUnitString= 'hours';
-halook.common.dualslider.scaleUnit		= 60 * 60 * 1000; //millisecond
-halook.common.dualslider.groupString	= 'days';
-halook.common.dualslider.groupUnitNum	= 24;
-halook.common.dualslider.groupMaxNum	= 7;
-halook.common.dualslider.groupDefaultNum= 3;
-halook.common.dualslider.idFrom 		= 'dualSliderFromValue';
-halook.common.dualslider.idTo 			= 'dualSliderToValue';
-
-halook.DualSliderView = wgp.AbstractView.extend({
+/*******************************************************************************
+ * ENdoSnipe 5.0 - (https://github.com/endosnipe)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
+ENS.DualSliderView = wgp.AbstractView.extend({
 	initialize: function(argument){
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;
 		
 		this.sliderComponent= null;
 		this.scaleMovedEventFunc = null;
-		this.scaleUnitString= halook.common.dualslider.scaleUnitString;
-		this.scaleUnit		= halook.common.dualslider.scaleUnit;
-		this.groupString	= halook.common.dualslider.groupString;
-		this.groupUnitNum	= halook.common.dualslider.groupUnitNum;
-		this.groupMaxNum	= halook.common.dualslider.groupMaxNum;
-		this.groupNum		= halook.common.dualslider.groupDefaultNum;
-		this.idFrom			= halook.common.dualslider.idFrom;
-		this.idTo			= halook.common.dualslider.idTo;
+		this.scaleUnitString= ENS.common.dualslider.scaleUnitString;
+		this.scaleUnit		= ENS.common.dualslider.scaleUnit;
+		this.groupString	= ENS.common.dualslider.groupString;
+		this.groupUnitNum	= ENS.common.dualslider.groupUnitNum;
+		this.groupMaxNum	= ENS.common.dualslider.groupMaxNum;
+		this.groupNum		= ENS.common.dualslider.groupDefaultNum;
+		this.idFrom			= ENS.common.dualslider.idFrom;
+		this.idTo			= ENS.common.dualslider.idTo;
 		this.viewId			= '#' + this.$el.attr('id');
 		this.fromScale		= this.groupUnitNum * this.groupNum - 1;
 		this.toScale		= this.groupUnitNum * this.groupNum;
