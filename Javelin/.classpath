@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/main/servlet-api"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ENdoSnipeCommon"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/javassist.jar"/>
+	<classpathentry kind="lib" path="lib/tool/djunit.jar"/>
+	<classpathentry kind="lib" path="lib/tool/classes12.jar"/>
+	<classpathentry kind="lib" path="lib/tool/hsqldb.jar"/>
+	<classpathentry kind="lib" path="lib/tool/mock_test.jar"/>
+	<classpathentry kind="lib" path="lib/tool/mock.jar"/>
+	<classpathentry kind="lib" path="lib/tool/mysql-connector-java-5.0.4-bin.jar"/>
+	<classpathentry kind="lib" path="lib/tool/postgresql-8.1-405.jdbc3.jar"/>
+	<classpathentry kind="lib" path="lib/tool/sqljdbc.jar"/>
+	<classpathentry kind="lib" path="lib/tool/commons-pool-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/tool/jboss-ejb3x.jar"/>
+	<classpathentry kind="lib" path="lib/tool/jboss-j2ee.jar"/>
+	<classpathentry kind="lib" path="lib/insanelib.jar"/>
+	<classpathentry kind="lib" path="lib/opt/servlet.jar"/>
+	<classpathentry kind="lib" path="lib/tool/h2-1.1.109.jar"/>
+	<classpathentry kind="lib" path="lib/tool/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/tool/javassist-3.4.ga.jar"/>
+	<classpathentry kind="lib" path="lib/dependency/jsonic-1.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/dependency/hbase-0.90.6-cdh3u5.jar"/>
+	<classpathentry kind="lib" path="lib/dependency/hadoop-core.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ENdoSnipeCommunicator"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="lib" path="lib/tool/junit-3.8.1.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>
