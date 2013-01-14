@@ -1,132 +1,92 @@
-var halook = {};
+/*******************************************************************************
+ * ENdoSnipe 5.0 - (https://github.com/endosnipe)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
+var ENS = {};
 
-halook.ID = {}
-halook.ID.MEASUREMENT_TIME = "measurementTime";
-halook.ID.MEASUREMENT_VALUE = "measurementValue";
-halook.ID.MEASUREMENT_ITEM_NAME = "measurementItemName";
+ENS.ID = {}
+ENS.ID.MEASUREMENT_TIME = "measurementTime";
+ENS.ID.MEASUREMENT_VALUE = "measurementValue";
+ENS.ID.MEASUREMENT_ITEM_NAME = "measurementItemName";
 
-halook.hbase = {};
-halook.hbase.parent = {};
-halook.hbase.dualslider = {};
-halook.hbase.dualslider.UNIT = 60 * 60 * 1000;
+ENS.DATE_FORMAT_DETAIL = 'yyyy/MM/dd HH:mm:ss.fff';
+ENS.DATE_FORMAT_DAY = 'yyyy/MM/dd';
+ENS.DATE_FORMAT_HOUR = 'yyyy/MM/dd HH:mm';
 
-halook.DATE_FORMAT_DETAIL = 'yyyy/MM/dd HH:mm:ss.fff';
-halook.DATE_FORMAT_DAY = 'yyyy/MM/dd';
-halook.DATE_FORMAT_HOUR = 'yyyy/MM/dd HH:mm';
+ENS.common = {};
+ENS.common.dualslider = {};
+ENS.common.dualslider.scaleUnitString = 'hours';
+ENS.common.dualslider.scaleUnit = 60 * 60 * 1000; // millisecond
+ENS.common.dualslider.groupString = 'days';
+ENS.common.dualslider.groupUnitNum = 24;
+ENS.common.dualslider.groupMaxNum = 7;
+ENS.common.dualslider.groupDefaultNum = 3;
+ENS.common.dualslider.idFrom = 'dualSliderFromValue';
+ENS.common.dualslider.idTo = 'dualSliderToValue';
 
-halook.task = {};
-halook.task.SUCCESSED = "SUCCEEDED";
-halook.task.FAILED = "FAILED";
-halook.task.KILLED = "KILLED";
-halook.task.COMMIT_PENDING = "COMMIT_PENDING";
-halook.task.RUNNING = "running";
+ENS.singleslider = {};
+ENS.singleslider.scaleUnitString = 'hours';
+ENS.singleslider.scaleUnit = 60 * 60 * 1000; // millisecond
+ENS.singleslider.groupString = 'days';
+ENS.singleslider.groupUnitNum = 24;
+ENS.singleslider.groupMaxNum = 7;
+ENS.singleslider.groupDefaultNum = 3;
+ENS.singleslider.idTime = 'singlesliderTimeValue';
 
-halook.HDFS = {};
-halook.HDFS.MESURE_TERM = 13000;
+ENS.nodeinfo = {};
+ENS.nodeinfo.parent = {};
+ENS.nodeinfo.parent.css = {};
+ENS.nodeinfo.viewList = [];
 
-halook.hdfs = {};
-halook.hdfs.constants = {};
 
-halook.hdfs.constants.cycle = 5000;
-
-halook.hdfs.constants.bgColor = "#303232";
-
-halook.hdfs.constants.mainCircle = {};
-halook.hdfs.constants.mainCircle.radius = 140;
-halook.hdfs.constants.mainCircle.innerRate = 0.2;
-halook.hdfs.constants.mainCircle.transferLineColor = "#EEEEEE";
-
-halook.hdfs.constants.dataNode = {};
-halook.hdfs.constants.dataNode.maxWidth = 60;
-halook.hdfs.constants.dataNode.maxLength = 130;
-halook.hdfs.constants.dataNode.frameColor = "rgba(255,255,255,0.5)";
-halook.hdfs.constants.dataNode.color = {
-	good : "#0C80A0",
-	full : "#F09B4A",
-	dead : "#AE1E2F"
+ENS.nodeinfo.parent.css.informationArea = {
+	fontSize : "14px",
+	float : "right",
+	width : "180px",
+	height : "350px",
+	border : "1px #dcdcdc solid",
+	margin : "190px 20px 0px 0px"
 };
+ENS.nodeinfo.parent.css.legendArea = {
+	height : "40px",
+	margin : "5px 5px 5px 5px"
+};
+ENS.nodeinfo.parent.css.annotationLegendArea = {
+	margin : "0px 0px 0px 0px",
+	padding : "5px 5px 5px 5px"
+};
+ENS.nodeinfo.parent.css.dualSliderArea = {
+	width : "800px",
+	margin : "0px 0px 20px 60px",
+};
+ENS.nodeinfo.parent.css.graphArea = {
+	float : "left",
+	width : "650px",
+	margin : "30px 0px 0px 10px"
+};
+ENS.nodeinfo.ONEDAY_MILLISEC = 86400000;
 
-halook.hdfs.constants.blockTransfer = {};
-halook.hdfs.constants.blockTransfer.width = 4;
-halook.hdfs.constants.blockTransfer.colorThreshold = 0.9;
-
-halook.hdfs.constants.rack = {};
-halook.hdfs.constants.rack.height = 10;
-halook.hdfs.constants.rack.colors = [ "#666666", "#AAAAAA", "#CCCCCC" ];
-// //////////////////////////////////////////////////////////
-// option end
-// //////////////////////////////////////////////////////////
-halook.hdfs.constants.dataNode.status = {};
-halook.hdfs.constants.dataNode.status.good = 0;
-halook.hdfs.constants.dataNode.status.full = 1;
-halook.hdfs.constants.dataNode.status.dead = 2;
-halook.hdfs.constants.cycleInterval = 2000;
-halook.hdfs.constants.hostnameAll = "--all--";
-
-wgp.constants.STATE.SUCCESS = "success";
-wgp.constants.STATE.RUNNING = "running";
-
-wgp.constants.STATE.FAIL = "fail";
-wgp.constants.STATE.FAILED = "fail";
-wgp.constants.STATE.KILLED = "killed";
-wgp.constants.STATE.MNORMAL = "mnormal";
-wgp.constants.STATE.MRUNNING = "mrun";
-wgp.constants.STATE.MFAIL = "mfail";
-wgp.constants.STATE.MKILLED = "mkilled";
-wgp.constants.STATE.RNORMAL = "rnormal";
-wgp.constants.STATE.RRUNNING = "rrun";
-wgp.constants.STATE.RFAIL = "rfail";
-wgp.constants.STATE.RKILLED = "rkilled";
-wgp.constants.STATE.TASKKILLED = "killed";
-wgp.constants.STATE.TASKFAIL = "fail";
-
-wgp.constants.JOB_STATE = {};
-wgp.constants.JOB_STATE.NORMAL = "NORMAL";
-wgp.constants.JOB_STATE.RUNNING = "RUNNING";
-wgp.constants.JOB_STATE.FAIL = "FAILED";
-wgp.constants.JOB_STATE.FAILED = "FAILED";
-wgp.constants.JOB_STATE.KILLED = "KILLED";
-wgp.constants.JOB_STATE.KILLED_UNCLEAN = "KILLED_UNCLEAN";
-wgp.constants.JOB_STATE.SUCCESS = "SUCCESS";
-
-wgp.constants.JOB_STATE_COLOR = {};
-wgp.constants.JOB_STATE_COLOR.NORMAL = "#00FF00";
-wgp.constants.JOB_STATE_COLOR.RUNNING = "#007700";
-wgp.constants.JOB_STATE_COLOR.FAIL = "#FF0000";
-wgp.constants.JOB_STATE_COLOR.KILLED = "#888800";
-wgp.constants.JOB_STATE_COLOR.SUCCESS = "#0000FF";
-
-// wgp.constants.STATE_COLOR = {};
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.NORMAL]="#00FF00";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.SUCCESS]="#00FF00";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.RUNNING]="#0000FF";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.KILLED]="#FFFF00";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.FAIL]="#FF0000";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.MNORMAL]="#007700";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.MRUNNING]="#00FF00";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.MFAIL]="#FF7700";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.MKILLED]="#777700";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.RNORMAL]="#000077";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.RRUNNING]="#0000FF";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.RFAIL]="#FF0077";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.RKILLED]="#770077";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKEFAIL]="#FF0000";
-// wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKKILLED]="#FF7700";
-
-wgp.constants.STATE_COLOR[wgp.constants.STATE.SUCCESS] = "#00FF00";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.RUNNING] = "#0000FF";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.KILLED] = "#FF6600";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.FAIL] = "#FF6600";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.FAILED] = "#FF6600";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.MNORMAL] = "#008000";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.MRUNNING] = "#00FF00";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.MFAIL] = "#FF0000";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.MKILLED] = "#777777";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.RNORMAL] = "#0000FF";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.RRUNNING] = "#0000FF";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.RFAIL] = "#C400C4";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.RKILLED] = "#777777";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKEFAIL] = "#FF6600";
-wgp.constants.STATE_COLOR[wgp.constants.STATE.TASKKILLED] = "#FF6600";
-
-var ENdoSnipe = {};
+ENS.ResourceGraphAttribute = [ "colors", "labels", "valueRange", "xlabel",
+		"ylabel", "strokeWidth", "legend", "labelsDiv", "width", "height" ];
+ENS.nodeinfo.GRAPH_HEIGHT_MARGIN = 2;

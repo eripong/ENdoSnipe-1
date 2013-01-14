@@ -1,38 +1,31 @@
-halook.nodeinfo = {};
-halook.nodeinfo.parent = {};
-halook.nodeinfo.parent.css = {};
-halook.nodeinfo.viewList = [];
-
-halook.nodeinfo.parent.css.informationArea = {
-	fontSize : "14px",
-	float : "right",
-	width : "180px",
-	height : "350px",
-	border : "1px #dcdcdc solid",
-	margin : "190px 20px 0px 0px"
-};
-halook.nodeinfo.parent.css.legendArea = {
-	height : "40px",
-	margin : "5px 5px 5px 5px"
-};
-halook.nodeinfo.parent.css.annotationLegendArea = {
-	margin : "0px 0px 0px 0px",
-	padding : "5px 5px 5px 5px"
-};
-halook.nodeinfo.parent.css.dualSliderArea = {
-	width : "800px",
-	margin : "0px 0px 20px 60px",
-};
-halook.nodeinfo.parent.css.graphArea = {
-	float : "left",
-	width : "650px",
-	margin : "30px 0px 0px 10px"
-};
-halook.nodeinfo.ONEDAY_MILLISEC = 86400000;
-
-halook.NodeInfoParentView = wgp.AbstractView.extend({
+/*******************************************************************************
+ * ENdoSnipe 5.0 - (https://github.com/endosnipe)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
+ENS.NodeInfoParentView = wgp.AbstractView.extend({
 	initialize : function(argument, treeSettings) {
-		halook.nodeinfo.viewList = [];
+		ENS.nodeinfo.viewList = [];
 		
 		this.viewtype = wgp.constants.VIEW_TYPE.VIEW;
 		this.graphIds = [];
@@ -52,15 +45,15 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 		this.viewList = {};
 
 		// add title area
-		ENdoSnipe.Utility.makeLogo(this.$el.attr("id"), "Multiple Graph View");
+		ENS.Utility.makeLogo(this.$el.attr("id"), "Multiple Graph View");
 		// dual slider area (add div and css, and make slider)
 		$("#" + this.$el.attr("id")).append(
 				'<div id="' + id.dualSliderArea + '"></div>');
 		$('#' + id.dualSliderArea).css(
-				halook.nodeinfo.parent.css.dualSliderArea);
+				ENS.nodeinfo.parent.css.dualSliderArea);
 		$('#' + id.dualSliderArea).css(
-				halook.nodeinfo.parent.css.dualSliderArea);
-		this.dualSliderView = new halook.DualSliderView({
+				ENS.nodeinfo.parent.css.dualSliderArea);
+		this.dualSliderView = new ENS.DualSliderView({
 			id : id.dualSliderArea,
 			rootView : this
 		});
@@ -70,7 +63,7 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 		})
 		
 		this.dualSliderView.setScaleMovedEvent(function(from, to) {
-			var viewList = halook.nodeinfo.viewList;
+			var viewList = ENS.nodeinfo.viewList;
 			for (key in viewList) {
 				var instance = viewList[key];
 				// グラフの表示期間の幅を更新する
@@ -95,7 +88,7 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 	},
 	_addGraphDivision : function(graphId) {
 		var viewId = null;
-		var viewClassName = "halook.ResourceGraphElementView";
+		var viewClassName = "ENS.ResourceGraphElementView";
 		var tempId = graphId.split("/");
 		var dataId = tempId[tempId.length - 1];
 		var treeSettings = {
@@ -145,7 +138,7 @@ halook.NodeInfoParentView = wgp.AbstractView.extend({
 //		var instance = view;
 		
 		var registerId = view.getRegisterId();
-		halook.nodeinfo.viewList[registerId] = view;
+		ENS.nodeinfo.viewList[registerId] = view;
 	},
 	getTermData : function() {
 		// データの成型
