@@ -22,7 +22,6 @@
 
    　Ant のバージョンは 1.7.0 以降が必要です。
 
-
   (3)Eclipse RCP版
      Eclipse for RCP and RAP Developers 3.7.1が
      インストールされていることが前提です。
@@ -66,14 +65,18 @@
 　　　コミット、syncしてください。
 
 ３．ローカルビルド(開発時)
-  (1)ENdoSnipe/build.propertiesを開き、以下の設定を変更してください。
+  (1)ENdoSnipe/build.bat を開き、以下の環境変数を設定してください。
+     ・JAVA_HOME_50 →Java5のJDKのパス
+     ・JAVA_HOME_60 →Java6のJDKのパス
+
+  (2)ENdoSnipe/build.propertiesを開き、以下の設定を変更してください。
 　　eclipse.dir→Eclipseのパス
 　　eclipsePlugin.dir→Eclipseのパス
 
-  (2)以下のコマンドラインを実行します。
+  (3)以下のコマンドラインを実行します。
     > build.bat
   
-  (3)「すべてのビルドプロセスが完了しました。」と表示されたら完了です。
+  (4)「すべてのビルドプロセスが完了しました。」と表示されたら完了です。
   　　ENdoSnipe\releaseディレクトリにビルド結果のファイルが
 　　　出力されています。
 
