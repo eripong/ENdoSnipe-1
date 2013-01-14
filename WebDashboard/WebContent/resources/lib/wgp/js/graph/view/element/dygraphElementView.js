@@ -35,12 +35,25 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 		var appView = new wgp.AppView();
 		appView.addView(this, this.graphId);
 		this.render();
-		this.registerCollectionEvent();
 
 		if (!this.noTermData) {
 			var startTime = new Date(new Date().getTime() - this.term * 1000);
 			var endTime = new Date();
-			appView.getTermData([ this.graphId ], startTime, endTime);
+
+			var url = wgp.common.getContextPath()
+					+ wgp.constants.URL.GET_TERM_DATA;
+			var dataMap = {
+				startTime : startTime.getTime(),
+				endTime : endTime.getTime(),
+				dataGroupIdList : [ this.graphId ]
+			};
+
+			var settings = {
+				url : url,
+				data : JSON.stringify(dataMap)
+			}
+
+			appView.onSearch(settings);
 		}
 	},
 	_initData : function(argument, treeSettings) {
@@ -103,7 +116,7 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 		}
 		this.entity.updateOptions(updateOption);
 	},
-	getTermData : function() {
+	onComplete : function() {
 		this.data = this.getData();
 		var updateOption = {
 			'file' : this.data,

@@ -36,7 +36,7 @@ wgp.TabView = wgp.AbstractView.extend({
 		this.divTabId = this.$el.attr("id") + "_tab";
 		this.maxId = 0;
 
-		this.render();
+		this._initializeRender();
 		this.registerCollectionEvent();
 		this.createdFlag = false;
 
@@ -46,9 +46,19 @@ wgp.TabView = wgp.AbstractView.extend({
 			var tabModel = new instance.collection.model(tabElement);
 			instance.collection.add(tabModel);
 		})
+		if (collection) {
+			this.render();
+		}
+	},
+	_initializeRender : function(){
+		$("#" + this.divId).append("<ul id='" + this.divTabId + "'></ul>")
 	},
 	render : function(){
-		$("#" + this.divId).append("<ul id='" + this.divTabId + "'></ul>")
+		if(this.createdFlag){
+			$("#" + this.divId).tabs("destroy");
+		}
+		$("#" + this.divId).tabs();
+		this.createdFlag = true;
 	},
 	onAdd : function(tabModel){
 		var tabId = tabModel.get("tabId");
@@ -71,10 +81,6 @@ wgp.TabView = wgp.AbstractView.extend({
 			this.maxId++;
 		}
 
-		if(this.createdFlag){
-			$("#" + this.divId).tabs("destroy");
-		}
-
 		var newDivTabId = this.divTabId + "_" + tabId;
 		$("#" + this.divId).append(
 				"<div id="+ newDivTabId +"></div>");
@@ -87,8 +93,6 @@ wgp.TabView = wgp.AbstractView.extend({
 				+ tabTitle + "</a>");
 		title.append(href);
 		$("#" + this.divTabId).append(title);
-		$("#" + this.divId).tabs();
-		this.createdFlag = true;
 
 		var childAttribute = {
 			id: newDivTabId,

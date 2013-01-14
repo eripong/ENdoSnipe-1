@@ -44,8 +44,8 @@ wgp.AbstractView = Backbone.View.extend({
 	onRemove : function(element) {
 		console.log('called removeModel');
 	},
-	getTermData : function() {
-		console.log('called getTermData');
+	onComplete : function(element) {
+		console.log('called completeModel');
 	},
 	registerCollectionEvent : function() {
 
@@ -57,9 +57,9 @@ wgp.AbstractView = Backbone.View.extend({
 
 		// When Collection Remove Model
 		this.collection.on('remove', this.onRemove, this);
-
-		// When Collection get Term Data.
-		this.collection.on('getTermData', this.getTermData, this);
+		
+		// When Collection Complete Model
+		this.collection.on('complete', this.onComplete, this);
 	},
 	stopRegisterCollectionEvent : function() {
 		if (this.collection) {
@@ -71,9 +71,9 @@ wgp.AbstractView = Backbone.View.extend({
 
 			// When Collection Remove Model
 			this.collection.off('remove', this.onRemove, this);
-
-			// When Collection get Term Data.
-			this.collection.off('getTermData', this.getTermData, this);
+			
+			// When Collection Complete Model
+			this.collection.off('complete', this.onComplete, this);
 		}
 	},
 	getAttributes : function(attributesKey) {
@@ -89,7 +89,7 @@ wgp.AbstractView = Backbone.View.extend({
 			if (value != null && value != undefined) {
 				attributeValues[attribute] = value;
 			}
-		})
+		});
 		return attributeValues;
 	},
 	getRegisterViews : function() {

@@ -1,6 +1,5 @@
 <meta charset="UTF-8" />
-<%@ page contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--
  WGP  0.1  - Web Graphical Platform
  Copyright (c) 2012, WGP.LICENSES.COM
@@ -13,8 +12,8 @@
 <%@ page import="java.lang.String"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
-<%@ page import="org.wgp.util.FileNameFilter"%>
-<%@ page import="org.wgp.util.FilePathUtil"%>
+<%@ page import="org.wgp.file.filter.FileNameFilter"%>
+<%@ page import="org.wgp.file.util.FilePathUtil"%>
 
 
 <link rel="stylesheet"
@@ -37,34 +36,26 @@
 <%
 	// ウィジェットとなるjavaScriptを指定
 	//TODO 残課題 ファイルパス指定を直接記入している。
-	List<String> pathList = new ArrayList<String>();
-	pathList.add("jQuery");
-	pathList.add("jQuery-ui");
-	pathList.add("underscore");
-	pathList.add("backbone");
-	pathList.add("dygraph");
-	pathList.add("jeegoocontext");
-	pathList.add("jqGrid");
-	pathList.add("jquery.event.drag-2.2");
-	pathList.add("jsTree");
-	pathList.add("Raphael");
-	pathList.add("slider");
-	pathList.add("wgp");
-	String jsDirectoryPath = config.getServletContext()
+	List<String> libraryPathList = new ArrayList<String>();
+	libraryPathList.add("jQuery");
+	libraryPathList.add("jQuery-ui");
+	libraryPathList.add("underscore");
+	libraryPathList.add("backbone");
+	libraryPathList.add("dygraph");
+	libraryPathList.add("jeegoocontext");
+	libraryPathList.add("jquery.event.drag-2.2");
+	libraryPathList.add("jsTree");
+	libraryPathList.add("Raphael");
+	libraryPathList.add("wgp");
+	String libraryJsDirectoryPath = config.getServletContext()
 			.getRealPath("resources/lib");
-	File jsDirectory = new File(jsDirectoryPath);
-	FileNameFilter nameFilter = new FileNameFilter(null, null, "js");
+	File libraryJsDirectory = new File(libraryJsDirectoryPath);
+	FileNameFilter libraryNameFilter = new FileNameFilter(null, null, "js");
 
-	// widgetMenuの一覧を取得する。
-	String widgetKindsDirectoryPath =
-		config.getServletContext().getRealPath("resources/lib/wgp/widget");
-	File widgetDirectory = new File(widgetKindsDirectoryPath);
-	File[] widgetFileList = widgetDirectory.listFiles(nameFilter);
-
-	for (String directoryPath : pathList) {
-		File elementDirectory = new File(jsDirectory, directoryPath);
+	for (String directoryPath : libraryPathList) {
+		File elementDirectory = new File(libraryJsDirectory, directoryPath);
 		List<File> elementFileList = FilePathUtil.getAllFilePath(
-				elementDirectory, nameFilter);
+				elementDirectory, libraryNameFilter);
 		if (elementFileList != null && elementFileList.size() > 0) {
 			// ウィジェットとなるjavaScriptファイルのファイルパスを基にscriptタグを生成する。
 			for (File jsFile : elementFileList) {
@@ -80,3 +71,9 @@
 		}
 	}	
 %>
+<script
+	src="<%=request.getContextPath()%>/resources/lib/jqGrid/js/i18n/grid.locale-<%=request.getLocale().getLanguage()%>.js"
+	type="text/javascript"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/lib/jqGrid/js/jquery.jqGrid.min.js"
+	type="text/javascript"></script>

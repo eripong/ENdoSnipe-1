@@ -1,48 +1,46 @@
-/*****************************************************************
- WGP  1.0B  - Web Graphical Platform
-   (https://sourceforge.net/projects/wgp/)
-
- The MIT License (MIT)
- 
- Copyright (c) 2012 Acroquest Technology Co.,Ltd.
- 
- Permission is hereby granted, free of charge, to any person obtaining 
- a copy of this software and associated documentation files
- (the "Software"), to deal in the Software without restriction, 
- including without limitation the rights to use, copy, modify, merge,
- publish, distribute, sublicense, and/or sell copies of the Software,
- and to permit persons to whom the Software is furnished to do so, 
- subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be 
- included in all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*****************************************************************/
+/*******************************************************************************
+ * WGP 1.0B - Web Graphical Platform (https://sourceforge.net/projects/wgp/)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
 wgp.AppView = Backbone.View
 		.extend({
 			initialize : function() {
 				this.viewType = wgp.constants.VIEW_TYPE.CONTROL;
 				this.collections = {};
 				this.syncIdList = {};
-				var instance = this;
+				var ins = this;
 				wgp.AppView = function() {
-					return instance;
-				}
+					return ins;
+				};
 			},
 			addView : function(view, syncId) {
-				var instance = this;
+				var ins = this;
 				// if not exist collection, new WgpCollection
 				var collection = this.collections[syncId];
 				if (!collection) {
 					collection = new wgp.WgpCollection();
-					instance.collections[syncId] = collection;
+					ins.collections[syncId] = collection;
 				}
 				view.collection = collection;
 				view.registerCollectionEvent();
@@ -53,11 +51,11 @@ wgp.AppView = Backbone.View
 				view.collection = null;
 			},
 			syncData : function(syncIdList) {
-				var instance = this;
+				var ins = this;
 				var startSyncIdList = [];
 				_.each(syncIdList, function(id) {
-					if (!instance.syncIdList[id]) {
-						instance.syncIdList[id] = true;
+					if (!ins.syncIdList[id]) {
+						ins.syncIdList[id] = true;
 						// start synchronize
 						startSyncIdList.push(id);
 					}
@@ -75,11 +73,11 @@ wgp.AppView = Backbone.View
 			},
 			stopSyncData : function(syncIdList) {
 				// stop real time synchronization
-				var instance = this;
+				var ins = this;
 				var stopSyncIdList = [];
 				_.each(syncIdList, function(id) {
-					if (instance.syncIdList[id]) {
-						instance.syncIdList[id] = false;
+					if (ins.syncIdList[id]) {
+						ins.syncIdList[id] = false;
 						// start synchronize
 						stopSyncIdList.push(id);
 					}
@@ -96,91 +94,82 @@ wgp.AppView = Backbone.View
 				webSocket.send(message);
 			},
 			notifyEvent : function(notificationList) {
-				var instance = this;
-				_
-						.each(
-								notificationList,
-								function(notification, dataGroupId) {
-									var updateCollection = instance.collections[dataGroupId];
-									_
-											.each(
-													notification,
-													function(updateData,
-															modelId) {
-														// create Model
-														updateData.id = modelId;
-														var type = updateData.type;
-
-														// Execute Collection
-														// Add Event
-														if (type == wgp.constants.CHANGE_TYPE.ADD) {
-															if (updateCollection
-																	.get(modelId) != null) {
-																console
-																		.log('Collection already Exists');
-															} else {
-																var model = new updateCollection.model(
-																		updateData.updateData);
-																updateCollection
-																		.add(model);
-															}
-														} else if (type == wgp.constants.CHANGE_TYPE.UPDATE) {
-															var targetModel = updateCollection.models[modelId];
-															if (targetModel == null
-																	|| targetModel == undefined) {
-																console
-																		.log('Model is not exists');
-															} else {
-																targetModel
-																		.set(updateData.updateData);
-																updateCollection
-																		.trigger(
-																				"change",
-																				targetModel);
-															}
-														} else if (type == wgp.constants.CHANGE_TYPE.DELETE) {
-															updateCollection
-																	.remove(modelId);
-														}
-													});
-								});
+				var ins = this;
+				_.each(notificationList, function(notification, dataGroupId) {
+					var updateCollection = ins.collections[dataGroupId];
+					if (updateCollection) {
+						ins._updateCollectionData(updateCollection,
+								notification);
+						// データ取得処理が完了したことを通知する
+						updateCollection.trigger("complete", wgp.constants.syncType.NOTIFY);
+					}
+				});
 			},
-			// Term data methods.
-			getTermData : function(syncIdList, startTime, endTime) {
-				var instance = this;
-				this.stopSyncData(syncIdList);
+			_updateCollectionData : function(updateCollection, dataList) {
+				var ins = this;
+				_.each(dataList, function(updateData, modelId) {
+					// create Model
+					updateData.id = modelId;
+					var type = updateData.type;
+
+					// Execute Collection
+					// Add Event
+					if (type == wgp.constants.CHANGE_TYPE.ADD) {
+						ins._add(updateCollection, updateData);
+					} else if (type == wgp.constants.CHANGE_TYPE.UPDATE) {
+						ins._update(updateCollection, updateData);
+					} else if (type == wgp.constants.CHANGE_TYPE.DELETE) {
+						ins._remove(updateCollection, updateData);
+					}
+				});
+			},
+			_add : function(addCollection, addData) {
+				if (addCollection.get(addData.id) != null) {
+					console.log('Collection already Exists');
+				} else {
+					var model = new addCollection.model(addData.updateData);
+					addCollection.add(model);
+				}
+			},
+			_update : function(updateCollection, updateData) {
+				var targetModel = updateCollection.models[updateData.id];
+				if (targetModel == null || targetModel == undefined) {
+					console.log('Model is not exists');
+				} else {
+					targetModel.set(updateData.updateData);
+					updateCollection.trigger("change", targetModel);
+				}
+			},
+			_remove : function(updateCollection, removeData) {
+				updateCollection.remove(removeData.id);
+			},
+			// Search methods.
+			onSearch : function(settings) {
+
+				var dataGroupIdList = settings["dataGroupIdList"];
+				if (dataGroupIdList) {
+					this.stopSyncData(dataGroupIdList);
+				}
 
 				var ajaxHandler = new wgp.AjaxHandler();
-				var url = common.getContextPath()
-						+ wgp.constants.URL.GET_TERM_DATA;
-				var dataMap = {
-					startTime : startTime.getTime(),
-					endTime : endTime.getTime(),
-					dataGroupIdList : syncIdList
-				};
-				var settings = {
-					url : url,
-					data : {
-						data : JSON.stringify(dataMap)
-					}
-				}
-				settings[ConnectionConstants.SUCCESS_CALL_OBJECT_KEY] = this;
-				settings[ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY] = "completeGetTermData";
+				settings[wgp.ConnectionConstants.SUCCESS_CALL_OBJECT_KEY] = this;
+				settings[wgp.ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY] = "onComplete";
 				ajaxHandler.requestServerAsync(settings);
 			},
-			completeGetTermData : function(data) {
-				var instance = this;
+			onComplete : function(data) {
+				var ins = this;
 				var idList = [];
 				_.each(data, function(dataList, dataGroupId) {
 					idList.push(dataGroupId);
-					var collection = instance.collections[dataGroupId];
+					var collection = ins.collections[dataGroupId];
+					var silent = ins.addAfterComplete ? false : true;
 					collection.reset(dataList, {
-						silent : true
+						silent : silent
 					});
 				});
 				_.each(idList, function(dataGroupId) {
-					var collection = instance.collections[dataGroupId];
-					collection.trigger("getTermData");
+					var collection = ins.collections[dataGroupId];
+					collection.trigger("complete", wgp.constants.syncType.SEARCH);
 				});
 			}
 		});

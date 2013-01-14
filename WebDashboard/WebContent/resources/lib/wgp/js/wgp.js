@@ -52,11 +52,11 @@ $.extend($.wgp,{
 				var created_perspactive_list = [];
 
 				// パースペクティブ全体を囲むDIVタグ生成用DTO
-				var dropAreaAllDto = new wgpDomDto(
+				var dropAreaAllDto = new wgp.wgpDomDto(
 					null
 					,"div"
 					,null
-					,[wgpStyleClassConstants.PERSPACTIVE_DROP_AREA_ALL]
+					,[wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL]
 					,null
 				);
 
@@ -85,11 +85,11 @@ $.extend($.wgp,{
 						var dropAreaHeight = Number(tableViewArea.height);
 
 						// ドロップ領域生成用DTO
-						var dropAreaDto = new wgpDomDto(
+						var dropAreaDto = new wgp.wgpDomDto(
 							dropDivId
 							,"div"
 							,null
-							,[wgpStyleClassConstants.PERSPACTIVE_DROP_AREA]
+							,[wgp.styleClassConstants.PERSPECTIVE_DROP_AREA]
 							,{
 								width : dropAreaWidth + "px"
 								,height : dropAreaHeight + "px"
@@ -99,31 +99,31 @@ $.extend($.wgp,{
 						dropAreaAllDto.addChildren( [dropAreaDto] );
 
 						// ユーティリティバー生成用DTO
-						var utilBarDto = new wgpDomDto(
+						var utilBarDto = new wgp.wgpDomDto(
 							utilBarId
 							,"div"
 							,null
-							,[wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR]
+							,[wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR]
 							,null
 						);
 
 						dropAreaDto.addChildren( [utilBarDto] );
 
 						// 非表示ボタン生成用DTO
-						var utilBarHideDto = new wgpDomDto(
+						var utilBarHideDto = new wgp.wgpDomDto(
 							hideIconId
 							,"div"
 							,null
-							,[wgpStyleClassConstants.PERSPACTIVE_ICON]
+							,[wgp.styleClassConstants.PERSPECTIVE_ICON]
 							,null
 						);
 
 						// 最小化ボタン生成用DTO
-						var utilBarMiniDto = new wgpDomDto(
+						var utilBarMiniDto = new wgp.wgpDomDto(
 							miniRestoreIconId
 							,"div"
 							,null
-							,[wgpStyleClassConstants.PERSPACTIVE_ICON]
+							,[wgp.styleClassConstants.PERSPECTIVE_ICON]
 							,null
 						);
 
@@ -132,7 +132,7 @@ $.extend($.wgp,{
 				}
 
 				// 指定されたdivタグにtable要素を追加
-				$("#" + parentDivId).append( wgpDomCreator.createDomStringCall(dropAreaAllDto) );
+				$("#" + parentDivId).append( wgp.wgpDomCreator.createDomStringCall(dropAreaAllDto) );
 			}
 			,perspactiveTable : function(perspactiveInformation){
 
@@ -355,7 +355,7 @@ $.extend($.wgp,{
 				var zIndex_margin = 10;
 
 				// パースペクティブエリア全体を囲むクラスのtop,leftを取得する。
-				var dropAreaAllDiv = $("." + wgpStyleClassConstants.PERSPACTIVE_DROP_AREA_ALL);
+				var dropAreaAllDiv = $("." + wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL);
 				dropAreaAllDiv.width( this.max_width + 10 );
 				dropAreaAllDiv.height( this.max_height + 10 );
 
@@ -384,13 +384,13 @@ $.extend($.wgp,{
 
 							// 各ボタンについて指定を行なう。
 							if(targetViewArea.minimize_flag){
-								common.addClassWrapperJQuery( $("#" + miniRestoreIconId) , wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_RESTORE );
+								wgp.common.addClassWrapperJQuery( $("#" + miniRestoreIconId) , wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE );
 							}else{
-								common.addClassWrapperJQuery( $("#" + miniRestoreIconId) , wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_MIN );
+								wgp.common.addClassWrapperJQuery( $("#" + miniRestoreIconId) , wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN );
 							}
 
 							if(!targetViewArea.hide_flag){
-								common.addClassWrapperJQuery( $("#" +hideIconId) , wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_HIDE );
+								wgp.common.addClassWrapperJQuery( $("#" +hideIconId) , wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_HIDE );
 							}
 
 							// 一つ手前のパースペクティブの次に配置されるように位置を修正する。
@@ -503,7 +503,7 @@ $.extend($.wgp,{
 						instance.resizeStartFunction(e.target.id, table);
 					},
 					resize : function(e, ui) {
-						common.moveEndFront("#" + e.target.id);
+						wgp.common.moveEndFront("#" + e.target.id);
 
 					},
 					stop : function(e, ui) {
@@ -529,7 +529,9 @@ $.extend($.wgp,{
 						targetViewArea.view_div_id = "";
 
 						// draggable要素のresizableイベントを活性にする。
-						ui.draggable.resizable("enable");
+						ui.draggable.resizable({
+							"disabled" : false
+						});
 					}
 				});
 
@@ -715,7 +717,7 @@ $.extend($.wgp,{
 				var minRestoreDiv = $("#" + targetViewArea.minimize_restore_id);
 
 				// 元に戻す処理を行う。
-				if(minRestoreDiv.hasClass( wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_RESTORE )){
+				if(minRestoreDiv.hasClass( wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE )){
 
 					// ドロップ領域を取得する。
 					var dropAreaDiv = $("#" + targetViewArea.drop_area_id);
@@ -743,11 +745,11 @@ $.extend($.wgp,{
 					}
 
 					// 最小化/元に戻すのボタン表示クラスを入れ替える。
-					common.removeClassWrapperJQuery( minRestoreDiv , wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_RESTORE);
-					common.addClassWrapperJQuery( minRestoreDiv ,  wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_MIN);
+					wgp.common.removeClassWrapperJQuery( minRestoreDiv , wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE);
+					wgp.common.addClassWrapperJQuery( minRestoreDiv ,  wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN);
 
 				// 最小化処理を行う。
-				}else if(minRestoreDiv.hasClass( wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_MIN )){
+				}else if(minRestoreDiv.hasClass( wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN )){
 
 					// ドロップ領域を取得する。
 					var dropAreaDiv = $("#" + targetViewArea.drop_area_id);
@@ -787,8 +789,8 @@ $.extend($.wgp,{
 					}
 
 					// 最小化/元に戻すのボタン表示クラスを入れ替える。
-					common.addClassWrapperJQuery( minRestoreDiv , wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_RESTORE);
-					common.removeClassWrapperJQuery( minRestoreDiv ,  wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_MIN);
+					wgp.common.addClassWrapperJQuery( minRestoreDiv , wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE);
+					wgp.common.removeClassWrapperJQuery( minRestoreDiv ,  wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN);
 
 				}
 			}
@@ -834,7 +836,9 @@ $.extend($.wgp,{
 					targetUtilBarDiv.addClass(perspactiveMaxClass);
 
 					// リサイズをできなくする。
-					dropAreaDiv.resizable("disable");
+					dropAreaDiv.resizable({
+						"disabled" : true
+					});
 
 					// 半透明になるクラスのみ削除する。
 					dropAreaDiv.removeClass("ui-state-disabled");
@@ -860,7 +864,9 @@ $.extend($.wgp,{
 					dropAreaDiv.zIndex( restoreZIndex );
 
 					// リサイズをできなくする。
-					dropAreaDiv.resizable("enable");
+					dropAreaDiv.resizable({
+						"disabled" : true
+					});
 
 					// ビューの位置を再設定する。
 					this.resetViewPosition(targetViewArea);
@@ -996,7 +1002,9 @@ $.extend($.wgp,{
 					this.resetViewPosition(targetViewArea);
 
 					// draggable要素のresizableイベントを非活性にする。
-					targetViewDiv.resizable("disable");
+					targetViewDiv.resizable({
+						"disabled" : true
+					});
 
 					// 半透明になるクラスのみ削除する。
 					targetViewDiv.removeClass("ui-state-disabled");
@@ -1074,15 +1082,15 @@ $.extend($.wgp,{
 
 				var viewDiv = $("#" + viewId);
 				if(viewDiv.length == 0){
-					var viewAreaDto = new wgpDomDto(
+					var viewAreaDto = new wgp.wgpDomDto(
 						viewId
 						,"div"
 						,null
-						,[wgpStyleClassConstants.PERSPACTIVE_VIEW_AREA]
+						,[wgp.styleClassConstants.PERSPECTIVE_VIEW_AREA]
 						,null
 					);
 
-					$("#" + droppableTargetId).append( wgpDomCreator.createDomStringCall(viewAreaDto) );
+					$("#" + droppableTargetId).append( wgp.wgpDomCreator.createDomStringCall(viewAreaDto) );
 				}else{
 					$("#" + droppableTargetId).append( viewDiv );
 				}

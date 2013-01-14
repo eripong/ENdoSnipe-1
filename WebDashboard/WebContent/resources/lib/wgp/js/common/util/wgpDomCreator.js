@@ -29,17 +29,17 @@
  * 引数にて指定された内容を基にDOM要素の生成を行うクラス
  * ※主にDIVタグの生成を担当
  */
-var wgpDomCreator = function(){
+wgp.wgpDomCreator = function(){
 };
 
-wgpDomCreator.createDomStringCall = function(wgpDomDto){
+wgp.wgpDomCreator.createDomStringCall = function(wgpDomDto){
 
 	var returnArray = [];
 	this.createDomString(returnArray, wgpDomDto);
 	return returnArray.join("");
 };
 
-wgpDomCreator.createDomString = function(returnArray, wgpDomDto){
+wgp.wgpDomCreator.createDomString = function(returnArray, wgpDomDto){
 
 	returnArray.push("<");
 	returnArray.push(wgpDomDto.domKind + " ");
@@ -65,8 +65,8 @@ wgpDomCreator.createDomString = function(returnArray, wgpDomDto){
 			styleClassArray.push(styleClass);
 
 			// 追加するスタイルクラスがある場合
-			if(wgpStyleClassConstants.STYLE_ADD_SETTING[styleClass]){
-				var addStyleClassArray = wgpStyleClassConstants.STYLE_ADD_SETTING[styleClass];
+			if(wgp.styleClassConstants.STYLE_ADD_SETTING[styleClass]){
+				var addStyleClassArray = wgp.styleClassConstants.STYLE_ADD_SETTING[styleClass];
 				styleClassArray = styleClassArray.concat(addStyleClassArray);
 			}
 		});
@@ -96,7 +96,7 @@ wgpDomCreator.createDomString = function(returnArray, wgpDomDto){
 
 			// 子要素がwgpDOmDtoの場合
 			if(typeof(child) == "object"){
-				wgpDomCreator.createDomString(returnArray, child);
+				wgp.wgpDomCreator.createDomString(returnArray, child);
 
 			// 上記以外はそのまま配列に加える。
 			}else{

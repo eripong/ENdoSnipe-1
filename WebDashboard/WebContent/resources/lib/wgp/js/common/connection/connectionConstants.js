@@ -25,31 +25,31 @@
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *****************************************************************/
-ConnectionConstants = {};
+wgp.ConnectionConstants = {};
 
 // 定数定義
 /**
  * 処理成功時に呼び出すオブジェクト格納key
  */
-ConnectionConstants.SUCCESS_CALL_OBJECT_KEY = "successCallObject";
+wgp.ConnectionConstants.SUCCESS_CALL_OBJECT_KEY = "successCallObject";
 
 /**
  * 処理成功時に呼び出す関数名格納key
  */
-ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY = "successCallFunction";
+wgp.ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY = "successCallFunction";
 
 /**
  * 処理失敗時に呼び出すオブジェクト格納key
  */
-ConnectionConstants.ERROR_CALL_OBJECT_KEY = "errorCallObject";
+wgp.ConnectionConstants.ERROR_CALL_OBJECT_KEY = "errorCallObject";
 
 /**
  * 処理失敗時に呼び出す関数名格納key
  */
-ConnectionConstants.ERROR_CALL_FUNCTION_KEY = "errorCallFunction";
+wgp.ConnectionConstants.ERROR_CALL_FUNCTION_KEY = "errorCallFunction";
 
 /** Setting for Default WebSocketServlet PROTOCOL */
-ConnectionConstants.DEF_WEBSOCKET_SERVELET_PROTOCOL = "ws";
+wgp.ConnectionConstants.DEF_WEBSOCKET_SERVELET_PROTOCOL = "ws";
 
 /** Setting for Default WebSocketServlet PATH */
-ConnectionConstants.DEF_WEBSOCKET_SERVELET_NAME = "/webSocketServlet";
+wgp.ConnectionConstants.DEF_WEBSOCKET_SERVELET_NAME = "/webSocketServlet";

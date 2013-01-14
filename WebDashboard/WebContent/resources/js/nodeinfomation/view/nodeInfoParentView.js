@@ -34,7 +34,7 @@ ENS.NodeInfoParentView = wgp.AbstractView.extend({
 			id : "tree",
 			rootView : this
 		});
-		var appView = wgp.AppView();
+		var appView = new ENS.AppView();
 		appView.addView(treeListView, "tree");
 		this.createParseData(treeSettings.id, treeListView.collection);
 		// this._setGraphIds(treeSettings.treeId, treeListView.collection);

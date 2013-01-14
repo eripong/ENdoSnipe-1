@@ -37,9 +37,9 @@ wgp.WebSocketClient = function(handler, methodName) {
 
 wgp.WebSocketClient.prototype.initialize = function(url) {
 	if (!url) {
-		url = ConnectionConstants.DEF_WEBSOCKET_SERVELET_PROTOCOL + "://"
-				+ window.location.host + common.getContextPath()
-				+ ConnectionConstants.DEF_WEBSOCKET_SERVELET_NAME;
+		url = wgp.ConnectionConstants.DEF_WEBSOCKET_SERVELET_PROTOCOL + "://"
+				+ window.location.host + wgp.common.getContextPath()
+				+ wgp.ConnectionConstants.DEF_WEBSOCKET_SERVELET_NAME;
 	}
 	this.ws = new WebSocket(url);
 	this.blobBuilder = window.BlobBuilder || window.WebKitBlobBuilder

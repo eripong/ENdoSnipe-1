@@ -28,7 +28,7 @@
 // パースペクティブビュー
 wgp.PerspactiveView = Backbone.View.extend({
 	initialize : function(arguments) {
-		_.bindAll()
+		_.bindAll();
 
 		// パースペクティブテーブル内のドロップ領域のidのプレフィックス
 		this.drop_area_prefix = "_drop";
@@ -44,6 +44,10 @@ wgp.PerspactiveView = Backbone.View.extend({
 
 		this.id = this.$el.attr("id");
 		this.collection = arguments["collection"];
+		this.buttonOption = {
+			minimum : (arguments.minimum != null) ? arguments.minimum : true,
+			close	: (arguments.close != null) ? arguments.close : true,
+		};
 		
 		// レンダリングメソッドを実行
 		this.render();
@@ -62,17 +66,12 @@ wgp.PerspactiveView = Backbone.View.extend({
 				+ this.minimize_restore_prefix;
 		var hide_suffix = parentDivId + this.hide_prefix;
 
-		var tableString = "";
-
 		// パースペクティブテーブルの内容を基にtableを構築する。
 		var max_index_y = table.length;
-
-		// 作成済みのパースペクティブ情報を保持する。
-		var created_perspactive_list = [];
-
+		
 		// パースペクティブ全体を囲むDIVタグ生成用DTO
-		var dropAreaAllDto = new wgpDomDto(null, "div", null,
-				[ wgpStyleClassConstants.PERSPACTIVE_DROP_AREA_ALL ],
+		var dropAreaAllDto = new wgp.wgpDomDto(null, "div", null,
+				[ wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL ],
 				null);
 
 		for ( var index_y = 0; index_y < max_index_y; index_y++) {
@@ -107,11 +106,11 @@ wgp.PerspactiveView = Backbone.View.extend({
 				var dropAreaHeight = Number(tableModel.get("height"));
 
 				// ドロップ領域生成用DTO
-				var dropAreaDto = new wgpDomDto(
+				var dropAreaDto = new wgp.wgpDomDto(
 						dropDivId,
 						"div",
 						null,
-						[ wgpStyleClassConstants.PERSPACTIVE_DROP_AREA ],
+						[ wgp.styleClassConstants.PERSPECTIVE_DROP_AREA ],
 						{
 							width : dropAreaWidth + "px",
 							height : dropAreaHeight + "px"
@@ -120,38 +119,44 @@ wgp.PerspactiveView = Backbone.View.extend({
 				dropAreaAllDto.addChildren([ dropAreaDto ]);
 
 				// ユーティリティバー生成用DTO
-				var utilBarDto = new wgpDomDto(
+				var utilBarDto = new wgp.wgpDomDto(
 						utilBarId,
 						"div",
 						null,
-						[ wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR ],
+						[ wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR ],
 						null);
 
 				dropAreaDto.addChildren([ utilBarDto ]);
-
-				// 非表示ボタン生成用DTO
-				var utilBarHideDto = new wgpDomDto(hideIconId, "div",
-						null,
-						[ wgpStyleClassConstants.PERSPACTIVE_ICON ],
-						null);
-
-				// 最小化ボタン生成用DTO
-				var utilBarMiniDto = new wgpDomDto(miniRestoreIconId,
-						"div", null,
-						[ wgpStyleClassConstants.PERSPACTIVE_ICON ],
-						null);
+				
+				var barButtonDtoList = [];
+				if (this.buttonOption.close) {
+					// 非表示ボタン生成用DTO
+					var utilBarHideDto = new wgp.wgpDomDto(hideIconId, "div",
+							null,
+							[ wgp.styleClassConstants.PERSPECTIVE_ICON ],
+							null);
+					barButtonDtoList.push(utilBarHideDto);
+				}
+				
+				if (this.buttonOption.minimum) {
+					// 最小化ボタン生成用DTO
+					var utilBarMiniDto = new wgp.wgpDomDto(miniRestoreIconId,
+							"div", null,
+							[ wgp.styleClassConstants.PERSPECTIVE_ICON ],
+							null);
+					barButtonDtoList.push(utilBarMiniDto);
+				}
 
 				utilBarDto
-						.addChildren([ utilBarHideDto, utilBarMiniDto ]);
+						.addChildren(barButtonDtoList);
 			}
 		}
 
 		// 指定されたdivタグにtable要素を追加
 		$("#" + parentDivId).append(
-				wgpDomCreator.createDomStringCall(dropAreaAllDto));
+				wgp.wgpDomCreator.createDomStringCall(dropAreaAllDto));
 	},
 	tableInitial : function(perspactiveInformation) {
-		var table = this.collection;
 
 		// パースペクティブテーブル情報を基にテーブルの段組情報を解釈しやすい形に変更する。
 		var persepactiveYMax = perspactiveInformation.length;
@@ -375,7 +380,7 @@ wgp.PerspactiveView = Backbone.View.extend({
 
 		// パースペクティブエリア全体を囲むクラスのtop,leftを取得する。
 		var dropAreaAllDiv = $("."
-				+ wgpStyleClassConstants.PERSPACTIVE_DROP_AREA_ALL);
+				+ wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL);
 		dropAreaAllDiv.width(this.max_width + 10);
 		dropAreaAllDiv.height(this.max_height + 10);
 
@@ -404,22 +409,22 @@ wgp.PerspactiveView = Backbone.View.extend({
 
 					// 各ボタンについて指定を行なう。
 					if (targetTableModel.get("minimize_flag")) {
-						common
+						wgp.common
 								.addClassWrapperJQuery(
 										$("#" + miniRestoreIconId),
-										wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_RESTORE);
+										wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE);
 					} else {
-						common
+						wgp.common
 								.addClassWrapperJQuery(
 										$("#" + miniRestoreIconId),
-										wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_MIN);
+										wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN);
 					}
 
 					if (!targetTableModel.get("hide_flag")) {
-						common
+						wgp.common
 								.addClassWrapperJQuery(
 										$("#" + hideIconId),
-										wgpStyleClassConstants.PERSPACTIVE_UTIL_BAR_HIDE);
+										wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_HIDE);
 					}
 
 					// 一つ手前のパースペクティブの次に配置されるように位置を修正する。
@@ -535,15 +540,15 @@ wgp.PerspactiveView = Backbone.View.extend({
 	dropView : function(droppableTargetId, viewId){
 		var viewDiv = $("#" + viewId);
 		if(viewDiv.length == 0){
-			var viewAreaDto = new wgpDomDto(
+			var viewAreaDto = new wgp.wgpDomDto(
 				viewId
 				,"div"
 				,null
-				,[wgpStyleClassConstants.PERSPACTIVE_VIEW_AREA]
+				,[wgp.styleClassConstants.PERSPECTIVE_VIEW_AREA]
 				,null
 			);
 
-			$("#" + droppableTargetId).append( wgpDomCreator.createDomStringCall(viewAreaDto) );
+			$("#" + droppableTargetId).append( wgp.wgpDomCreator.createDomStringCall(viewAreaDto) );
 		}else{
 			$("#" + droppableTargetId).append( viewDiv );
 		}
@@ -576,7 +581,9 @@ wgp.PerspactiveView = Backbone.View.extend({
 			this.resetViewPosition(targetTableModel);
 	
 			// draggable要素のresizableイベントを非活性にする。
-			targetViewDiv.resizable("disable");
+			targetViewDiv.resizable({
+				"disabled" : true
+			});
 	
 			// 半透明になるクラスのみ削除する。
 			targetViewDiv.removeClass("ui-state-disabled");
@@ -620,7 +627,7 @@ wgp.PerspactiveView = Backbone.View.extend({
 				instance.resizeStartFunction(e.target.id);
 			},
 			resize : function(e, ui) {
-				common.moveEndFront("#" + e.target.id);
+				wgp.common.moveEndFront("#" + e.target.id);
 
 			},
 			stop : function(e, ui) {
@@ -646,21 +653,29 @@ wgp.PerspactiveView = Backbone.View.extend({
 				targetTableModel.set({view_div_id : ""});
 
 				// draggable要素のresizableイベントを活性にする。
-				ui.draggable.resizable("enable");
+				ui.draggable.resizable({
+					"disabled" : false
+				});
 			}
 		});
 
 		// ユーティリティバー領域に対してクリックイベントを適用する。
 		$("#" + tableModel.get("minimize_restore_id")).mousedown(function(event) {
-			instance.minRestoreEventFunction(this.id);
+			if (instance.minRestoreEventFunction) {
+				instance.minRestoreEventFunction(this.id);
+			}
 		});
 
 		$("#" + tableModel.get("hide_id")).mousedown(function(event){
-			instance.hideEventFunction(this.id);
+			if (instance.hideEventFunction) {
+				instance.hideEventFunction(this.id);
+			}
 		});
 
 		$("#" + tableModel.get("util_bar_id")).dblclick(function(event){
-			instance.maximumEventFunction(this.id);
+			if (instance.maximumEventFunction) {
+				instance.maximumEventFunction(this.id);
+			}
 		});
 	},
 	resizeStartFunction : function(){

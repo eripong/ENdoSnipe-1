@@ -74,3 +74,7 @@ wgp.constants.TREE.DATA_ID = "tree";
 wgp.constants.TREE.CENTER_NODE_ICON = "center";
 wgp.constants.TREE.LEAF_NODE_ICON = "leaf";
 wgp.constants.TREE.INITAL_OPEN = true;
+
+wgp.constants.syncType = {};
+wgp.constants.syncType.SEARCH = "search";
+wgp.constants.syncType.NOTIFY = "notify";

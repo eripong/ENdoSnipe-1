@@ -28,7 +28,7 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		this.isRealTime = true;
 		this._initData(argument, treeSettings);
 
-		var appView = new wgp.AppView();
+		var appView = new ENS.AppView();
 		appView.addView(this, argument.graphId);
 		this.render();
 		this.registerCollectionEvent();
@@ -140,15 +140,20 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 			});
 		}
 	},
-	getTermData : function() {
+	_getTermData : function() {
 		this.data = this.getData();
 		var updateOption = {
 			'file' : this.data,
 		};
 		this.entity.updateOptions(updateOption);
 		
-		var tmpAppView = new wgp.AppView();
+		var tmpAppView = new ENS.AppView();
 		tmpAppView.syncData([ this.graphId ]);
+	},
+	onComplete : function(syncType) {
+		if (syncType = wgp.constants.syncType.SEARCH) {
+			this._getTermData();
+		}
 	},
 	getData : function() {
 

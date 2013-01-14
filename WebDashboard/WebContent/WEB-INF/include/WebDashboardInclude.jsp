@@ -15,6 +15,9 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/lib/pagination/jquery.pagination.js">
 </script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/lib/slider/selectToUISlider.jQuery.js">
+</script>
 
 <%-- common static value --%>
 <script type="text/javascript"
@@ -29,6 +32,9 @@
 <%-- utility --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/common/endoSnipeUtility.js">
+</script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/common/ensAppView.js">	
 </script>
 
 <%-- nodeInfo graph --%>

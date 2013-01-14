@@ -69,17 +69,17 @@ contextMenuCreator.initializeContextMenu = function(menuId, menuArray ){
  */
 contextMenuCreator.createContextMenuString = function(menuId, menuArray ){
 
-	var ulDto = new wgpDomDto(
+	var ulDto = new wgp.wgpDomDto(
 		menuId
 		,"ul"
 		,null
-		,[wgpStyleClassConstants.CONTEXT_MENU]
+		,[wgp.styleClassConstants.CONTEXT_MENU]
 		,{display: "none" }
 	);
 
 	$.each(menuArray, function(index, contextMenu){
 
-		var liDto = new wgpDomDto(
+		var liDto = new wgp.wgpDomDto(
 			contextMenu.menu_id
 			,"li"
 			,null
@@ -101,7 +101,7 @@ contextMenuCreator.createContextMenuString = function(menuId, menuArray ){
 		ulDto.addChildren( [liDto] );
 	});
 
-	return wgpDomCreator.createDomStringCall(ulDto);
+	return wgp.wgpDomCreator.createDomStringCall(ulDto);
 };
 
 /**

@@ -33,7 +33,7 @@
  * @param styleClass スタイルクラス(配列)
  * @returns
  */
-function wgpDomDto(id, domKind, attributes, styleClasses, styles){
+wgp.wgpDomDto = function(id, domKind, attributes, styleClasses, styles){
 	this.id = id;
 	this.domKind = domKind;
 	this.attributes = attributes;
@@ -42,6 +42,6 @@ function wgpDomDto(id, domKind, attributes, styleClasses, styles){
 	this.children = [];
 }
 
-wgpDomDto.prototype.addChildren = function( children ){
+wgp.wgpDomDto.prototype.addChildren = function( children ){
 	this.children = this.children.concat( children );
 };
