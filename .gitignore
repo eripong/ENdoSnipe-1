@@ -4,6 +4,7 @@
 
 *.pydevproject
 !/.project
+!bin/
 .metadata
 tmp/
 *.tmp
