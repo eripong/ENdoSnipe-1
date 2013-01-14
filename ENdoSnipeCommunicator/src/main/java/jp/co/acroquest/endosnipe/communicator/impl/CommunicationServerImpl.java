@@ -56,7 +56,7 @@ public class CommunicationServerImpl implements Runnable, CommunicationServer, T
                                       ENdoSnipeCommunicatorPluginProvider.INSTANCE);
 
 
-    private static final int MAX_SOCKET = 30;
+    private static final int MAX_SOCKET = 1000;
 
     /** ポート番号の最大値 */
     private static final int MAX_PORT = 65535;
