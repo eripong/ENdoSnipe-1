@@ -276,6 +276,8 @@ public class JavelinConfig extends JavelinConfigBase
 
     private static String connectionMode__;
 
+    private static int invocationNameLimitLength__;
+
     private static String itemNamePrefix__;
 
     private static String itemNameNoPrefixList__;
@@ -437,6 +439,7 @@ public class JavelinConfig extends JavelinConfigBase
         itemNameNoPrefixList__ = super.getItemNameNoPrefixList();
         collectHadoopAgentResources__ = super.isCollectHadoopAgentResources();
         collectHBaseAgentResources__ = super.isCollectHBaseAgentResources();
+        invocationNameLimitLength__ = super.getInvocationNameLimitLength();
     }
 
     /**
@@ -2684,4 +2687,14 @@ public class JavelinConfig extends JavelinConfigBase
         collectHBaseAgentResources__ = collectHadoopAgentResources;
     }
 
+    @Override
+    public int getInvocationNameLimitLength()
+    {
+        return invocationNameLimitLength__;
+    }
+
+    public void setInvocationNameLimitLength(final int invocationNameLimitLength)
+    {
+        invocationNameLimitLength__ = invocationNameLimitLength;
+    }
 }

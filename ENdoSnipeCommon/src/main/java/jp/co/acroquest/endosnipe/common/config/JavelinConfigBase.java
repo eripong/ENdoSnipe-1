@@ -286,6 +286,10 @@ public class JavelinConfigBase
     /** 接続モード(server/client) */
     private static final String CONNECTION_MODE_KEY = JAVELIN_PREFIX + "connection.mode";
 
+    /** メソッド名の最大文字数 */
+    private static final String INVOCATION_NAME_LIMITLENGTH_KEY = JAVELIN_PREFIX
+            + "invocation.name.limitLength";
+
     /**
      * ConcurrentAccessMonitorやCollectionMonitor動作中にクラスロードが起ったときに、
      * バイトコード変換を行うかどうかを設定するプロパティのデフォルト値 */
@@ -852,6 +856,9 @@ public class JavelinConfigBase
 
     /** ストールメソッド検出時に出力するスタックトレースの深さのデフォルト値 */
     public static final String DEF_CONNNECTION_MODE = "server";
+
+    /** ストールメソッド検出時に出力するスタックトレースの深さのデフォルト値 */
+    public static final int DEF_INVOCATION_NAME_LIMITLENGTH = 2048;
 
     /** 項目名に付与する接頭辞の文字列。 */
     private static final String DEF_ITEMNAME_PREFIX = "";
@@ -3326,5 +3333,16 @@ public class JavelinConfigBase
     {
         return CONFIGUTIL.getBoolean(COLLECT_HBASE_AGENT_RESOURCES,
                                      DEF_COLLECT_HBASE_AGENT_RESOURCES);
+    }
+
+    /**
+     * Invocation名の長さの上限を示す。
+     * 
+     * @return Invocation名の長さの上限。
+     */
+    public int getInvocationNameLimitLength()
+    {
+        return CONFIGUTIL.getInteger(INVOCATION_NAME_LIMITLENGTH_KEY,
+                                     DEF_INVOCATION_NAME_LIMITLENGTH);
     }
 }

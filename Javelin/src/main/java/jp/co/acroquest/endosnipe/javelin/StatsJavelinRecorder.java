@@ -255,7 +255,13 @@ public class StatsJavelinRecorder
         {
             stacktrace = ThreadUtil.getCurrentStackTrace();
         }
-        preProcess(null, null, className, methodName, args, stacktrace, config, doExcludeProcess);
+        String normalizedMethodName = methodName;
+        if (methodName.length() > config.getInvocationNameLimitLength())
+        {
+            normalizedMethodName = methodName.substring(0, config.getInvocationNameLimitLength());
+        }
+        
+        preProcess(null, null, className, normalizedMethodName, args, stacktrace, config, doExcludeProcess);
     }
 
     /**
@@ -305,7 +311,13 @@ public class StatsJavelinRecorder
             final Object[] args, final StackTraceElement[] stacktrace, final JavelinConfig config,
             final boolean doExcludeProcess)
     {
-        preProcess(null, null, className, methodName, args, stacktrace, config, doExcludeProcess,
+        String normalizedMethodName = methodName;
+        if (methodName.length() > config.getInvocationNameLimitLength())
+        {
+            normalizedMethodName = methodName.substring(0, config.getInvocationNameLimitLength());
+        }
+        
+        preProcess(null, null, className, normalizedMethodName, args, stacktrace, config, doExcludeProcess,
                    false);
     }
 
@@ -341,7 +353,13 @@ public class StatsJavelinRecorder
             final Object[] args, final StackTraceElement[] stacktrace, final JavelinConfig config,
             final boolean doExcludeProcess, final boolean isResponse)
     {
-        preProcess(null, null, className, methodName, args, stacktrace, config, doExcludeProcess,
+        String normalizedMethodName = methodName;
+        if (methodName.length() > config.getInvocationNameLimitLength())
+        {
+            normalizedMethodName = methodName.substring(0, config.getInvocationNameLimitLength());
+        }
+   
+        preProcess(null, null, className, normalizedMethodName, args, stacktrace, config, doExcludeProcess,
                    isResponse);
     }
 
