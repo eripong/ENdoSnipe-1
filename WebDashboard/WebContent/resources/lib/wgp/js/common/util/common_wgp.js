@@ -25,10 +25,8 @@
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *****************************************************************/
-var common = function() {
-};
-
-common.escapeTarget_ = {
+wgp.common = {};
+wgp.common.escapeTarget_ = {
 	"!" : "%21",
 	'"' : "%22",
 	"#" : "%23",
@@ -41,13 +39,13 @@ common.escapeTarget_ = {
 	"+" : "%2b"
 };
 
-common.escapeURL = function(targetURL) {
+wgp.common.escapeURL = function(targetURL) {
 	var encodeUrl = "";
 	if (!targetURL.length) {
 		return targetURL;
 	}
 	for ( var count = 0; count < targetURL.length; count++) {
-		var escapeChar = common.escapeTarget_[targetURL.substr(count, 1)];
+		var escapeChar = wgp.common.escapeTarget_[targetURL.substr(count, 1)];
 		if (escapeChar) {
 			encodeUrl += escapeChar;
 		} else {
@@ -57,17 +55,17 @@ common.escapeURL = function(targetURL) {
 	return encodeUrl;
 };
 
-common.createQueryString = function(data) {
+wgp.common.createQueryString = function(data) {
 	var queryString = "";
 	var index = 0;
 	$.each(data, function(key, value) {
 		if (index == 0) {
 			queryString = queryString + "?" + key + "="
-					+ common.escapeURL(value);
+					+ wgp.common.escapeURL(value);
 			index++;
 		} else {
 			queryString = queryString + "&" + key + "="
-					+ common.escapeURL(value);
+					+ wgp.common.escapeURL(value);
 			index++;
 		}
 	});
@@ -79,19 +77,19 @@ common.createQueryString = function(data) {
  * 
  * @returns {String} context path
  */
-common.getContextPath = function() {
+wgp.common.getContextPath = function() {
 	var url = window.location.pathname;
 	var urlList = url.split("/");
 	return "/" + urlList[1];
 };
 
-common.getFrameReference = function(tag) {
+wgp.common.getFrameReference = function(tag) {
 
 	var offset = tag.offset();
-	var borderTopWidth = common.removePixel(tag.css("border-top-width"));
-	var borderRightWidth = common.removePixel(tag.css("border-right-width"));
-	var borderBottomWidth = common.removePixel(tag.css("border-bottom-width"));
-	var borderLeftWidth = common.removePixel(tag.css("border-left-width"));
+	var borderTopWidth = wgp.common.removePixel(tag.css("border-top-width"));
+	var borderRightWidth = wgp.common.removePixel(tag.css("border-right-width"));
+	var borderBottomWidth = wgp.common.removePixel(tag.css("border-bottom-width"));
+	var borderLeftWidth = wgp.common.removePixel(tag.css("border-left-width"));
 
 	var refer = {
 		id : tag.attr("id"),
@@ -111,11 +109,11 @@ common.getFrameReference = function(tag) {
 /**
  * 引数にて渡された数値から"px"を除外して数値として返却する。
  */
-common.removePixel = function(numberWithPixel) {
+wgp.common.removePixel = function(numberWithPixel) {
 	return Number(numberWithPixel.replace("px", ""));
 };
 
-common.createTable = function(settings) {
+wgp.common.createTable = function(settings) {
 
 	// デフォルト設定
 	var settingArray = {
@@ -165,7 +163,7 @@ common.createTable = function(settings) {
 																										jsonObject) {
 																									var encodeTarget = "";
 																									for ( var count = 0; count < cellObject.length; count++) {
-																										var escapeChar = common.htmlEscapeTarget_[jsonObject
+																										var escapeChar = wgp.common.htmlEscapeTarget_[jsonObject
 																												.substr(
 																														count,
 																														1)];
@@ -192,7 +190,7 @@ common.createTable = function(settings) {
 																				} else {
 																					var encodeTarget = "";
 																					for ( var count = 0; count < cellObject.length; count++) {
-																						var escapeChar = common.htmlEscapeTarget_[cellObject
+																						var escapeChar = wgp.common.htmlEscapeTarget_[cellObject
 																								.substr(
 																										count,
 																										1)];
@@ -232,7 +230,7 @@ common.createTable = function(settings) {
  * @param attribute
  * @param list
  */
-common.moveEndFront = function(tagId) {
+wgp.common.moveEndFront = function(tagId) {
 
 	var moveEndFrontTag = $(tagId);
 
@@ -264,7 +262,7 @@ common.moveEndFront = function(tagId) {
  * 
  * @param tagId
  */
-common.calculateMaxZIndex = function(tagId) {
+wgp.common.calculateMaxZIndex = function(tagId) {
 
 	var moveEndFrontTag = $(tagId);
 
@@ -297,12 +295,12 @@ common.calculateMaxZIndex = function(tagId) {
 	moveEndFrontTag.zIndex(zIndex);
 };
 
-common.addClassWrapperJQuery = function(jQueryTag, addClass) {
+wgp.common.addClassWrapperJQuery = function(jQueryTag, addClass) {
 
 	var addClassArray = [ addClass ];
-	if (wgpStyleClassConstants.STYLE_ADD_SETTING[addClass]) {
+	if (wgp.styleClassConstants.STYLE_ADD_SETTING[addClass]) {
 		addClassArray = addClassArray
-				.concat(wgpStyleClassConstants.STYLE_ADD_SETTING[addClass]);
+				.concat(wgp.styleClassConstants.STYLE_ADD_SETTING[addClass]);
 	}
 
 	$.each(addClassArray, function(index, addClass) {
@@ -310,12 +308,12 @@ common.addClassWrapperJQuery = function(jQueryTag, addClass) {
 	});
 };
 
-common.removeClassWrapperJQuery = function(jQueryTag, removeClass) {
+wgp.common.removeClassWrapperJQuery = function(jQueryTag, removeClass) {
 
 	var removeClassArray = [ removeClass ];
-	if (wgpStyleClassConstants.STYLE_ADD_SETTING[removeClass]) {
+	if (wgp.styleClassConstants.STYLE_ADD_SETTING[removeClass]) {
 		removeClassArray = removeClassArray
-				.concat(wgpStyleClassConstants.STYLE_ADD_SETTING[removeClass]);
+				.concat(wgp.styleClassConstants.STYLE_ADD_SETTING[removeClass]);
 	}
 
 	$.each(removeClassArray, function(index, removeClass) {
@@ -323,7 +321,7 @@ common.removeClassWrapperJQuery = function(jQueryTag, removeClass) {
 	});
 };
 
-common.createMultiSelector = function(idList) {
+wgp.common.createMultiSelector = function(idList) {
 	var selectorList = [];
 	var isFirst = true;
 	$.each(idList, function(index, id) {

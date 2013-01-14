@@ -28,15 +28,15 @@
 var groupRectangle = function(objectProperty, raphael) {
     // パラメータチェック log吐き出し
     if (objectProperty) {
-        if (common.log.isDebugEnabled) {
+        if (wgp.common.log.isDebugEnabled) {
             var logMessage = "<groupRectangle>：objectProperty=" + objectProperty;
-            common.log.debug(logMessage);
+            wgp.common.log.debug(logMessage);
         }
     }
     if (raphael) {
-        if (common.log.isDebugEnabled) {
+        if (wgp.common.log.isDebugEnabled) {
             var logMessage = "<groupRectangle>：raphael=" + raphael;
-            common.log.debug(logMessage);
+            wgp.common.log.debug(logMessage);
         }
     }
 
@@ -111,13 +111,13 @@ groupRectangle.prototype.setProperty = function(propertiesInfo) {
 groupRectangle.prototype.addChildObject = function(object) {
     // パラメータチェック log吐き出し
     if (object) {
-        if (common.log.isDebugEnabled) {
+        if (wgp.common.log.isDebugEnabled) {
             var logMessage = "<addChildObject> : ";
             $.each(object, function(index, target) {
                 logMessage = logMessage + '[ objectId=' + target.objectId + ',';
                 logMessage + logMessage + 'objectType' + target.objectType_ + ']';
             });
-            common.log.debug(logMessage);
+            wgp.common.log.debug(logMessage);
         }
     }
     var instance = this;
@@ -127,17 +127,17 @@ groupRectangle.prototype.addChildObject = function(object) {
 };
 
 groupRectangle.prototype.getChildObject = function() {
-    if (common.log.isDebugEnabled) {
+    if (wgp.common.log.isDebugEnabled) {
         var message = '<Get Group ChildList> : ';
         if (!this.groupChildObjectList_) {
             message = message + 'no group object';
-            common.log.debug(message);
+            wgp.common.log.debug(message);
         } else {
             $.each(this.groupChildObjectList_, function(index, object) {
                 message = message + object.toString;
                 message = message + ', ';
             });
-            common.log.debug(message);
+            wgp.common.log.debug(message);
         }
     }
     return this.groupChildObjectList_;

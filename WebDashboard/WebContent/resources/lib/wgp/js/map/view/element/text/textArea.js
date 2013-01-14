@@ -570,7 +570,7 @@ textArea.prototype.adjustPositionCenter = function(fontSize) {
  */
 textArea.prototype.adjustPositionRight = function(fontSize) {
 	var text = this.text;
-	var textArray = text.split(common.getLineFeedCode());
+	var textArray = text.split(wgp.common.getLineFeedCode());
 	var pointX = this.x + this.width;
 	var pointY = this.y + this.height / 2 - (textArray.length * fontSize) / 2;
 
@@ -885,7 +885,7 @@ textArea.prototype.getTextValue = function() {
 textArea.prototype.setTextValue = function(text) {
     this.text = text;
     return ;
-    var lineFeedCode = common.getLineFeedCode();
+    var lineFeedCode = wgp.common.getLineFeedCode();
     
     var arrayText = String.split(text, lineFeedCode);
     var replaceText = new Array();

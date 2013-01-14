@@ -113,29 +113,29 @@ wgp.AjaxHandler.prototype.postConnection = function(settings) {
 	settings["connectType"] = "ajax";
 
 	// コールバックオブジェクトが設定されている場合はコールバックを設定する。
-	if (settings[ConnectionConstants.SUCCESS_CALL_OBJECT_KEY]) {
+	if (settings[wgp.ConnectionConstants.SUCCESS_CALL_OBJECT_KEY]) {
 		settingsArray["success"] = function(data, status, request) {
 			instance.handleSuccess(data, status, request);
 		};
 	}
 
-	if (settings[ConnectionConstants.ERROR_CALL_OBJECT_KEY]) {
+	if (settings[wgp.ConnectionConstants.ERROR_CALL_OBJECT_KEY]) {
 		settingsArray["error"] = function(data, status, request) {
 			instance.handleException(data, status, request);
 		};
 	}
 
 	jQuery.each(settings, function(index, object) {
-		if (index == ConnectionConstants.SUCCESS_CALL_OBJECT_KEY) {
+		if (index == wgp.ConnectionConstants.SUCCESS_CALL_OBJECT_KEY) {
 			// 成功時の処理対象。
 			instance.successCallObject_ = object;
-		} else if (index == ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY) {
+		} else if (index == wgp.ConnectionConstants.SUCCESS_CALL_FUNCTION_KEY) {
 			// 成功時の処理関数名
 			instance.successCallFunction_ = object;
-		} else if (index == ConnectionConstants.ERROR_CALL_OBJECT_KEY) {
+		} else if (index == wgp.ConnectionConstants.ERROR_CALL_OBJECT_KEY) {
 			// Keyがsuccessの場合はsuccessCallObject_に設定する。
 			instance.errorCallObject_ = object;
-		} else if (index == ConnectionConstants.ERROR_CALL_FUNCTION_KEY) {
+		} else if (index == wgp.ConnectionConstants.ERROR_CALL_FUNCTION_KEY) {
 			instance.errorCallFunction_ = object;
 		} else {
 			settingsArray[index] = object;

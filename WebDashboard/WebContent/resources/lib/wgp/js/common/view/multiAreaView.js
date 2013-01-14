@@ -41,7 +41,7 @@ wgp.MultiAreaView = wgp.AbstractView.extend({
 		_.each(collection, function(viewElement, index){
 			var viewModel = new instance.collection.model(viewElement);
 			instance.collection.add(viewModel);
-		})
+		});
 	},
 	render : function(){
 	},
@@ -75,6 +75,6 @@ wgp.MultiAreaView = wgp.AbstractView.extend({
 	destroy : function(){
 		_.each(this.viewList, function(view){
 			view.destroy();
-		})
+		});
 	}
 });

@@ -26,11 +26,13 @@
 		var perspactiveView = new wgp.PerspactiveView({
 			id : "persArea",
 			collection : table
+			minimum : false,
+			close : false
 		});
 		perspactiveView.dropView("persArea_drop_0_0", "tree_area");
 		perspactiveView.dropView("persArea_drop_0_1", "contents_area");
 
-		var appView = new wgp.AppView();
+		var appView = new ENS.AppView();
 	</script>
 
 	<script src="<%=request.getContextPath()%>/resources/js/common/user.js"
@@ -39,7 +41,9 @@
 	<script>
 		var treeView = new wgp.TreeView({
 			id : "tree_area",
-			targetId : "contents_area"
+			targetId : "contents_area",
+			themeUrl : wgp.common.getContextPath()
+			+ "/resources/css/jsTree/style.css"
 		});
 		appView.addView(treeView, wgp.constants.TREE.DATA_ID);
 		websocketClient = new wgp.WebSocketClient(appView, "notifyEvent");
