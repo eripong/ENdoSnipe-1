@@ -15,6 +15,7 @@ local.properties
 classes-test/
 classes-servlet-api/
 junit-report/
+build/
 
 # External tool builders
 .externalToolBuilders/

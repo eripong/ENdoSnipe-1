@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 
 rem ---------------------------------------------------------------------------
 rem この環境変数はビルドスクリプトによって自動的に build.properties と
@@ -26,7 +26,7 @@ set JAVA_HOME_60=C:\Program Files (x86)\Java\jdk1.6.0_38
 
 set JAVA_HOME=%JAVA_HOME_50%
 set WORK_DIR=%~dp0deploy
-set TAGS=Version_%VER%-%BUILD%_build
+set TAGS=Version_%VER%-%BUILD%
 set PATH=%JAVA_HOME%\bin;%PATH%
 
 if exist "%WORK_DIR%" rmdir "%WORK_DIR%" /S /Q
