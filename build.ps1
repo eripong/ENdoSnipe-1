@@ -5,6 +5,7 @@ $WorkDir="build"
 
 #tagを作成する。
 git tag -a $tags -m 'build tag'
+git push --tags
 
 #作業ディレクトリを作成する。
 Remove-Item -path $WorkDir -recurse
