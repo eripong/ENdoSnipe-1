@@ -1067,4 +1067,76 @@ public class MeasurementValueDao extends AbstractDao implements TableNames
         sql.append(") MERGED_TIME");
         return sql.toString();
     }
+
+    /**
+     * レコードを挿入します。<br />
+     *
+     * {@link MeasurementValue#measurementValueId} は使用されません。
+     *
+     * @param database データベース名
+     * @param tableName テーブル名
+     * @param updateValueList 挿入する値
+     * @throws SQLException SQL 実行時に例外が発生した場合
+     */
+    public static int insertBatch(String database, String tableName,
+        List<MeasurementValue> updateValueList) throws SQLException
+    {
+        int insertCount = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try
+        {
+            conn = getConnection(database);
+            conn.setAutoCommit(false);
+            String sql = "insert into " + tableName +
+                " (MEASUREMENT_TIME, MEASUREMENT_ITEM_ID, MEASUREMENT_VALUE)" +
+                " values (?, ?, ?)";
+  
+            pstmt = conn.prepareStatement(sql);
+            // CHECKSTYLE:OFF
+            
+            for (MeasurementValue measurementValue : updateValueList)
+            {
+                // CHECKSTYLE:OFF
+                pstmt.setTimestamp(1, measurementValue.measurementTime);
+                pstmt.setInt(2, measurementValue.measurementItemId);
+                pstmt.setObject(3, measurementValue.value);
+                
+                Logger logger = Logger.getLogger(MeasurementValueDao.class);
+                if (logger.isDebugEnabled())
+                {
+                    logger.debug("MeasurementValueDto: SQL=[" + sql + "]" +
+                                 ", 1=" + measurementValue.measurementTime +
+                                 ", 2=" + measurementValue.measurementItemId +
+                                 ", 3=" + measurementValue.value);
+                }
+                
+                pstmt.addBatch();
+            }
+            // CHECKSTYLE:ON
+            
+            int[] executeCounts = pstmt.executeBatch();
+            for (int executeCount : executeCounts)
+            {
+                insertCount += executeCount;
+            }
+            
+            conn.commit();
+        }
+        catch(SQLException sqle)
+        {
+            if(conn != null)
+            {
+                conn.rollback();
+            }
+            throw sqle;
+        }
+        finally
+        {
+            SQLUtil.closeStatement(pstmt);
+            SQLUtil.closeConnection(conn);
+        }
+        
+        return insertCount;
+    }
 }

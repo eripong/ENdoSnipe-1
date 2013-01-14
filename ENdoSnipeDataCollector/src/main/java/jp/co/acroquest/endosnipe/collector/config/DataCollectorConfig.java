@@ -310,6 +310,20 @@ public class DataCollectorConfig
     private String                                trapCommunity_                     =
                                                                                        DEF_TRAP_COMMUNITY;
 
+    /** バッチサイズ */
+    private int                                   batchSize_                         =
+                                                                                       DEF_BATCH_SIZE;
+
+    /** バッチ更新 */
+    public static final int                       DEF_BATCH_SIZE                     = 100;
+
+    /** itemIdキャッシュ */
+    private int                                   itemIdCacheSize_                   =
+                                                                                       DEF_CACHE_SIZE;
+
+    /** itemIdキャッシュ */
+    public static final int                       DEF_CACHE_SIZE                     = 50000;
+
     //--------------------
     // Language settings
     //--------------------
@@ -969,5 +983,25 @@ public class DataCollectorConfig
     public void setLanguage(final String language)
     {
         language_ = language;
+    }
+
+    public int getBatchSize()
+    {
+        return this.batchSize_;
+    }
+
+    public void setBatchSize(final int batchSize)
+    {
+        batchSize_ = batchSize;
+    }
+
+    public int getItemIdCacheSize()
+    {
+        return itemIdCacheSize_;
+    }
+
+    public void setItemIdCacheSize(final int itemIdCacheSize)
+    {
+        itemIdCacheSize_ = itemIdCacheSize;
     }
 }

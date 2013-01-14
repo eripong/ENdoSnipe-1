@@ -132,8 +132,7 @@ import jp.co.acroquest.endosnipe.data.db.DatabaseType;
 public class ConfigurationReader
 {
     private static final ENdoSnipeLogger logger_                               =
-                                                                                 ENdoSnipeLogger.getLogger(
-                                                                                                           ConfigurationReader.class,
+                                                                                 ENdoSnipeLogger.getLogger(ConfigurationReader.class,
                                                                                                            ENdoSnipeDataCollectorPluginProvider.INSTANCE);
 
     /** DataCollectorConfig */
@@ -255,32 +254,27 @@ public class ConfigurationReader
     private static final String          SMTP_PREFIX                           = "collector.smtp.";
 
     /** メール通知を送信するかどうかを指定する設定項目名。 */
-    private static final String          SEND_MAIL                             =
-                                                                                 SMTP_PREFIX
-                                                                                         + "sendMail";
+    private static final String          SEND_MAIL                             = SMTP_PREFIX
+                                                                                       + "sendMail";
 
     /** メールサーバを指定する設定項目名。 */
-    private static final String          SMTP_SERVER                           =
-                                                                                 SMTP_PREFIX
-                                                                                         + "server";
+    private static final String          SMTP_SERVER                           = SMTP_PREFIX
+                                                                                       + "server";
 
     /** メールのエンコーディングを指定する設定項目名。 */
-    private static final String          SMTP_ENCODING                         =
-                                                                                 SMTP_PREFIX
-                                                                                         + "encoding";
+    private static final String          SMTP_ENCODING                         = SMTP_PREFIX
+                                                                                       + "encoding";
 
     /** 送信元メールアドレスを指定する設定項目名。 */
-    private static final String          SMTP_FROM                             =
-                                                                                 SMTP_PREFIX
-                                                                                         + "from";
+    private static final String          SMTP_FROM                             = SMTP_PREFIX
+                                                                                       + "from";
 
     /** 送信先メールアドレスを指定する設定項目名。 */
     private static final String          SMTP_TO                               = SMTP_PREFIX + "to";
 
     /** メールのSubjectを指定する設定項目名。 */
-    private static final String          SMTP_SUBJECT                          =
-                                                                                 SMTP_PREFIX
-                                                                                         + "subject";
+    private static final String          SMTP_SUBJECT                          = SMTP_PREFIX
+                                                                                       + "subject";
 
     /** メールテンプレートを指定する設定項目の接頭辞。 */
     public static final String           SMTP_TEMPLATE_PREFIX                  =
@@ -314,24 +308,20 @@ public class ConfigurationReader
     public static final String           SNMP_PREFIX                           = "collector.snmp.";
 
     /** SNMPTrapを送信するかどうかの設定項目名 */
-    public static final String           SEND_TRAP                             =
-                                                                                 SNMP_PREFIX
-                                                                                         + "sendTrap";
+    public static final String           SEND_TRAP                             = SNMP_PREFIX
+                                                                                       + "sendTrap";
 
     /** マネージャリストの設定項目名 */
-    public static final String           MANAGERS                              =
-                                                                                 SNMP_PREFIX
-                                                                                         + "managers";
+    public static final String           MANAGERS                              = SNMP_PREFIX
+                                                                                       + "managers";
 
     /** SNMP Trapポート番号の設定項目名 */
-    public static final String           TRAP_PORT                             =
-                                                                                 SNMP_PREFIX
-                                                                                         + "trapPort";
+    public static final String           TRAP_PORT                             = SNMP_PREFIX
+                                                                                       + "trapPort";
 
     /** SNMP Versionの設定項目名 */
-    public static final String           VERSION                               =
-                                                                                 SNMP_PREFIX
-                                                                                         + "version";
+    public static final String           VERSION                               = SNMP_PREFIX
+                                                                                       + "version";
 
     /** Trapコミュニティ名の設定項目名 */
     public static final String           TRAP_COMMUNITY                        =
@@ -339,7 +329,13 @@ public class ConfigurationReader
                                                                                          + "trapCommunity";
 
     /** 使用言語の設定項目 */
-    public static final String           LANGUAGE                        = "language";
+    public static final String           LANGUAGE                              = "language";
+
+    public static final String           BATCH_SIZE                            =
+                                                                                 "insert.batch.size";
+
+    public static final String           ITEMID_CACHE_SIZE                     =
+                                                                                 "itemid.cache.size";
 
     /**
      * ストリームから設定ファイルを読み込み、{@link DataCollectorConfig} を構築します。<br />
@@ -818,6 +814,32 @@ public class ConfigurationReader
         else if (LANGUAGE.equals(key))
         {
             config.setLanguage(value);
+        }
+        else if (BATCH_SIZE.equals(key))
+        {
+            try
+            {
+                config.setBatchSize(Integer.parseInt(value));
+            }
+            catch (NumberFormatException ex)
+            {
+                logger_.log(LogMessageCodes.FAIL_READ_PARAMETER_USE_DEFAULT, configFilePath_, key,
+                            DataCollectorConfig.DEF_BATCH_SIZE);
+            }
+
+        }
+        else if (ITEMID_CACHE_SIZE.equals(key))
+        {
+            try
+            {
+                config.setItemIdCacheSize(Integer.parseInt(value));
+            }
+            catch (NumberFormatException ex)
+            {
+                logger_.log(LogMessageCodes.FAIL_READ_PARAMETER_USE_DEFAULT, configFilePath_, key,
+                            DataCollectorConfig.DEF_CACHE_SIZE);
+            }
+
         }
 
     }

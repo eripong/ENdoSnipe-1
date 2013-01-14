@@ -27,12 +27,15 @@ package jp.co.acroquest.endosnipe.util;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import jp.co.acroquest.endosnipe.common.entity.MeasurementData;
@@ -67,6 +70,10 @@ public class ResourceDataDaoUtil
     private static Map<String, Map<String, Timestamp>> measurementItemUpdatedMap__ =
             new ConcurrentHashMap<String, Map<String, Timestamp>>();
 
+    /** データベース名をキーとする、measurement_typeとitem_nameを":"で区切って連結した文字列をキーとする、item_idのマップを保持するマップ*/
+    private static Map<String, Map<String, Integer>> measurementItemIdMap__ =
+            new ConcurrentHashMap<String, Map<String, Integer>>();
+    
     /** １週間の日数 */
     public static final int DAY_OF_WEEK = 7;
 
@@ -78,6 +85,12 @@ public class ResourceDataDaoUtil
 
     /** JAVELIN_MEASUREMENT_ITEMテーブルのLAST_INSERTEDフィールドを更新する間隔（ミリ秒） */
     private static final int ITEM_UPDATE_INTERVAL = 24 * 60 * 60 * 1000;
+
+    /** バッチのサイズ */
+    private static final int DEF_BATCH_SIZE = 100;
+
+    /** itemIdのキャッシュサイズ */
+    private static final int DEF_ITEMID_CACHE_SIZE = 50000;
 
     /** MEASUREMENT_VALUE テーブルを truncate するコールバックメソッド */
     private static final RotateCallback measurementRotateCallback__ = new RotateCallback() {
@@ -188,36 +201,104 @@ public class ResourceDataDaoUtil
             final int rotatePeriod, final int rotatePeriodUnit)
         throws SQLException
     {
-        MeasurementValue measurementValue = new MeasurementValue();
-        measurementValue.measurementTime = new Timestamp(resourceData.measurementTime);
+        insert(database, resourceData, rotatePeriod, rotatePeriodUnit, DEF_BATCH_SIZE,
+               DEF_ITEMID_CACHE_SIZE);
+    }
 
+    /**
+     * {@link ResourceData} をデータベースに登録します。<br />
+     *
+     * {@link ResourceData} が保持するホスト情報が計測対象ホスト情報テーブルに存在しない場合は、
+     * データベースに登録せず、エラーログを出力します。<br />
+     *
+     *　該当する計測値の項目（系列）が Javelin 計測項目テーブルに存在しない場合は、
+     * 該当するレコードを Javelin 計測項目テーブルに挿入します。<br />
+     *
+     *　計測値種別が計測値情報テーブルに存在しない場合は、
+     * 該当するレコードを計測値情報テーブルに挿入します。<br />
+     *
+     * 挿入対象のテーブルが前回挿入時から変わった場合、ローテート処理を行います。
+     *
+     * @param database データベース名
+     * @param resourceData 登録するデータ
+     * @param rotatePeriod ローテート期間
+     * @param rotatePeriodUnit ローテート期間の単位（ Calendar クラスの DAY または MONTH の値）
+     * @throws SQLException SQL 実行時に例外が発生した場合
+     */
+    public static void insert(final String database, final ResourceData resourceData,
+            final int rotatePeriod, final int rotatePeriodUnit, final int insertUnit)
+        throws SQLException
+    {
+        insert(database, resourceData, rotatePeriod, rotatePeriodUnit, insertUnit,
+               DEF_ITEMID_CACHE_SIZE);
+    }        
+    
+    /**
+     * {@link ResourceData} をデータベースに登録します。<br />
+     *
+     * {@link ResourceData} が保持するホスト情報が計測対象ホスト情報テーブルに存在しない場合は、
+     * データベースに登録せず、エラーログを出力します。<br />
+     *
+     *　該当する計測値の項目（系列）が Javelin 計測項目テーブルに存在しない場合は、
+     * 該当するレコードを Javelin 計測項目テーブルに挿入します。<br />
+     *
+     *　計測値種別が計測値情報テーブルに存在しない場合は、
+     * 該当するレコードを計測値情報テーブルに挿入します。<br />
+     *
+     * 挿入対象のテーブルが前回挿入時から変わった場合、ローテート処理を行います。
+     *
+     * @param database データベース名
+     * @param resourceData 登録するデータ
+     * @param rotatePeriod ローテート期間
+     * @param rotatePeriodUnit ローテート期間の単位（ Calendar クラスの DAY または MONTH の値）
+     * @throws SQLException SQL 実行時に例外が発生した場合
+     */
+    public static InsertResult insert(final String database, final ResourceData resourceData,
+        final int rotatePeriod, final int rotatePeriodUnit, final int batchUnit,
+        final int itemIdCacheSize)
+        throws SQLException
+    {
+        InsertResult result = new InsertResult();
+        MeasurementValue baseMeasurementValue = new MeasurementValue();
+        baseMeasurementValue.measurementTime = new Timestamp(resourceData.measurementTime);
+
+        Map<String, Integer> itemMap = measurementItemIdMap__.get(database);
+        if (itemMap == null)
+        {
+            itemMap = new LinkedHashMap<String, Integer>();
+            measurementItemIdMap__.put(database, itemMap);
+        }
+        
         if (DBManager.isDefaultDb() == false)
         {
             // H2以外のデータベースの場合は、パーティショニング処理を行う
             Integer tableIndex =
-                    getTableIndexToInsert(measurementValue.measurementTime);
+                    getTableIndexToInsert(baseMeasurementValue.measurementTime);
             Integer prevTableIndex = prevTableIndexMap__.get(database);
             if (tableIndex.equals(prevTableIndex) == false)
             {
                 Timestamp[] range = MeasurementValueDao.getTerm(database);
                 if (range.length == 2
-                        && (range[1] == null || range[1].before(measurementValue.measurementTime)))
+                        && (range[1] == null || range[1].before(baseMeasurementValue.measurementTime)))
                 {
                     // 前回の挿入データと今回の挿入データで挿入先テーブルが異なる場合に、ローテート処理を行う
                     // ただし、すでにDBに入っているデータのうち、最新のデータよりも古いデータが入ってきた場合はローテート処理しない
                     boolean truncateCurrent = (prevTableIndex != null);
-                    rotateTable(database, tableIndex, measurementValue.measurementTime,
+                    rotateTable(database, tableIndex, baseMeasurementValue.measurementTime,
                                 rotatePeriod, rotatePeriodUnit, truncateCurrent,
                                 measurementRotateCallback__);
                     prevTableIndexMap__.put(database, tableIndex);
                 }
-                deleteOldMeasurementItems(database, measurementValue.measurementTime, rotatePeriod,
-                                          rotatePeriodUnit);
+                deleteOldMeasurementItems(database, baseMeasurementValue.measurementTime, rotatePeriod,
+                                          rotatePeriodUnit, batchUnit);
             }
         }
 
+        String prevTableName = null;
+        
         Map<String, Timestamp> updateTargetMap = new HashMap<String, Timestamp>();
         Map<String, Timestamp> updatedMap = getUpdatedMap(database);
+        List<MeasurementValue> updateValueList = new ArrayList<MeasurementValue>();
         for (MeasurementData measurementData : resourceData.getMeasurementMap().values())
         {
             for (MeasurementDetail detail : measurementData.getMeasurementDetailMap().values())
@@ -244,14 +325,21 @@ public class ResourceDataDaoUtil
                     measurementItemName = "/" + measurementItemName;
                 }
                 
-                int itemId = JavelinMeasurementItemDao.selectMeasurementItemIdFromItemName(
-                                database, measurementItemName);
+                MeasurementValue measurementValue = new MeasurementValue();
+                measurementValue.measurementTime = baseMeasurementValue.measurementTime;
+                measurementValue.value  = baseMeasurementValue.value;
+                
+                int itemId;
+                String itemMapKey = detail.displayName;
+                itemId = getItemId(database, itemMap, detail, itemMapKey);
                 if (itemId != -1)
                 {
                     measurementValue.measurementItemId = itemId;
                 }
                 else
                 {
+                    result.setCacheMissCount(result.getCacheMissCount() + 1);
+                    
                     // 系列が Javelin 計測項目テーブルに登録されていない場合は追加する
                     measurementValue.measurementItemId =
                             insertJavelinMeasurementItem(database,
@@ -259,9 +347,24 @@ public class ResourceDataDaoUtil
                                                          measurementValue.measurementTime);
                 }
 
+                int overflowCount =
+                    addItemIdToCache(itemMap, itemMapKey, measurementValue, itemIdCacheSize);
+                result.setCacheOverflowCount(result.getCacheOverflowCount() + overflowCount);
+
                 measurementValue.value = detail.value;
 
-                MeasurementValueDao.insert(database, measurementValue);
+                String tableName =
+                    MeasurementValueDao.getTableNameToInsert(measurementValue.measurementTime);
+                if ((prevTableName != null && prevTableName.endsWith(tableName) == false)
+                    || updateValueList.size() > batchUnit)
+                {
+                    int insertCount =
+                        MeasurementValueDao.insertBatch(database, prevTableName, updateValueList);
+                    result.setInsertCount(result.getInsertCount() + insertCount);
+                    updateValueList = new ArrayList<MeasurementValue>();
+                }
+
+                updateValueList.add(measurementValue);
 
                 // 前回JAVELIN_MEASUREMENT_ITEMテーブルのLAST_INSERTEDフィールド更新から
                 // 一定期間が経過した場合に、LAST_INSERTEDフィールドを更新する対象に含める。
@@ -273,7 +376,17 @@ public class ResourceDataDaoUtil
                 {
                     updateTargetMap.put(measurementItemName, measurementValue.measurementTime);
                 }
-            }
+
+                prevTableName = tableName;
+             }
+        }
+        
+        if (prevTableName != null && updateValueList.size() > 0)
+        {
+            int insertCount =
+                MeasurementValueDao.insertBatch(database, prevTableName, updateValueList);
+            result.setInsertCount(result.getInsertCount()
+                                  + insertCount);
         }
 
         // LAST_INSERTEDフィールドを更新する必要がある系列に対して更新を実施する。
@@ -281,8 +394,55 @@ public class ResourceDataDaoUtil
         {
             JavelinMeasurementItemDao.updateLastInserted(database, updateTargetMap);
         }
+        
+        return result;
     }
 
+    private static int getItemId(final String database, Map<String, Integer> itemMap,
+        MeasurementDetail detail, String itemMapKey)
+        throws SQLException
+    {
+        synchronized (itemMap)
+        {
+            int itemId;
+            if (itemMap.containsKey(itemMapKey))
+            {
+                itemId = itemMap.get(itemMapKey);
+            }
+            else
+            {
+                String displayName = detail.displayName;
+                itemId =
+                    JavelinMeasurementItemDao.selectMeasurementItemIdFromItemName(database,
+                                                                                  displayName);
+            }
+            return itemId;
+        }
+    }
+
+    private static int addItemIdToCache(Map<String, Integer> itemMap, String itemMapKey,
+        MeasurementValue measurementValue, final int itemIdCacheSize)
+    {
+        int overflowCount = 0;
+        synchronized (itemMap)
+        {
+            itemMap.put(itemMapKey, measurementValue.measurementItemId);
+            if (itemMap.size() > itemIdCacheSize)
+            {
+                overflowCount = 1;
+                
+                // 最初の要素を削除する。
+                Iterator<Entry<String, Integer>> iterator = itemMap.entrySet().iterator();
+                if (iterator.hasNext())
+                {
+                    iterator.next();
+                    iterator.remove();
+                }
+            }
+        }
+        return overflowCount;
+    }
+    
     /**
      * ローテートを実施します。
      *
@@ -378,8 +538,10 @@ public class ResourceDataDaoUtil
      * @param rotatePeriodUnit ローテート期間の単位（Calendar.DATE or Calendar.MONTH）
      */
     private static void deleteOldMeasurementItems(final String database, final Timestamp date,
-        final int rotatePeriod, final int rotatePeriodUnit)
+        final int rotatePeriod, final int rotatePeriodUnit, final int insertUnit)
     {
+        List<String> deleteIdList = new ArrayList<String>();
+        
         long deleteTime = getBeforeDate(date, rotatePeriod, rotatePeriodUnit).getTimeInMillis();
         Map<String, Timestamp> updatedMap = getUpdatedMap(database);
         Iterator<Map.Entry<String, Timestamp>> iterator = updatedMap.entrySet().iterator();
@@ -391,20 +553,40 @@ public class ResourceDataDaoUtil
             {
                 // 最終更新時刻がローテート期間より前の場合は、
                 // そのMEASUREMENT_ITEMを削除する
-                try
+                deleteIdList.add(entry.getKey());
+
+                if (deleteIdList.size() >= insertUnit)
                 {
-                    JavelinMeasurementItemDao.deleteByMeasurementItemId(database, entry.getKey());
-                    iterator.remove();
-                    removedItems++;
-                }
-                catch (SQLException ex)
-                {
-                    // 削除に失敗した場合はまだITEMが使用されているため、
-                    // Mapからも削除しない
+                    try
+                    {
+                        JavelinMeasurementItemDao.deleteByMeasurementItemId(database, deleteIdList);
+                        removedItems += deleteIdList.size();
+                        deleteIdList.clear();
+                    }
+                    catch (SQLException ex)
+                    {
+                        // 削除に失敗した場合はまだITEMが使用されているため、
+                        // Mapからも削除しない
+                    }
                 }
             }
         }
+        if (deleteIdList.size() > 0)
+        {
+            try
+            {
+                JavelinMeasurementItemDao.deleteByMeasurementItemId(database, deleteIdList);
+                removedItems += deleteIdList.size();
+                deleteIdList.clear();
+            }
+            catch (SQLException ex)
+            {
+                // 削除に失敗した場合はまだITEMが使用されているため、
+                // Mapからも削除しない
+            }
+        }
 
+        
         if (logger__.isInfoEnabled())
         {
             logger__.log(LogMessageCodes.NO_NEEDED_SERIES_REMOVED, database,

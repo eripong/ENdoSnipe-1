@@ -68,6 +68,7 @@ import jp.co.acroquest.endosnipe.data.util.AccumulatedValuesDefinition;
 import jp.co.acroquest.endosnipe.javelin.parser.JavelinLogElement;
 import jp.co.acroquest.endosnipe.javelin.parser.JavelinParser;
 import jp.co.acroquest.endosnipe.javelin.parser.ParseException;
+import jp.co.acroquest.endosnipe.util.InsertResult;
 import jp.co.acroquest.endosnipe.util.ResourceDataDaoUtil;
 import jp.co.acroquest.endosnipe.util.RotateCallback;
 
@@ -449,7 +450,11 @@ public class JavelinDataLogger implements Runnable, LogMessageCodes
                 ResourceData additionalData =
                                               ResourceDataUtil.createAdditionalPreviousData(prevData,
                                                                                             resourceData);
-                ResourceDataDaoUtil.insert(database, additionalData, rotatePeriod, rotatePeriodUnit);
+
+                if (additionalData.getMeasurementMap().size() > 0)
+                {
+                    insertMeasurementData(database, additionalData, rotatePeriod, rotatePeriodUnit);
+                }
             }
 
             ResourceData convertedResourceData = resourceData;
@@ -470,8 +475,7 @@ public class JavelinDataLogger implements Runnable, LogMessageCodes
             // 割合の値に対して、一定値をかけることで精度を保証する。
             this.convertJmxRatioData(database, convertedResourceData);
 
-            ResourceDataDaoUtil.insert(database, convertedResourceData, rotatePeriod,
-                                       rotatePeriodUnit);
+            insertMeasurementData(database, convertedResourceData, rotatePeriod, rotatePeriodUnit);
 
             if (isConnectionData == false)
             {
@@ -489,6 +493,29 @@ public class JavelinDataLogger implements Runnable, LogMessageCodes
         catch (SQLException ex)
         {
             LOGGER.log(DATABASE_ACCESS_ERROR, ex, ex.getMessage());
+        }
+    }
+
+    private void insertMeasurementData(final String database,
+            final ResourceData convertedResourceData, final int rotatePeriod,
+            final int rotatePeriodUnit)
+        throws SQLException
+    {
+        long startTime = System.currentTimeMillis();
+        InsertResult result =
+                              ResourceDataDaoUtil.insert(database, convertedResourceData,
+                                                         rotatePeriod, rotatePeriodUnit,
+                                                         config_.getBatchSize(),
+                                                         config_.getItemIdCacheSize());
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+
+        if (result.getInsertCount() != 0)
+        {
+            // IEDC0022=データベースに測定値を登録しました。 データベース名:{0}、経過時間:{1}、登録件数:{2}、キャッシュヒット件数:{3}、キャッシュあふれ回数:{4}
+            int cacheHitCount = result.getInsertCount() - result.getCacheMissCount();
+            LOGGER.log("IEDC0022", database, elapsedTime, result.getInsertCount(), cacheHitCount,
+                       result.getCacheOverflowCount());
         }
     }
 

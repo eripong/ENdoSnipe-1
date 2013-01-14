@@ -289,6 +289,53 @@ public class JavelinMeasurementItemDao extends AbstractDao implements TableNames
     }
 
     /**
+     * 指定された MEASUREMENT_ITEM_ID のレコードを削除します。
+     *
+     * @param database データベース名
+     * @param measurementItemIdList 削除するレコードの MEASUREMENT_ITEM_ID
+     * @throws SQLException SQL 実行時に例外が発生した場合
+     */
+    public static void deleteByMeasurementItemId(final String database,
+        final List<String> measurementItemIdList)
+        throws SQLException
+    {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try
+        {
+            conn = getConnection(database, true);
+            conn.setAutoCommit(false);
+
+            String sql =
+                "delete from " + JAVELIN_MEASUREMENT_ITEM + " where MEASUREMENT_ITEM_ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            PreparedStatement delegated = getDelegatingStatement(pstmt);
+
+            for (String measurementItemId : measurementItemIdList)
+            {
+                delegated.setString(1, measurementItemId);
+                delegated.addBatch();
+            }
+            pstmt.executeBatch();
+
+            conn.commit();
+        }
+        catch (SQLException sqle)
+        {
+            if (conn != null)
+            {
+                conn.rollback();
+            }
+            throw sqle;
+        }
+        finally
+        {
+            SQLUtil.closeStatement(pstmt);
+            SQLUtil.closeConnection(conn);
+        }
+    }
+
+    /**
      * 計測データが挿入された時刻を反映します。
      *
      * @param database データベース名

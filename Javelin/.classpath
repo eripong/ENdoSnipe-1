@@ -26,8 +26,6 @@
 	<classpathentry kind="lib" path="lib/tool/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/tool/javassist-3.4.ga.jar"/>
 	<classpathentry kind="lib" path="lib/dependency/jsonic-1.2.9.jar"/>
-	<classpathentry kind="lib" path="lib/dependency/hbase-0.90.6-cdh3u5.jar"/>
-	<classpathentry kind="lib" path="lib/dependency/hadoop-core.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ENdoSnipeCommunicator"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="lib/tool/junit-3.8.1.jar"/>
