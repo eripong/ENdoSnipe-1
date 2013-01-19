@@ -103,6 +103,7 @@ public class TurnAroundTimeGroupGetter implements ResourceGroupGetter, TelegramC
             {
                 continue;
             }
+            TurnAroundTimeInfo info = invocation.resetAccumulatedTimeCount();
 
             // resetAccumulatedTimeCount() ŒÄo‚µŒã‚ÉAŒÄ‚Ño‚µ‰ñ”‚ª 0 ‚Å‚ ‚éŠúŠÔ‚ğ’²‚×‚é
             long tatCallZeroValueStartTime = invocation.getTatCallZeroValueStartTime();
@@ -120,13 +121,12 @@ public class TurnAroundTimeGroupGetter implements ResourceGroupGetter, TelegramC
             ResourceItem tatCountEntry = new ResourceItem();
 
             // ResourceEntry‚ÉName‚ğİ’è‚·‚é
-            String name = invocation.getRootInvocationManagerKey();
+            String name = invocation.getRootInvocationManagerKey().replace("/", "_");
             tatEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE + "/" + name);
             tatMaxEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_MAX + "/" + name);
             tatMinEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_MIN + "/" + name);
             tatCountEntry.setName(ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT + "/" + name);
 
-            TurnAroundTimeInfo info = invocation.resetAccumulatedTimeCount();
             // ResourceEntry‚ÉValue‚ğİ’è‚·‚é
             int count = info.getCallCount();
             tatCountEntry.setValue(String.valueOf(count));

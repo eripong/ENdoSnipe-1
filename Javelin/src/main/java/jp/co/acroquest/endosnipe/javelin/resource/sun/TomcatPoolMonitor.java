@@ -93,7 +93,8 @@ public class TomcatPoolMonitor
             ObjectInstance oi = (ObjectInstance)iterator.next();
             threadPools.add(oi.getObjectName());
         }
-
+        
+        String poolPrefix = "process/pool/";
         // 各ポートごとのワーカスレッドの最大数、稼動数を取得する。
         for (ObjectName objectName : threadPools)
         {
@@ -106,19 +107,19 @@ public class TomcatPoolMonitor
 
                 // ワーカスレッド数の最大数を取得する。
                 Number maxThreads = (Number)mBeanServer.getAttribute(objectName, "maxThreads");
-                maxThreadEntry.setName(name + "_max");
+                maxThreadEntry.setName(poolPrefix + name + "_max");
                 maxThreadEntry.setValue(String.valueOf(maxThreads));
 
                 // ワーカスレッド数の稼動数を取得する。
                 Number currentServerPool =
                         (Number)mBeanServer.getAttribute(objectName, "currentThreadsBusy");
-                currentThreadEntry.setName(name + "_current");
+                currentThreadEntry.setName(poolPrefix + name + "_current");
                 currentThreadEntry.setValue(String.valueOf(currentServerPool));
 
                 // 待機中のワーカスレッド数を取得する。
                 Number waitServerPool =
                         (Number)mBeanServer.getAttribute(objectName, "currentThreadCount");
-                waitThreadEntry.setName(name + "_wait");
+                waitThreadEntry.setName(poolPrefix + name + "_wait");
                 waitThreadEntry.setValue(String.valueOf(waitServerPool));
 
                 list.add(maxThreadEntry);

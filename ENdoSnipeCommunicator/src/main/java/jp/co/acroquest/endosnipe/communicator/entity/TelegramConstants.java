@@ -502,47 +502,47 @@ public interface TelegramConstants
 
     /** 項目名（リソース値での、Turn Around Timeの平均値） */
     //String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE = "/process.response.time.average";
-    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE          = "/response/total/average";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE          = "/process/response/total/average";
 
     /** 項目名（リソース値での、Turn Around Timeの最大値） */
     //String ITEMNAME_PROCESS_RESPONSE_TIME_MAX = "/process.response.time.max";
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX              = "/response/total/max";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX              = "/process/response/total/max";
 
     /** 項目名（リソース値での、Turn Around Timeの最小値） */
     //String ITEMNAME_PROCESS_RESPONSE_TIME_MIN = "/process.response.time.min";
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN              = "/response/total/min";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN              = "/process/response/total/min";
 
     /** 項目名（リソース値での、Turn Around Timeの呼び出し回数） */
     //String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT = "/process.response.total.count";
-    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT           = "/response/total/count";
+    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT           = "/process/response/total/count";
 
     /** 項目名（リソース値での、Turn Around Timeの平均値(SQL以外)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE_EXCL_SQL = "/response/nosql/average";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE_EXCL_SQL = "/process/response/nosql/average";
 
     /** 項目名（リソース値での、Turn Around Timeの最大値(SQL以外)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX_EXCL_SQL     = "/response/nosql/max";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX_EXCL_SQL     = "/process/response/nosql/max";
 
     /** 項目名（リソース値での、Turn Around Timeの最小値(SQL以外)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN_EXCL_SQL     = "/response/nosql/min";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN_EXCL_SQL     = "/process/response/nosql/min";
 
     /** 項目名（リソース値での、Turn Around Timeの呼び出し回数(SQL以外)） */
-    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT_EXCL_SQL  = "/response/nosql/count";
+    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT_EXCL_SQL  = "/process/response/nosql/count";
 
     /** 項目名（リソース値での、Turn Around Timeの平均値(SQLのみ)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE_ONLY_SQL = "/response/sql/average";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE_ONLY_SQL = "/process/response/sql/average";
 
     /** 項目名（リソース値での、Turn Around Timeの最大値(SQLのみ)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX_ONLY_SQL     = "/response/sql/max";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MAX_ONLY_SQL     = "/process/response/sql/max";
 
     /** 項目名（リソース値での、Turn Around Timeの最小値(SQLのみ)） */
-    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN_ONLY_SQL     = "/response/sql/min";
+    String ITEMNAME_PROCESS_RESPONSE_TIME_MIN_ONLY_SQL     = "/process/response/sql/min";
 
     /** 項目名（リソース値での、Turn Around Timeの呼び出し回数(SQLのみ)） */
-    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT_ONLY_SQL  = "/response/sql/count";
+    String ITEMNAME_PROCESS_RESPONSE_TOTAL_COUNT_ONLY_SQL  = "/process/response/sql/count";
 
     /** 項目名(HTTP例外) */
     //String ITEMNAME_JAVAPROCESS_HTTP_EXCEPTION = "/javaprocess.http.exception.occurence.count";
-    String ITEMNAME_JAVAPROCESS_HTTP_EXCEPTION             = "/response/http/thrown";
+    String ITEMNAME_JAVAPROCESS_HTTP_EXCEPTION             = "/process/response/http/thrown";
 
     //-----------------------------------------------------
     // プロセス情報: VM
@@ -565,11 +565,11 @@ public interface TelegramConstants
 
     /** 項目名(例外発生回数) */
     //String ITEMNAME_JAVAPROCESS_EXCEPTION_OCCURENCE_COUNT = "/javaprocess.exception.occurence.count";
-    String ITEMNAME_JAVAPROCESS_EXCEPTION_OCCURENCE_COUNT  = "/response/java/thrown";
+    String ITEMNAME_JAVAPROCESS_EXCEPTION_OCCURENCE_COUNT  = "/process/response/java/thrown";
 
     /** 項目名(ストール発生回数) */
     //String ITEMNAME_JAVAPROCESS_STALL_OCCURENCE_COUNT = "/javaprocess.method.stall.count";
-    String ITEMNAME_JAVAPROCESS_STALL_OCCURENCE_COUNT      = "/response/java/stalled";
+    String ITEMNAME_JAVAPROCESS_STALL_OCCURENCE_COUNT      = "/process/response/java/stalled";
 
     //-----------------------------------------------------
     // プロセス情報: APサーバ情報
