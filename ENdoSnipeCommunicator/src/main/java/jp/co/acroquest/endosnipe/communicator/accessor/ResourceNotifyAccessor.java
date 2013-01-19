@@ -545,10 +545,12 @@ public class ResourceNotifyAccessor implements TelegramConstants, MeasurementCon
         Body[] objBodies = responseBodyList.toArray(new Body[responseBodyList.size()]);
 
         // strItemNameに、ホスト名などの接頭辞を付与する
-        // →除外対象となる文字列で始まるものには付与しない
-        // →付与する接頭辞はフォーマットを定義できる
+        //  - クラスタ名は強制的に付与する。
+        //  - 除外対象となる文字列で始まるものには付与しない
+        //  - 付与する接頭辞はフォーマットを定義できる
 
         String prefix = getPrefixStr();
+        String clusterPrefix = getClusterPrefixStr();
 
         for (Body body : objBodies)
         {
@@ -561,13 +563,50 @@ public class ResourceNotifyAccessor implements TelegramConstants, MeasurementCon
                 {
                     prefix = prefix + "/";
                 }
-                body.setStrItemName(prefix + itemName);
+                if (clusterPrefix.endsWith("/") == false &&
+                        prefixTemplate__.startsWith("/") == false)
+                {
+                    clusterPrefix = clusterPrefix + "/";
+                }
+                body.setStrItemName(clusterPrefix + prefix + itemName);
+            }
+            else
+            {
+                // 接頭辞と項目名の間にスラッシュが入らないケースを回避する
+                if (clusterPrefix.endsWith("/") == false && itemName.startsWith("/") == false)
+                {
+                    clusterPrefix = clusterPrefix + "/";
+                }
+                body.setStrItemName(clusterPrefix + itemName);
             }
         }
 
         responseTelegram.setObjBody(objBodies);
 
         return responseTelegram;
+    }
+
+    /**
+     * Javelinを適用したプロセスが属するクラスタ接頭辞を取得する。<br/>
+     * 先頭が半角スラッシュで始まっていない場合は自動的に付与する。
+     * 
+     * @return Javelinを適用したプロセスが属するクラスタ接頭辞。
+     */
+    private static String getClusterPrefixStr()
+    {
+        String clusterName = CONFIG.getClusterName();
+        
+        String prefix;
+        if (clusterName.startsWith("/") == false)
+        {
+            prefix = "/" + clusterName;
+        }
+        else
+        {
+            prefix = clusterName;
+        }
+        
+        return prefix;
     }
 
     /**

@@ -25,7 +25,7 @@
 				new wgp.PerspactiveModel(viewArea2) ] ];
 		var perspactiveView = new wgp.PerspactiveView({
 			id : "persArea",
-			collection : table
+			collection : table,
 			minimum : false,
 			close : false
 		});

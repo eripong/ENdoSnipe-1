@@ -282,6 +282,9 @@ public class JavelinConfig extends JavelinConfigBase
 
     private static String itemNameNoPrefixList__;
 
+    /** Javelinを適用したプロセスが属するクラスタ名称。 */
+    private static String clusterName__;
+
     private static boolean collectHadoopAgentResources__;
 
     private static boolean collectHBaseAgentResources__;
@@ -437,6 +440,7 @@ public class JavelinConfig extends JavelinConfigBase
         connectionMode__ = super.getConnectionMode();
         itemNamePrefix__ = super.getItemNamePrefix();
         itemNameNoPrefixList__ = super.getItemNameNoPrefixList();
+        clusterName__ = super.getClusterName();
         collectHadoopAgentResources__ = super.isCollectHadoopAgentResources();
         collectHBaseAgentResources__ = super.isCollectHBaseAgentResources();
         invocationNameLimitLength__ = super.getInvocationNameLimitLength();
@@ -2651,6 +2655,23 @@ public class JavelinConfig extends JavelinConfigBase
     public void setItemNameNoPrefixList(final String itemNameNoPrefixList)
     {
         itemNameNoPrefixList__ = itemNameNoPrefixList;
+    }
+
+    /**
+     * @return clusterName
+     */
+    @Override
+    public String getClusterName()
+    {
+        return clusterName__;
+    }
+
+    /**
+     * @param clusterName セットする clusterName
+     */
+    public void setClusterName(final String clusterName)
+    {
+        clusterName__ = clusterName;
     }
 
     /**

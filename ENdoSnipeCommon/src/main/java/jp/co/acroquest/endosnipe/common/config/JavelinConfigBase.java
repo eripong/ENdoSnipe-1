@@ -866,6 +866,12 @@ public class JavelinConfigBase
     /** 項目名に接頭辞を付与しないパターン。 */
     private static final String DEF_ITEMNAME_NOPREFIX_LIST = "/common/";
 
+    /** Javelinを適用したプロセスが属するクラスタ名称を取得するキー文字列。 */
+    private static final String CLUSTER_NAME_KEY = JAVELIN_PREFIX + "clusterName";
+
+    /** Javelinを適用したプロセスが属するクラスタ名称のデフォルト値。 */
+    private static final String DEF_CLUSTER_NAME = "/default";
+
     /** HadoopAgentから取得する。 */
     private static final boolean DEF_COLLECT_HADOOP_AGENT_RESOURCES = false;
 
@@ -3344,5 +3350,15 @@ public class JavelinConfigBase
     {
         return CONFIGUTIL.getInteger(INVOCATION_NAME_LIMITLENGTH_KEY,
                                      DEF_INVOCATION_NAME_LIMITLENGTH);
+    }
+
+    /**
+     * Javelinを適用したプロセスが属するクラスタ名称を取得する。
+     * 
+     * @return Javelinを適用したプロセスが属するクラスタ名称。
+     */
+    public String getClusterName()
+    {
+        return CONFIGUTIL.getString(CLUSTER_NAME_KEY, DEF_CLUSTER_NAME);
     }
 }
