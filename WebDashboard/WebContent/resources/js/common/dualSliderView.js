@@ -139,7 +139,7 @@ ENS.DualSliderView = wgp.AbstractView.extend({
 		});
 		$(this.viewId + ' dl.ui-slider-scale dt span').css({
 			color		: 'red',
-			fontSize	: '14px'
+			fontSize	: '12px'
 		});
 	},
 	_getGroupHtml : function(groupMaxNum, groupString){
