@@ -40,7 +40,7 @@ ENS.common.dualslider.scaleUnitString = 'hours';
 ENS.common.dualslider.scaleUnit = 60 * 60 * 1000; // millisecond
 ENS.common.dualslider.groupString = 'days';
 ENS.common.dualslider.groupUnitNum = 24;
-ENS.common.dualslider.groupMaxNum = 7;
+ENS.common.dualslider.groupMaxNum = 10;
 ENS.common.dualslider.groupDefaultNum = 3;
 ENS.common.dualslider.idFrom = 'dualSliderFromValue';
 ENS.common.dualslider.idTo = 'dualSliderToValue';
@@ -50,7 +50,7 @@ ENS.singleslider.scaleUnitString = 'hours';
 ENS.singleslider.scaleUnit = 60 * 60 * 1000; // millisecond
 ENS.singleslider.groupString = 'days';
 ENS.singleslider.groupUnitNum = 24;
-ENS.singleslider.groupMaxNum = 7;
+ENS.singleslider.groupMaxNum = 10;
 ENS.singleslider.groupDefaultNum = 3;
 ENS.singleslider.idTime = 'singlesliderTimeValue';
 
