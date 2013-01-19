@@ -558,32 +558,36 @@ public class ResourceNotifyAccessor implements TelegramConstants, MeasurementCon
             boolean needPrefix = isPrefixNeeded(itemName);
             if (needPrefix == true)
             {
+                String currentPrefix = appendPrefix(clusterPrefix, prefix);
+                String concreteItemName = appendPrefix(currentPrefix, itemName);
+                
                 // 接頭辞と項目名の間にスラッシュが入らないケースを回避する
-                if (prefixTemplate__.endsWith("/") == false && itemName.startsWith("/") == false)
-                {
-                    prefix = prefix + "/";
-                }
-                if (clusterPrefix.endsWith("/") == false &&
-                        prefixTemplate__.startsWith("/") == false)
-                {
-                    clusterPrefix = clusterPrefix + "/";
-                }
-                body.setStrItemName(clusterPrefix + prefix + itemName);
+                body.setStrItemName(concreteItemName);
             }
             else
             {
                 // 接頭辞と項目名の間にスラッシュが入らないケースを回避する
-                if (clusterPrefix.endsWith("/") == false && itemName.startsWith("/") == false)
-                {
-                    clusterPrefix = clusterPrefix + "/";
-                }
-                body.setStrItemName(clusterPrefix + itemName);
+                String concreteItemName = appendPrefix(clusterPrefix, itemName);
+                body.setStrItemName(concreteItemName);
             }
         }
 
         responseTelegram.setObjBody(objBodies);
 
         return responseTelegram;
+    }
+
+    private static String appendPrefix(String prefix, String itemName)
+    {
+        StringBuilder builder = new StringBuilder(prefix);
+        
+        if (prefix.length() > 0 && itemName.length() > 0
+                && prefix.endsWith("/") == false && itemName.startsWith("/") == false)
+        {
+            builder.append("/");
+        }
+        String concreteItemName = builder.append(itemName).toString();
+        return concreteItemName;
     }
 
     /**
@@ -597,7 +601,7 @@ public class ResourceNotifyAccessor implements TelegramConstants, MeasurementCon
         String clusterName = CONFIG.getClusterName();
         
         String prefix;
-        if (clusterName.startsWith("/") == false)
+        if (clusterName.length() > 0 && clusterName.startsWith("/") == false)
         {
             prefix = "/" + clusterName;
         }
