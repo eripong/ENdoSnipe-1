@@ -174,6 +174,7 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
 
         JavelinConfig javelinConfig = new JavelinConfig();
         javelinConfig.setItemNamePrefix("");
+        javelinConfig.setClusterName("");
 
         this.behaviorMode_ = behaviorMode;
         if (config_ != null)
