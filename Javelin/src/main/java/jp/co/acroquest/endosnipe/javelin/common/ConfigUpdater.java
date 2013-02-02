@@ -36,6 +36,7 @@ import jp.co.acroquest.endosnipe.common.config.JavelinConfig;
 import jp.co.acroquest.endosnipe.common.config.JavelinConfigUtil;
 import jp.co.acroquest.endosnipe.javelin.RootInvocationManager;
 import jp.co.acroquest.endosnipe.javelin.event.JavelinEventCounter;
+import jp.co.acroquest.endosnipe.javelin.jdbc.common.JdbcJavelinConfig;
 import jp.co.acroquest.endosnipe.javelin.util.LinkedHashMap;
 /**
  * リモート設定機能から現在の設定値を更新するアダプタ
@@ -253,6 +254,48 @@ public class ConfigUpdater
         
         // InvocationFullEventを送信するかどうか。
         properties.put(JavelinConfig.SEND_INVOCATION_FULL_EVENT, String.valueOf(config.getSendInvocationFullEvent()));
+
+        /** JdbcJavelinConfigから取得可能な設定を取得する */
+        JdbcJavelinConfig jdbcConfig = new JdbcJavelinConfig();
+        
+        // JDBCJavelinを有効にするかどうか
+        properties.put(JdbcJavelinConfig.JDBC_JAVELIN_ENABLED_KEY,
+                       String.valueOf(jdbcConfig.isJdbcJavelinEnabled()));
+
+        // 実行計画取得フラグ
+        properties.put(JdbcJavelinConfig.RECORDEXECPLAN_KEY,
+                       String.valueOf(jdbcConfig.isRecordExecPlan()));
+        // SQLの実行計画を記録する際の閾値
+        properties.put(JdbcJavelinConfig.EXECPLANTHRESHOLD_KEY,
+                       String.valueOf(jdbcConfig.getExecPlanThreshold()));
+        // JDBC呼出し重複出力フラグ
+        properties.put(JdbcJavelinConfig.RECORDDUPLJDBCCALL_KEY,
+                       String.valueOf(jdbcConfig.isRecordDuplJdbcCall()));
+        // バインド変数出力フラグ
+        properties.put(JdbcJavelinConfig.RECORDBINDVAL_KEY,
+                       String.valueOf(jdbcConfig.isRecordBindVal()));
+        // バインド変数出力における文字列長制限
+        properties.put(JdbcJavelinConfig.STRINGLIMITLENGTH_KEY,
+                       String.valueOf(jdbcConfig.getJdbcStringLimitLength()));
+        // 同一トランザクション内の同一SQL呼び出し回数超過の閾値を監視するか否か
+        properties.put(JdbcJavelinConfig.SQLCOUNT_MONITOR_KEY,
+                       String.valueOf(jdbcConfig.isSqlcountMonitor()));
+        // 同一トランザクション内の同一SQL呼び出し回数超過の閾値
+        properties.put(JdbcJavelinConfig.SQLCOUNT_KEY,
+                       String.valueOf(jdbcConfig.getSqlcount()));
+        // Oracleに対するSQLトレースの出力指示フラグ
+        properties.put(JdbcJavelinConfig.ORACLE_ALLOW_SQL_TRACE_KEY,
+                       String.valueOf(jdbcConfig.isAllowSqlTraceForOracle()));
+        // PostgreSQLに対する実行計画詳細取得フラグ
+        properties.put(JdbcJavelinConfig.POSTGRES_VERBOSE_PLAN_KEY,
+                       String.valueOf(jdbcConfig.isVerbosePlanForPostgres()));
+        // JDBCJavelinでスタックトレースを出力するためのフラグ
+        properties.put(JdbcJavelinConfig.RECORD_STACKTRACE_KEY,
+                       String.valueOf(jdbcConfig.isRecordStackTrace()));
+        // JDBCJavelinでスタックトレースを出力するためのSQL実行時間の閾値
+        properties.put(JdbcJavelinConfig.RECORD_STACKTRACE_THREADHOLD_KEY,
+                       String.valueOf(jdbcConfig.getRecordStackTraceThreshold()));
+
         
         return properties;
     }
@@ -444,6 +487,149 @@ public class ConfigUpdater
         javelinConfig.setThreadModel(threadModel);
     }
 
+    /**
+     * JDBC Javelinの有効/無効フラグを更新する
+     * 
+     * @param isJdbcEnabled JDBC Javelinの有効/無効フラグ
+     */
+    public static void updateJdbcEnabled(final boolean isJdbcEnabled)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setJdbcJavelinEnabled(isJdbcEnabled);
+    }
+    
+    /**
+     * 実行計画取得フラグを更新する
+     * 
+     * @param isRecordExecPlan SQLの実行計画を記録する際の閾値
+     */
+    public static void updateRecordExecPlan(final boolean isRecordExecPlan)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setRecordExecPlan(isRecordExecPlan);
+    }
+
+    /**
+     * SQLの実行計画を記録する際の閾値を更新する
+     * 
+     * @param execPlanThreshold SQLの実行計画を記録する際の閾値
+     */
+    public static void updateExecPlanThreshold(final long execPlanThreshold)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setExecPlanThreshold(execPlanThreshold);
+    }
+
+    /**
+     * JDBC呼出し重複出力フラグを更新する
+     * 
+     * @param isRecordDuplJdbcCall JDBC呼出し重複出力フラグ
+     */
+    public static void updateRecordDuplJdbcCall(final boolean isRecordDuplJdbcCall)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setRecordDuplJdbcCall(isRecordDuplJdbcCall);
+    }
+
+    /**
+     * バインド変数出力フラグを更新する
+     * 
+     * @param isRecordBindVal バインド変数出力フラグ
+     */
+    public static void updateRecordBindVal(final boolean isRecordBindVal)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setRecordBindVal(isRecordBindVal);
+    }
+
+    /**
+     * 同一トランザクション内の同一SQL呼び出し回数超過の閾値を監視するか否かを更新する
+     * 
+     * @param isSqlcountMonitor 同一トランザクション内の同一SQL呼び出し回数超過の閾値を監視するか否か
+     */
+    public static void updateSqlcountMonitor(final boolean isSqlcountMonitor)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setSqlcountMonitor(isSqlcountMonitor);
+    }
+
+    /**
+     * 同一トランザクション内の同一SQL呼び出し回数超過の閾値を更新する
+     * 
+     * @param sqlCount 同一トランザクション内の同一SQL呼び出し回数超過の閾値
+     */
+    public static void updateSqlcount(final long sqlCount)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setSqlcount(sqlCount);
+    }
+
+    /**
+     * バインド変数出力における文字列長制限を更新する
+     * 
+     * @param jdbcStringLimitLength バインド変数出力における文字列長制限
+     */
+    public static void updateJdbcStringLimitLength(final long jdbcStringLimitLength)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setJdbcStringLimitLength(jdbcStringLimitLength);
+    }
+
+    /**
+     * Oracleに対するSQLトレースの出力指示フラグを更新する
+     * 
+     * @param isAllowSqlTraceForOracle Oracleに対するSQLトレースの出力指示フラグ
+     */
+    public static void updateAllowSqlTraceForOracle(final boolean isAllowSqlTraceForOracle)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setAllowSqlTraceForOracle(isAllowSqlTraceForOracle);
+    }
+
+    /**
+     * PostgreSQLに対する実行計画詳細取得フラグを更新する
+     * 
+     * @param isVerbosePlanForPostgres PostgreSQLに対する実行計画詳細取得フラグ
+     */
+    public static void updateVerbosePlanForPostgres(final boolean isVerbosePlanForPostgres)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setVerbosePlanForPostgres(isVerbosePlanForPostgres);
+    }
+
+    /**
+     * JDBCJavelinスタックトレース取得フラグを更新する
+     * 
+     * @param recordStackTrace JDBCJavelinスタックトレース取得フラグ
+     */
+    public static void updateRecordStackTrace(final boolean recordStackTrace)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setRecordStackTrace(recordStackTrace);
+    }
+
+    /**
+     * JDBCJavelinスタックトレース取得フラグを更新する
+     * 
+     * @param stackTraceThreshold JDBCJavelinでスタックトレースを取得するための閾値
+     */
+    public static void updateRecordStackTraceThreshold(final int stackTraceThreshold)
+    {
+        JdbcJavelinConfig jdbcJavelinConfig = new JdbcJavelinConfig();
+        jdbcJavelinConfig.setRecordStackTraceThreshold(stackTraceThreshold);
+    }
+
+    /**
+     * JDBC Javelinを使用するかどうかを設定する。
+     * 
+     * @param isJdbcJavelinEnabled JDBC Javelinを使用するかどうか
+     */
+    public static void updateJdbcJavelinEnabled(final boolean isJdbcJavelinEnabled)
+    {
+        JdbcJavelinConfig config = new JdbcJavelinConfig();
+        config.setJdbcJavelinEnabled(isJdbcJavelinEnabled);
+    }
+    
     /**
      * Collectionのメモリリーク検出を行うかどうかを更新します。<br />
      * 
@@ -1178,6 +1364,59 @@ public class ConfigUpdater
         else if (JavelinConfig.SEND_INVOCATION_FULL_EVENT.equals(key))
         {
             ConfigUpdater.updateSendInvocationFullEvent(Boolean.parseBoolean(value));
+        }
+        // JdbcJavelinが持つ設定の更新
+        else if (JdbcJavelinConfig.JDBC_JAVELIN_ENABLED_KEY.equals(key))
+        {
+            ConfigUpdater.updateJdbcEnabled(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.RECORDEXECPLAN_KEY.equals(key))
+        {
+            ConfigUpdater.updateRecordExecPlan(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.EXECPLANTHRESHOLD_KEY.equals(key))
+        {
+            ConfigUpdater.updateExecPlanThreshold(Long.parseLong(value));
+        }
+        else if (JdbcJavelinConfig.RECORDDUPLJDBCCALL_KEY.equals(key))
+        {
+            ConfigUpdater.updateRecordDuplJdbcCall(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.RECORDBINDVAL_KEY.equals(key))
+        {
+            ConfigUpdater.updateRecordBindVal(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.STRINGLIMITLENGTH_KEY.equals(key))
+        {
+            ConfigUpdater.updateJdbcStringLimitLength(Long.parseLong(value));
+        }
+        else if (JdbcJavelinConfig.SQLCOUNT_MONITOR_KEY.equals(key))
+        {
+            ConfigUpdater.updateSqlcountMonitor(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.SQLCOUNT_KEY.equals(key))
+        {
+            ConfigUpdater.updateSqlcount(Long.parseLong(value));
+        }
+        else if (JdbcJavelinConfig.ORACLE_ALLOW_SQL_TRACE_KEY.equals(key))
+        {
+            ConfigUpdater.updateAllowSqlTraceForOracle(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.POSTGRES_VERBOSE_PLAN_KEY.equals(key))
+        {
+            ConfigUpdater.updateVerbosePlanForPostgres(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.RECORD_STACKTRACE_KEY.equals(key))
+        {
+            ConfigUpdater.updateRecordStackTrace(Boolean.parseBoolean(value));
+        }
+        else if (JdbcJavelinConfig.RECORD_STACKTRACE_THREADHOLD_KEY.equals(key))
+        {
+            ConfigUpdater.updateRecordStackTraceThreshold(Integer.parseInt(value));
+        }
+        else if (JdbcJavelinConfig.JDBC_JAVELIN_ENABLED_KEY.equals(key))
+        {
+            ConfigUpdater.updateJdbcJavelinEnabled(Boolean.parseBoolean(value));
         }
         else if (JavelinConfig.HTTP_STATUS_ERROR_KEY.equals(key))
         {

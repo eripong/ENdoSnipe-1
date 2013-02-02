@@ -31,6 +31,7 @@ import java.util.Set;
 
 import jp.co.acroquest.endosnipe.common.config.JavelinConfig;
 import jp.co.acroquest.endosnipe.common.logger.SystemLogger;
+import jp.co.acroquest.endosnipe.javelin.jdbc.common.JdbcJavelinConfig;
 import jp.co.acroquest.endosnipe.javelin.util.ArrayList;
 import jp.co.acroquest.endosnipe.javelin.util.HashMap;
 import jp.co.acroquest.endosnipe.javelin.util.HashSet;
@@ -110,6 +111,8 @@ public class CallTree
     /** ノード数の集計方法を判定するための設定参照用。  */
     private static final JavelinConfig config_ = new JavelinConfig();
 
+    /** ノード数の集計方法を判定するための設定参照用。  */
+    private static final JdbcJavelinConfig jdbcConfig_ = new JdbcJavelinConfig();    
     /**
      * StatsJavelinRecorderで閾値判定を行う際に、CallTreeNode固有の判定を行うクラス。
      * (key, RecordStrategy)のマップとして複数持つことができる。
@@ -238,6 +241,8 @@ public class CallTree
         this.isCollectionMonitorEnabled_  = config_.isCollectionMonitor();
         this.isConcurrentMonitorEnabled_  = config_.isConcurrentAccessMonitored();
         this.isCallTreeEnabled_           = config_.isCallTreeEnabled();
+        this.isJdbcEnabled_               = jdbcConfig_.isJdbcJavelinEnabled();
+        this.isRecordDuplJdbcCallEnabled_ = jdbcConfig_.isRecordDuplJdbcCall();
     }
 
     /**
