@@ -41,7 +41,6 @@ import jp.co.smg.endosnipe.javassist.NotFoundException;
 
 /**
  * 
- * @author smg
  * 
  */
 public class JdbcJavelinConverter

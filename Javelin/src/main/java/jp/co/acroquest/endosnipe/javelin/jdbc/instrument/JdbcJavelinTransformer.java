@@ -54,7 +54,6 @@ import jp.co.smg.endosnipe.javassist.NotFoundException;
 
 /**
  * Java Instrumentation APIにより、javaagentとしてクラスの変換を行う.
- * @author smg
  */
 public class JdbcJavelinTransformer implements ClassFileTransformer
 {
