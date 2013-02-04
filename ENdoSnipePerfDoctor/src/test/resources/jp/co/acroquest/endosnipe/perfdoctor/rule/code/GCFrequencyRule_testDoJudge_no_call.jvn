@@ -1,0 +1,29 @@
+Return,2007/11/24 23:30:56.294,"/add/add.html","/s2jsf-example-oracle","unknown","unknown","AP-Server","unknown","","/add/add.html"
+<<javelin.Args_START>>
+args[0] = 0:0:0:0:0:0:0:1
+args[1] = 50450
+args[2] = /s2jsf-example-oracle
+args[3] = /add/add.html
+args[4] = POST
+args[5] = {_id86:_id92=[Ljava.lang.String;@1549af8, _id86:_id96=[Ljava.lang.String;@18a4aef, _id86:_id90=[Ljava.lang.String;@3dad65, _id86/add/add.html=[Ljava.lang.String;@142ef25}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 31200200
+thread.currentThreadUserTime = 15600100
+thread.threadInfo.blockedTime = 5340
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 7009
+thread.threadInfo.waitedCount = 5
+garbageCollector.collectionCount = 24
+garbageCollector.collectionTime = 737
+memoryPool.peakUsage.usage = 111222720
+thread.currentThreadCpuTime.delta = 875000000
+thread.currentThreadUserTime.delta = 812500000
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 413
+memoryPool.peakUsage.usage.delta = 6941816
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1000
+<<javelin.ExtraInfo_END>>
+Read  ,2007/11/24 23:30:56.294,"/add/add.html","/s2jsf-example-oracle","unknown","","","","","/add/add.html"

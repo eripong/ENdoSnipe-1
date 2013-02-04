@@ -1,0 +1,57 @@
+Call  ,2009/01/18 12:54:42.493,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:postgresql://126.0.0.81:5432/postgres","unknown","/employee/employeeSearch.html","/endosnipe-demo","unknown","","http-8080-1@30(java.lang.Thread@afca92)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 5007632100
+thread.currentThreadUserTime = 3744024000
+thread.threadInfo.blockedTime = 926
+thread.threadInfo.blockedCount = 129
+thread.threadInfo.waitedTime = 46701
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 928
+garbageCollector.collectionTime = 3331
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 2
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 47
+<<javelin.ExtraInfo_END>>
+Event ,2009/01/18 12:54:42.524,"SqlCountOver","SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:postgresql://126.0.0.81:5432/postgres","WARN","http-8080-1@30(java.lang.Thread@afca92)"
+<<javelin.EventInfo_START>>
+javelin.jdbc.sqlcount.threshold = 2
+javelin.jdbc.sqlcount.acutual = 3
+<<javelin.EventInfo_END>>
+Return,2009/01/18 12:54:42.540,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:postgresql://126.0.0.81:5432/postgres","unknown","/employee/employeeSearch.html","/endosnipe-demo","unknown","","http-8080-1@30(java.lang.Thread@afca92)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 5007632100
+thread.currentThreadUserTime = 3744024000
+thread.threadInfo.blockedTime = 926
+thread.threadInfo.blockedCount = 129
+thread.threadInfo.waitedTime = 46701
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 929
+garbageCollector.collectionTime = 3333
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 2
+<<javelin.JMXInfo_END>>
+Return,2009/01/18 12:54:42.571,"/employee/employeeSearch.html","/endosnipe-demo","unknown","unknown","root","unknown","","http-8080-1@30(java.lang.Thread@afca92)"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 5023232200
+thread.currentThreadUserTime = 3759624100
+thread.threadInfo.blockedTime = 926
+thread.threadInfo.blockedCount = 129
+thread.threadInfo.waitedTime = 46701
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 930
+garbageCollector.collectionTime = 3335
+memoryPool.peakUsage.usage = 0
+thread.currentThreadCpuTime.delta = 62400400
+thread.currentThreadUserTime.delta = 62400400
+thread.threadInfo.blockedTime.delta = 80
+thread.threadInfo.blockedCount.delta = 2
+garbageCollector.collectionCount.delta = 6
+garbageCollector.collectionTime.delta = 12
+<<javelin.JMXInfo_END>>

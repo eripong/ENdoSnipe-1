@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ruleSet name="Rule1">
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodPureCpuUsageRule" id="COD.MTRC.METHOD_PURE_CPU">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodElapsedTimeRule" id="COD.MTRC.METHOD_ELAPSEDTIME">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodTotalElapsedTimeRule" id="COD.MTRC.METHOD_TOTAL_ELAPSEDTIME">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="TRUE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodTatRule" id="COD.MTRC.METHOD_TAT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodCallCountRule" id="COD.MTRC.METHOD_CNT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodCpuUsageRule" id="COD.MTRC.METHOD_CPU">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.ThreadWaitCountRule" id="COD.THRD.WAIT_CNT">
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="200" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="500" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.ThreadWaitTimeRule" id="COD.THRD.WAIT_TIME">
+        <ruleLevel durationThreshold="200" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="400" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="1000" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.ThreadBlockCountRule" id="COD.THRD.BLK_CNT">
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="200" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="500" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.ThreadBlockTimeRule" id="COD.THRD.BLK_TIME">
+        <ruleLevel durationThreshold="200" enabled="TRUE" level="INFO">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="400" enabled="TRUE" level="WARN">
+            <property name="threshold">200</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="1000" enabled="TRUE" level="ERROR">
+            <property name="threshold">500</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.GCFrequencyRule" id="COD.MTRC.GC_CNT">
+        <ruleLevel durationThreshold="50" enabled="TRUE" level="INFO">
+            <property name="threshold">1.0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="WARN">
+            <property name="threshold">5.0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="200" enabled="TRUE" level="ERROR">
+            <property name="threshold">10.0</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.GCTimeRule" id="COD.MTRC.GC_TIME">
+        <ruleLevel durationThreshold="500" enabled="TRUE" level="INFO">
+            <property name="threshold">500</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="1000" enabled="TRUE" level="WARN">
+            <property name="threshold">1000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="10000" enabled="TRUE" level="ERROR">
+            <property name="threshold">10000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.DiskInputRule" id="COD.IO.DISK_INPUT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">500000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">10000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.DiskOutputRule" id="COD.IO.DISK_OUTPUT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">500000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">10000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.NetworkInputRule" id="COD.IO.NETWORK_INPUT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">500000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">10000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.NetworkOutputRule" id="COD.IO.NETWORK_OUTPUT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">500000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">10000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.AllSqlCountRule" id="DBA.MTRC.ALL_SQL_CNT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.OneSqlCountRule" id="DBA.MTRC.ONE_SQL_CNT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.OneSqlExecTimeRule" id="DBA.MTRC.ONE_SQL_EXEC_TIME">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100000</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">1000000</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.SqlTatRule" id="DBA.MTRC.SQL_TAT">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.oracle.OraFullScanRule" id="SQL.PLAN.ORA_FULLSCAN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO"/>
+        <ruleLevel durationThreshold="50" enabled="TRUE" level="WARN"/>
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="ERROR"/>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.oracle.OraJoinTimesRule" id="SQL.PLAN.ORA_JOIN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.oracle.OraExecCostRule" id="SQL.PLAN.ORA_COST">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.SQLErrorDetectRule" id="SQL.EXEC.ORA_DEADLOCK">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="targetError">ORA-00060</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="targetError">ORA-00060</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="targetError">ORA-00060</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.postgres.PgFullScanRule" id="SQL.PLAN.PSG_FULLSCAN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO"/>
+        <ruleLevel durationThreshold="50" enabled="TRUE" level="WARN"/>
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="ERROR"/>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.postgres.PgJoinTimesRule" id="SQL.PLAN.PSG_JOIN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.postgres.PgExecCostRule" id="SQL.PLAN.PSG_COST">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.mysql.MySQLFullScanRule" id="SQL.PLAN.MYS_FULLSCAN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO"/>
+        <ruleLevel durationThreshold="50" enabled="TRUE" level="WARN"/>
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="ERROR"/>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.mysql.MySQLJoinTimesRule" id="SQL.PLAN.MYS_JOIN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.sqlserver.SQLServerFullScanRule" id="SQL.PLAN.SQLSRV_FULLSCAN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO"/>
+        <ruleLevel durationThreshold="50" enabled="TRUE" level="WARN"/>
+        <ruleLevel durationThreshold="100" enabled="TRUE" level="ERROR"/>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.sqlserver.SQLServerJoinTimesRule" id="SQL.PLAN.SQLSRV_JOIN">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.sqlserver.SQLServerExecCostRule" id="SQL.PLAN.SQLSRV_COST">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.sql.OrUnionCountRule" id="SQL.SYNT.OR_UNION">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="threshold">5</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="threshold">10</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="threshold">20</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.tkprof.TkprofNonRecursiveValueRule" id="DBA.PROF.NR_TOTAL_ELAPSED">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">0.50</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">1.00</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.tkprof.TkprofNonRecursiveValueRule" id="DBA.PROF.NR_PARSE_QUERY">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="rowName">Parse</property>
+            <property name="colName">query</property>
+            <property name="threshold">0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="rowName">Parse</property>
+            <property name="colName">query</property>
+            <property name="threshold">100</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="rowName">Parse</property>
+            <property name="colName">query</property>
+            <property name="threshold">200</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.tkprof.TkprofRecursiveValueRule" id="DBA.PROF.RS_TOTAL_ELAPSED">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">0.25</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="rowName">total</property>
+            <property name="colName">elapsed</property>
+            <property name="threshold">1.00</property>
+        </ruleLevel>
+    </rule>
+    <rule enabled="FALSE" className="jp.co.acroquest.endosnipe.perfdoctor.rule.dbaccess.tkprof.TkprofRecursiveValueRule" id="DBA.PROF.RS_FETCH_ROWS">
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="INFO">
+            <property name="rowName">Fetch</property>
+            <property name="colName">rows</property>
+            <property name="threshold">0</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="WARN">
+            <property name="rowName">Fetch</property>
+            <property name="colName">rows</property>
+            <property name="threshold">500</property>
+        </ruleLevel>
+        <ruleLevel durationThreshold="0" enabled="TRUE" level="ERROR">
+            <property name="rowName">Fetch</property>
+            <property name="colName">rows</property>
+            <property name="threshold">1000</property>
+        </ruleLevel>
+    </rule>
+</ruleSet>

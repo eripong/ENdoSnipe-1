@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ENdoSnipePerfDoctor" default="release" basedir=".">
+    <import file="../ENdoSnipe/build_common.xml" />
+
+    <!-- Local system paths -->
+    <property name="src.dir" location="src/main/java" />
+    <property name="src.test.dir" location="src/test/java" />
+    <property name="resources.dir" location="src/main/resources" />
+    <property name="resources.test.dir" location="src/test/resources" />
+    <property name="classes.dir" location="classes" />
+    <property name="classes.test.dir" location="classes-test" />
+    <property name="lib.dir" value="lib" />
+    <property name="dist.dir" location="dist" />
+    <property name="temp.dir" value="temp" />
+    <property name="report.dir" location="junit-report" />
+
+    <!-- Project settings -->
+    <property name="jarname" value="ENdoSnipePerfDoctor" />
+
+    <!-- Javadoc settings -->
+    <property name="javadoc.package" value="*" />
+    <property name="javadoc.title" value="ENdoSnipePerfDoctor" />
+    <property name="copyright" value="Copyright (c) Acroquest Technology Co., Ltd. All rights reserved." />
+
+    <!-- classpath for compile -->
+    <path id="compile.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <!-- テストクラスコンパイル用のクラスパス -->
+    <path id="compile.test.classpath">
+        <path refid="compile.classpath" />
+        <pathelement location="${classes.dir}" />
+    </path>
+
+    <target name="prepare" depends="clean">
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${classes.test.dir}" />
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${temp.dir}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${classes.dir}" />
+        <delete dir="${classes.test.dir}" />
+        <delete dir="${dist.dir}" />
+        <delete dir="${temp.dir}" />
+    </target>
+
+    <!-- Normal build of application -->
+    <target name="compile" depends="prepare, compileENdoSnipeCommon, compileENdoSnipeDataAccessor">
+        <!-- コンパイル実行 -->
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" fork="false" debug="true">
+            <classpath refid="compile.classpath" />
+        </javac>
+
+        <!-- リソースファイルのコピー -->
+        <copy todir="${classes.dir}" includeEmptyDirs="no">
+            <fileset dir="${resources.dir}">
+                <patternset>
+                    <include name="**/*.properties" />
+                    <include name="**/*.xml" />
+                </patternset>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- テストソースのコンパイル -->
+    <target name="compile-test" depends="compile" description="テストソースをコンパイルする">
+        <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" debug="on">
+            <classpath>
+                <path refid="compile.test.classpath" />
+            </classpath>
+        </javac>
+
+        <!-- リソースをコピーする -->
+        <copy todir="${classes.test.dir}">
+            <fileset dir="${resources.test.dir}" />
+        </copy>
+    </target>
+
+    <!-- JUnit テストの実行 -->
+    <target name="runtest" depends="compile-test">
+        <mkdir dir="${report.dir}" />
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="compile.classpath" />
+                <pathelement location="${classes.dir}" />
+                <pathelement location="${classes.test.dir}" />
+            </classpath>
+            <formatter type="plain" />
+            <batchtest fork="no" todir="${report.dir}">
+                <fileset dir="${src.test.dir}">
+                    <include name="**/*Test.java" />
+                    <exclude name="**/Abstract*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- Jarの生成 -->
+    <target name="jar" depends="compile">
+        <jar basedir="${classes.dir}" jarfile="${dist.dir}/${jarname}.jar">
+            <exclude name="test/**" />
+            <manifest>
+                <attribute name="Version" value="${version}_${build}" />
+            </manifest>        </jar>
+    </target>
+
+    <target name="dist" depends="jar" description="Build">
+    </target>
+
+    <!-- リリース用ビルド-->
+    <target name="release" depends="dist" />
+
+    <!-- Javadoc 生成 -->
+    <target name="javadoc" depends="prepare" description="Javadoc を生成する">
+        <!-- 過去に出力した Javadoc を削除 -->
+        <delete includeEmptyDirs="true" failonerror="false">
+            <fileset dir="${doc.dir}" />
+        </delete>
+
+        <!-- Javadoc 出力ディレクトリ作成 -->
+        <mkdir dir="${doc.dir}" />
+
+        <!-- Javadoc 生成 -->
+        <javadoc packagenames="${javadoc.package}" sourcepath="${src.dir}" classpathref="project.classpath" destdir="${doc.dir}" access="protected" encoding="Windows-31J" docencoding="Shift_JIS" locale="ja_JP" windowtitle="${javadoc.title}" bottom="${copyright}" />
+    </target>
+
+</project>

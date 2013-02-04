@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fileset-config file-format-version="1.2.0" simple-config="false">
+    <local-check-config name="Checkstyle_for_Test_Setting" location=".config/.Checkstyle_for_Test_Setting.xml" type="project" description="">
+        <additional-data name="protect-config-file" value="false"/>
+    </local-check-config>
+    <local-check-config name="Checkstyle_Setting" location=".config/.Checkstyle_Setting.xml" type="project" description="">
+        <additional-data name="protect-config-file" value="false"/>
+    </local-check-config>
+    <fileset name="Main Sources" enabled="true" check-config-name="Checkstyle_Setting" local="true">
+        <file-match-pattern match-pattern="src\\main\\java\\jp\\co\\acroquest\\.+\.java$" include-pattern="true"/>
+        <file-match-pattern match-pattern="src\\pro\\java\\jp\\co\\acroquest\\.+\.java$" include-pattern="true"/>
+    </fileset>
+    <fileset name="Test Sources" enabled="true" check-config-name="Checkstyle_for_Test_Setting" local="true">
+        <file-match-pattern match-pattern="src\\test\\java\\jp\\co\\acroquest\\.+\.java$" include-pattern="true"/>
+    </fileset>
+    <filter name="FilesFromPackage" enabled="true">
+        <filter-data value="src/pro/java/jp/co/acroquest/endosnipe/perfdoctor/rule/sql/sqlserver/entity"/>
+    </filter>
+</fileset-config>

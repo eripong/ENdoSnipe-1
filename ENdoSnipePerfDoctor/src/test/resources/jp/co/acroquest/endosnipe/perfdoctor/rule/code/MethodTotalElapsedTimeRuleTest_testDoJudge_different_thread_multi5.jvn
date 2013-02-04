@@ -1,0 +1,72 @@
+Call  ,2008/01/01 10:10:10.000,"method1","TestClass2","unknown","unknown","TestClass1","unknown","","executeInstance2InstanceMethodCall5"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1887612100
+thread.currentThreadUserTime = 1684810800
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 97
+garbageCollector.collectionTime = 177
+memoryPool.peakUsage.usage = 15712656
+memoryPool.peakUsage.usage.delta = -1386080
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 100405
+file.currentFileReadLength = 27457
+file.currentFileWriteLength = 2260
+<<javelin.ExtraInfo_END>>
+Call  ,2008/01/01 10:10:10.300,"method2","TestClass3","unknown","unknown","TestClass2","unknown","","executeInstance2InstanceMethodCall5"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1887612100
+thread.currentThreadUserTime = 1684810800
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 97
+garbageCollector.collectionTime = 177
+memoryPool.peakUsage.usage = 15712656
+memoryPool.peakUsage.usage.delta = -1386080
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 400
+file.currentFileReadLength = 27457
+file.currentFileWriteLength = 2260
+<<javelin.ExtraInfo_END>>
+Return,2008/01/01 10:10:10.700,"method2","TestClass3","unknown","unknown","TestClass2","unknown","","executeInstance2InstanceMethodCall5"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1887612100
+thread.currentThreadUserTime = 1684810800
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 97
+garbageCollector.collectionTime = 177
+memoryPool.peakUsage.usage = 14326576
+memoryPool.peakUsage.usage.delta = -1386080
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 400
+file.currentFileReadLength = 27457
+file.currentFileWriteLength = 2260
+<<javelin.ExtraInfo_END>>
+Return,2008/01/01 10:10:11.000,"method1","TestClass2","unknown","unknown","TestClass1","unknown","","executeInstance2InstanceMethodCall5"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1887612100
+thread.currentThreadUserTime = 1684810800
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 97
+garbageCollector.collectionTime = 177
+memoryPool.peakUsage.usage = 14326576
+memoryPool.peakUsage.usage.delta = -1386080
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 100405
+file.currentFileReadLength = 27457
+file.currentFileWriteLength = 2260
+<<javelin.ExtraInfo_END>>

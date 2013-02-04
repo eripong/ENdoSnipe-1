@@ -1,0 +1,27 @@
+Call  ,2009/02/03 18:04:20.807,"put","java.util.Test","unknown","unknown","root","unknown","","JavelinAcceptThread@8(java.lang.Thread@fc0830)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 0
+thread.currentThreadUserTime = 0
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 64
+garbageCollector.collectionTime = 371
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+Return,2009/02/03 18:06:08.807,"put","java.util.Test","unknown","unknown","root","unknown","","JavelinAcceptThread@8(java.lang.Thread@fc0830)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 0
+thread.currentThreadUserTime = 0
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 64
+garbageCollector.collectionTime = 371
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>

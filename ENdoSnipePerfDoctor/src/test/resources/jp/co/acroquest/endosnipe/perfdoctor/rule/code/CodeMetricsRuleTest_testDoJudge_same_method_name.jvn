@@ -1,0 +1,120 @@
+Call  ,2007/11/24 22:18:15.433,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, null, null, null, null, null, null, null, null]
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2886018500
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+<<javelin.JMXInfo_END>>
+Return,2007/11/24 22:18:15.473,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@154f6ff:14
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2901618600
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+thread.currentThreadCpuTime.delta = 1000000000
+garbageCollector.collectionCount.delta = 1
+<<javelin.JMXInfo_END>>
+Call  ,2007/11/24 22:18:15.503,"getSearchCount","examples.jsf.dao.EmployeeDtoDao2","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, null, null, null, null, null, null, null, null]
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2886018500
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+<<javelin.JMXInfo_END>>
+Return,2007/11/24 22:18:15.533,"getSearchCount","examples.jsf.dao.EmployeeDtoDao2","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@154f6ff:14
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2901618600
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+thread.currentThreadCpuTime.delta = 1000000000
+garbageCollector.collectionCount.delta = 1
+<<javelin.JMXInfo_END>>
+Call  ,2007/11/24 22:18:15.563,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, null, null, null, null, null, null, null, null]
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2886018500
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+<<javelin.JMXInfo_END>>
+Return,2007/11/24 22:18:15.593,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@154f6ff:14
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2901618600
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+thread.currentThreadCpuTime.delta = 1000000000
+garbageCollector.collectionCount.delta = 1
+<<javelin.JMXInfo_END>>
+Call  ,2007/11/24 22:18:15.623,"getSearchCount","examples.jsf.dao.EmployeeDtoDao2","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, null, null, null, null, null, null, null, null]
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2886018500
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+<<javelin.JMXInfo_END>>
+Return,2007/11/24 22:18:15.653,"getSearchCount","examples.jsf.dao.EmployeeDtoDao2","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@154f6ff:14
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2901618600
+thread.currentThreadUserTime = 2262014500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 39152
+thread.threadInfo.waitedCount = 2
+garbageCollector.collectionCount = 15
+garbageCollector.collectionTime = 1360
+thread.currentThreadCpuTime.delta = 1000000000
+garbageCollector.collectionCount.delta = 1
+<<javelin.JMXInfo_END>>

@@ -1,0 +1,7 @@
+Event ,2009/02/03 18:05:08.807,"test","","root","main@1(java.lang.Thread@7379b5)"
+<<javelin.EventInfo_START>>
+javelin.interval.threshold = 1000
+javelin.interval.actual = 0
+javelin.interval.classname = org.apache.velocity.app.Velocity
+javelin.interval.methodname = init
+<<javelin.EventInfo_END>>

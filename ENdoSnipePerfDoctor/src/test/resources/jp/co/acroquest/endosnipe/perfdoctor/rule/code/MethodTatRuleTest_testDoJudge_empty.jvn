@@ -1,0 +1,48 @@
+Call  ,2008/01/09 17:23:25.823,"/index.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/index.html"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 1977
+args[2] = /s2jsf-example
+args[3] = /index.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 281250000
+thread.currentThreadUserTime = 218750000
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 23
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 10
+garbageCollector.collectionTime = 840
+memoryPool.peakUsage.usage = 107731488
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 
+<<javelin.ExtraInfo_END>>
+Read  ,2008/01/09 17:23:26.260,"/index.html","/s2jsf-example","unknown","","","","","/index.html"
+Write ,2008/01/09 17:23:27.995,"/index.html","/s2jsf-example","unknown","","","","","/index.html"
+Return,2008/01/09 17:23:27.995,"/index.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/index.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1156250000
+thread.currentThreadUserTime = 1031250000
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 23
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 11
+garbageCollector.collectionTime = 1253
+memoryPool.peakUsage.usage = 114673304
+thread.currentThreadCpuTime.delta = 875000000
+thread.currentThreadUserTime.delta = 812500000
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 413
+memoryPool.peakUsage.usage.delta = 6941816
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 
+<<javelin.ExtraInfo_END>>

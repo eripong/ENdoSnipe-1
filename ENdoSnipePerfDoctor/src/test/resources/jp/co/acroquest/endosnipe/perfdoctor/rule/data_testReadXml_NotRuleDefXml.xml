@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
+<text name="textName">
+  <list>
+    <element>
+      <tag>content1</tag>
+    </element>
+    <element>
+      <tag>content2</tag>
+    </element>
+    <element>
+      <tag>content3</tag>
+    </element>
+  </list>
+</text>

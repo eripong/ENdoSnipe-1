@@ -1,0 +1,215 @@
+Call  ,2008/01/16 17:46:08.495,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 2536
+args[2] = /s2jsf-example
+args[3] = /employee/employeeSearch.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 88968488
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 984
+<<javelin.ExtraInfo_END>>
+Read  ,2008/01/16 17:46:08.495,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Call  ,2008/01/16 17:46:08.495,"initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 89001104
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Call  ,2008/01/16 17:46:08.495,"getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 89001104
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Call  ,2008/01/16 17:46:08.495,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 89033720
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Throw ,2008/01/16 17:46:09.432,"org.seasar.framework.exception.SQLRuntimeException","86b4d5","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","/employee/employeeSearch.html"
+<<javelin.StackTrace_START>>
+org.seasar.framework.exception.SQLRuntimeException:[ESSR0071]SQLÇ≈ó·äO(ErrorCode=0, SQLState=08004)Ç™î≠ê∂ÇµÇ‹ÇµÇΩÅBóùóRÇÕorg.postgresql.util.PSQLException: Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+org.seasar.extension.jdbc.util.DataSourceUtil.getConnection(DataSourceUtil.java:38)
+org.seasar.dao.impl.DaoMetaDataImpl.initialize(DaoMetaDataImpl.java:143)
+org.seasar.dao.impl.DaoMetaDataFactoryImpl.createDaoMetaData(DaoMetaDataFactoryImpl.java:123)
+org.seasar.dao.impl.DaoMetaDataFactoryImpl.getDaoMetaData(DaoMetaDataFactoryImpl.java:105)
+org.seasar.dao.interceptors.S2DaoInterceptor.invoke(S2DaoInterceptor.java:51)
+org.seasar.dao.pager.PagerS2DaoInterceptorWrapper.invoke(PagerS2DaoInterceptorWrapper.java:71)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:50)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.javelin.S2JavelinInterceptor.invoke(S2JavelinInterceptor.java:280)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:42)
+examples.jsf.dao.DepartmentDtoDao$$EnhancedByS2AOP$$1cfd7c$$MethodInvocation$$getAllDepartments1.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.dao.DepartmentDtoDao$$EnhancedByS2AOP$$1cfd7c.getAllDepartments(DepartmentDtoDao$$EnhancedByS2AOP$$1cfd7c.java)
+examples.jsf.logic.impl.EmployeeLogicImpl.getAllDepartments(EmployeeLogicImpl.java:53)
+examples.jsf.logic.impl.EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a.getAllDepartments$$invokeSuperMethod$$(EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a.java)
+examples.jsf.logic.impl.EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a$$MethodInvocation$$getAllDepartments8.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:45)
+org.seasar.extension.tx.RequiredInterceptor.invoke(RequiredInterceptor.java:40)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:50)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:64)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.javelin.S2JavelinInterceptor.invoke(S2JavelinInterceptor.java:280)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:42)
+examples.jsf.logic.impl.EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a$$MethodInvocation$$getAllDepartments8.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.logic.impl.EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a.getAllDepartments(EmployeeLogicImpl$$EnhancedByS2AOP$$146ac5a.java)
+examples.jsf.action.impl.EmployeeSearchInitActionImpl.initialize(EmployeeSearchInitActionImpl.java:38)
+examples.jsf.action.impl.EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14.initialize$$invokeSuperMethod$$(EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14.java)
+examples.jsf.action.impl.EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14$$MethodInvocation$$initialize0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:45)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:64)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:50)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.javelin.S2JavelinInterceptor.invoke(S2JavelinInterceptor.java:280)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:43)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:42)
+examples.jsf.action.impl.EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14$$MethodInvocation$$initialize0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14.initialize(EmployeeSearchInitActionImpl$$EnhancedByS2AOP$$1773a14.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:585)
+org.apache.myfaces.el.MethodBindingImpl.invoke(MethodBindingImpl.java:138)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.runtime.ViewRendererImpl.executeInitAction(ViewRendererImpl.java:148)
+org.seasar.jsf.runtime.ViewRendererImpl.renderView(ViewRendererImpl.java:90)
+org.seasar.jsf.application.S2ViewHandler.renderView(S2ViewHandler.java:123)
+org.seasar.jsf.lifecycle.LifecycleImpl.render(LifecycleImpl.java:199)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:110)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:252)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+org.seasar.javelin.S2JavelinFilter.doFilter(S2JavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:60)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:112)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:213)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:178)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:126)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:105)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:107)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:148)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:869)
+org.apache.coyote.http11.Http11BaseProtocol$Http11ConnectionHandler.processConnection(Http11BaseProtocol.java:664)
+org.apache.tomcat.util.net.PoolTcpEndpoint.processSocket(PoolTcpEndpoint.java:527)
+org.apache.tomcat.util.net.LeaderFollowerWorkerThread.runIt(LeaderFollowerWorkerThread.java:80)
+org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:684)
+java.lang.Thread.run(Thread.java:595)
+<<javelin.StackTrace_END>>
+Call  ,2008/01/16 17:46:09.432,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 90088032
+memoryPool.peakUsage.usage.delta = 1054312
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Call  ,2008/01/16 17:46:09.432,"getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 90284432
+memoryPool.peakUsage.usage.delta = 1283328
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Call  ,2008/01/16 17:46:09.432,"initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 656250000
+thread.currentThreadUserTime = 578125000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 90284432
+memoryPool.peakUsage.usage.delta = 1283328
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 937
+<<javelin.ExtraInfo_END>>
+Write ,2008/01/16 17:46:09.479,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Call  ,2008/01/16 17:46:09.479,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 687500000
+thread.currentThreadUserTime = 609375000
+thread.threadInfo.blockedTime = 1156
+thread.threadInfo.blockedCount = 2
+thread.threadInfo.waitedTime = 93268
+garbageCollector.collectionCount = 45
+garbageCollector.collectionTime = 2699
+memoryPool.peakUsage.usage = 91141520
+thread.currentThreadCpuTime.delta = 31250000
+thread.currentThreadUserTime.delta = 31250000
+memoryPool.peakUsage.usage.delta = 2173032
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 984
+<<javelin.ExtraInfo_END>>

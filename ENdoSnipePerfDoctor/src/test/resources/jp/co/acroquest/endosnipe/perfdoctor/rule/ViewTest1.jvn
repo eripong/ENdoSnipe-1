@@ -1,0 +1,1555 @@
+Call  ,2007/12/03 21:49:23.840,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 2629
+args[2] = /s2jsf-example
+args[3] = /employee/employeeSearch.html
+args[4] = POST
+args[5] = {_id79:_id111=[Ljava.lang.String;@19f6a57, _id79:deptno=[Ljava.lang.String;@feb215, _id79:ename=[Ljava.lang.String;@15d9be1, _id79_/employee/employeeSearch.html_SUBMIT=[Ljava.lang.String;@a4f040, _id79:fromHiredate=[Ljava.lang.String;@99210f, _id79:empno=[Ljava.lang.String;@1499154, _id79:_id87=[Ljava.lang.String;@e455bf, _id79:_link_hidden_=[Ljava.lang.String;@b98fe1, _id79:toHiredate=[Ljava.lang.String;@952527, _id79:toSal=[Ljava.lang.String;@1ba614a, _id79:fromSal=[Ljava.lang.String;@149453c, _id79:mgr=[Ljava.lang.String;@16095fc}
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Read  ,2007/12/03 21:49:23.840,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Call  ,2007/12/03 21:49:23.856,"checkSearchCount","examples.jsf.action.impl.EmployeeSearchActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.856,"getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","checkSearchCount","examples.jsf.action.impl.EmployeeSearchActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, FORD, CLERK, 7788, Sat Jan 01 00:00:00 JST 1983, null, 2500, null, 20]
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.856,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, FORD, CLERK, 7788, Sat Jan 01 00:00:00 JST 1983, null, 2500, null, 20]
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.887,"select count(*) from emp e left outer join dept d on e.deptno = d.deptno  where   e.ename = ? or e.job = ? or e.mgr = ? or e.hiredate >= ?  or e.sal >= ?  or e.deptno = ? ","jdbc:postgresql://localhost/HelloDB","unknown","getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] select count(*)
+from emp e left outer join dept d on e.deptno = d.deptno
+
+where 
+
+e.ename = ?
+or e.job = ?
+or e.mgr = ?
+or e.hiredate >= ?
+
+or e.sal >= ?
+
+or e.deptno = ?
+
+args[2] = [VALUE] FORD,CLERK,7788,1983-01-01 00:00:00.0,2500,20
+args[3] = [PLAN]    {AGG 
+   :startup_cost 85.75 
+   :total_cost 85.76 
+   :plan_rows 1 
+   :plan_width 0 
+   :targetlist (
+      {TARGETENTRY 
+      :expr 
+         {AGGREF 
+         :aggfnoid 2803 
+         :aggtype 20 
+         :args <> 
+         :agglevelsup 0 
+         :aggstar true 
+         :aggdistinct false
+         }
+      :resno 1 
+      :resname count 
+      :ressortgroupref 0 
+      :resorigtbl 0 
+      :resorigcol 0 
+      :resjunk false
+      }
+   )
+   :qual <> 
+   :lefttree 
+      {MERGEJOIN 
+      :startup_cost 77.91 
+      :total_cost 85.07 
+      :plan_rows 271 
+      :plan_width 0 
+      :targetlist <> 
+      :qual <> 
+      :lefttree 
+         {SORT 
+         :startup_cost 32.95 
+         :total_cost 33.63 
+         :plan_rows 271 
+         :plan_width 9 
+         :targetlist (
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 8 
+               :vartype 1700 
+               :vartypmod 131076 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 8
+               }
+            :resno 1 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+         )
+         :qual <> 
+         :lefttree 
+            {SEQSCAN 
+            :startup_cost 0.00 
+            :total_cost 22.00 
+            :plan_rows 271 
+            :plan_width 9 
+            :targetlist (
+               {TARGETENTRY 
+               :expr 
+                  {VAR 
+                  :varno 1 
+                  :varattno 8 
+                  :vartype 1700 
+                  :vartypmod 131076 
+                  :varlevelsup 0 
+                  :varnoold 1 
+                  :varoattno 8
+                  }
+               :resno 1 
+               :resname <> 
+               :ressortgroupref 0 
+               :resorigtbl 0 
+               :resorigcol 0 
+               :resjunk false
+               }
+            )
+            :qual (
+               {BOOLEXPR 
+               :boolop or 
+               :args (
+                  {OPEXPR 
+                  :opno 98 
+                  :opfuncid 67 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {RELABELTYPE 
+                     :arg 
+                        {VAR 
+                        :varno 1 
+                        :varattno 2 
+                        :vartype 1043 
+                        :vartypmod 14 
+                        :varlevelsup 0 
+                        :varnoold 1 
+                        :varoattno 2
+                        }
+                     :resulttype 25 
+                     :resulttypmod -1 
+                     :relabelformat 2
+                     }
+                     {CONST 
+                     :consttype 25 
+                     :constlen -1 
+                     :constbyval false 
+                     :constisnull false 
+                     :constvalue 8 [ 8 0 0 0 70 79 82 68 ]
+                     }
+                  )
+                  }
+                  {OPEXPR 
+                  :opno 98 
+                  :opfuncid 67 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {RELABELTYPE 
+                     :arg 
+                        {VAR 
+                        :varno 1 
+                        :varattno 3 
+                        :vartype 1043 
+                        :vartypmod 13 
+                        :varlevelsup 0 
+                        :varnoold 1 
+                        :varoattno 3
+                        }
+                     :resulttype 25 
+                     :resulttypmod -1 
+                     :relabelformat 2
+                     }
+                     {CONST 
+                     :consttype 25 
+                     :constlen -1 
+                     :constbyval false 
+                     :constisnull false 
+                     :constvalue 9 [ 9 0 0 0 67 76 69 82 75 ]
+                     }
+                  )
+                  }
+                  {OPEXPR 
+                  :opno 1752 
+                  :opfuncid 1718 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {VAR 
+                     :varno 1 
+                     :varattno 4 
+                     :vartype 1700 
+                     :vartypmod 262148 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 4
+                     }
+                     {CONST 
+                     :consttype 1700 
+                     :constlen -1 
+                     :constbyval false 
+                     :constisnull false 
+                     :constvalue 10 [ 10 0 0 0 0 0 0 0 108 30 ]
+                     }
+                  )
+                  }
+                  {OPEXPR 
+                  :opno 1098 
+                  :opfuncid 1090 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {VAR 
+                     :varno 1 
+                     :varattno 5 
+                     :vartype 1082 
+                     :vartypmod -1 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 5
+                     }
+                     {CONST 
+                     :consttype 1082 
+                     :constlen 4 
+                     :constbyval true 
+                     :constisnull false 
+                     :constvalue 4 [ -65 -25 -1 -1 ]
+                     }
+                  )
+                  }
+                  {OPEXPR 
+                  :opno 1757 
+                  :opfuncid 1721 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {VAR 
+                     :varno 1 
+                     :varattno 6 
+                     :vartype 1700 
+                     :vartypmod 458758 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 6
+                     }
+                     {CONST 
+                     :consttype 1700 
+                     :constlen -1 
+                     :constbyval false 
+                     :constisnull false 
+                     :constvalue 10 [ 10 0 0 0 0 0 0 0 -60 9 ]
+                     }
+                  )
+                  }
+                  {OPEXPR 
+                  :opno 1752 
+                  :opfuncid 1718 
+                  :opresulttype 16 
+                  :opretset false 
+                  :args (
+                     {VAR 
+                     :varno 1 
+                     :varattno 8 
+                     :vartype 1700 
+                     :vartypmod 131076 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 8
+                     }
+                     {CONST 
+                     :consttype 1700 
+                     :constlen -1 
+                     :constbyval false 
+                     :constisnull false 
+                     :constvalue 10 [ 10 0 0 0 0 0 0 0 20 0 ]
+                     }
+                  )
+                  }
+               )
+               }
+            )
+            :lefttree <> 
+            :righttree <> 
+            :initPlan <> 
+            :extParam (b)
+            :allParam (b)
+            :nParamExec 0 
+            :scanrelid 1
+            }
+         :righttree <> 
+         :initPlan <> 
+         :extParam (b)
+         :allParam (b)
+         :nParamExec 0 
+         :numCols 1 
+         :sortColIdx 1 
+         :sortOperators 1754
+         }
+      :righttree 
+         {SORT 
+         :startup_cost 44.96 
+         :total_cost 46.51 
+         :plan_rows 620 
+         :plan_width 9 
+         :targetlist (
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 2 
+               :varattno 1 
+               :vartype 1700 
+               :vartypmod 131076 
+               :varlevelsup 0 
+               :varnoold 2 
+               :varoattno 1
+               }
+            :resno 1 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+         )
+         :qual <> 
+         :lefttree 
+            {SEQSCAN 
+            :startup_cost 0.00 
+            :total_cost 16.20 
+            :plan_rows 620 
+            :plan_width 9 
+            :targetlist (
+               {TARGETENTRY 
+               :expr 
+                  {VAR 
+                  :varno 2 
+                  :varattno 1 
+                  :vartype 1700 
+                  :vartypmod 131076 
+                  :varlevelsup 0 
+                  :varnoold 2 
+                  :varoattno 1
+                  }
+               :resno 1 
+               :resname <> 
+               :ressortgroupref 0 
+               :resorigtbl 0 
+               :resorigcol 0 
+               :resjunk false
+               }
+            )
+            :qual <> 
+            :lefttree <> 
+            :righttree <> 
+            :initPlan <> 
+            :extParam (b)
+            :allParam (b)
+            :nParamExec 0 
+            :scanrelid 2
+            }
+         :righttree <> 
+         :initPlan <> 
+         :extParam (b)
+         :allParam (b)
+         :nParamExec 0 
+         :numCols 1 
+         :sortColIdx 1 
+         :sortOperators 1754
+         }
+      :initPlan <> 
+      :extParam (b)
+      :allParam (b)
+      :nParamExec 0 
+      :jointype 1 
+      :joinqual <> 
+      :mergeclauses (
+         {OPEXPR 
+         :opno 1752 
+         :opfuncid 1718 
+         :opresulttype 16 
+         :opretset false 
+         :args (
+            {VAR 
+            :varno 65001 
+            :varattno 1 
+            :vartype 1700 
+            :vartypmod 131076 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 8
+            }
+            {VAR 
+            :varno 65000 
+            :varattno 1 
+            :vartype 1700 
+            :vartypmod 131076 
+            :varlevelsup 0 
+            :varnoold 2 
+            :varoattno 1
+            }
+         )
+         }
+      )
+      }
+   :righttree <> 
+   :initPlan <> 
+   :extParam (b)
+   :allParam (b)
+   :nParamExec 0 
+   :aggstrategy 0 
+   :numCols 0 
+   :numGroups 0
+   }
+
+Aggregate  (cost=85.75..85.76 rows=1 width=0)
+  ->  Merge Left Join  (cost=77.91..85.07 rows=271 width=0)
+        Merge Cond: (e.deptno = d.deptno)
+        ->  Sort  (cost=32.95..33.63 rows=271 width=9)
+              Sort Key: e.deptno
+              ->  Seq Scan on emp e  (cost=0.00..22.00 rows=271 width=9)
+                    Filter: (((ename)::text = 'FORD'::text) OR ((job)::text = 'CLERK'::text) OR (mgr = 7788::numeric) OR (hiredate >= '1983-01-01'::date) OR (sal >= 2500::numeric) OR (deptno = 20::numeric))
+        ->  Sort  (cost=44.96..46.51 rows=620 width=9)
+              Sort Key: d.deptno
+              ->  Seq Scan on dept d  (cost=0.00..16.20 rows=620 width=9)
+
+
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 10
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.903,"select count(*) from emp e left outer join dept d on e.deptno = d.deptno  where   e.ename = ? or e.job = ? or e.mgr = ? or e.hiredate >= ?  or e.sal >= ?  or e.deptno = ? ","jdbc:postgresql://localhost/HelloDB","unknown","getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.903,"getSearchCount","examples.jsf.dao.EmployeeDtoDao","unknown","getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@17951b0:9
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.903,"getSearchCount","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","checkSearchCount","examples.jsf.action.impl.EmployeeSearchActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.lang.Integer@1e2350a:9
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.903,"checkSearchCount","examples.jsf.action.impl.EmployeeSearchActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+employeeList
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.918,"initialize","examples.jsf.action.impl.EmployeeListInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.918,"searchEmployeeDtoList","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeListInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, FORD, CLERK, 7788, Sat Jan 01 00:00:00 JST 1983, null, 2500, null, 20]
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.918,"searchEmployeeDtoList","examples.jsf.dao.EmployeeDtoDao","unknown","searchEmployeeDtoList","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [null, FORD, CLERK, 7788, Sat Jan 01 00:00:00 JST 1983, null, 2500, null, 20]
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/03 21:49:23.934,"select empno,ename,job,mgr,hiredate, sal,comm,e.deptno,d.dname from emp e left outer join dept d on e.deptno = d.deptno  where  e.ename = ? or e.job = ? or e.mgr = ? or e.hiredate >= ?  or e.sal >= ?  or e.deptno = ? ","jdbc:postgresql://localhost/HelloDB","unknown","searchEmployeeDtoList","examples.jsf.dao.EmployeeDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [SQL] select empno,ename,job,mgr,hiredate,
+sal,comm,e.deptno,d.dname
+from emp e left outer join dept d on e.deptno = d.deptno
+
+where
+
+e.ename = ?
+or e.job = ?
+or e.mgr = ?
+or e.hiredate >= ?
+
+or e.sal >= ?
+
+or e.deptno = ?
+
+args[2] = [VALUE] FORD,CLERK,7788,1983-01-01 00:00:00.0,2500,20
+args[3] = [PLAN]    {MERGEJOIN 
+   :startup_cost 77.91 
+   :total_cost 85.07 
+   :plan_rows 271 
+   :plan_width 160 
+   :targetlist (
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 1 
+         :vartype 1700 
+         :vartypmod 262148 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 1
+         }
+      :resno 1 
+      :resname empno 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 1 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 2 
+         :vartype 1043 
+         :vartypmod 14 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 2
+         }
+      :resno 2 
+      :resname ename 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 2 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 3 
+         :vartype 1043 
+         :vartypmod 13 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 3
+         }
+      :resno 3 
+      :resname job 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 3 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 4 
+         :vartype 1700 
+         :vartypmod 262148 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 4
+         }
+      :resno 4 
+      :resname mgr 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 4 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 5 
+         :vartype 1082 
+         :vartypmod -1 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 5
+         }
+      :resno 5 
+      :resname hiredate 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 5 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 6 
+         :vartype 1700 
+         :vartypmod 458758 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 6
+         }
+      :resno 6 
+      :resname sal 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 6 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 7 
+         :vartype 1700 
+         :vartypmod 458758 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 7
+         }
+      :resno 7 
+      :resname comm 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 7 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65001 
+         :varattno 8 
+         :vartype 1700 
+         :vartypmod 131076 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 8
+         }
+      :resno 8 
+      :resname deptno 
+      :ressortgroupref 0 
+      :resorigtbl 17154 
+      :resorigcol 8 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 65000 
+         :varattno 1 
+         :vartype 1043 
+         :vartypmod 18 
+         :varlevelsup 0 
+         :varnoold 2 
+         :varoattno 2
+         }
+      :resno 9 
+      :resname dname 
+      :ressortgroupref 0 
+      :resorigtbl 17158 
+      :resorigcol 2 
+      :resjunk false
+      }
+   )
+   :qual <> 
+   :lefttree 
+      {SORT 
+      :startup_cost 32.95 
+      :total_cost 33.63 
+      :plan_rows 271 
+      :plan_width 121 
+      :targetlist (
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 1 
+            :vartype 1700 
+            :vartypmod 262148 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 1
+            }
+         :resno 1 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 2 
+            :vartype 1043 
+            :vartypmod 14 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 2
+            }
+         :resno 2 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 3 
+            :vartype 1043 
+            :vartypmod 13 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 3
+            }
+         :resno 3 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 4 
+            :vartype 1700 
+            :vartypmod 262148 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 4
+            }
+         :resno 4 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 5 
+            :vartype 1082 
+            :vartypmod -1 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 5
+            }
+         :resno 5 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 6 
+            :vartype 1700 
+            :vartypmod 458758 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 6
+            }
+         :resno 6 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 7 
+            :vartype 1700 
+            :vartypmod 458758 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 7
+            }
+         :resno 7 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 1 
+            :varattno 8 
+            :vartype 1700 
+            :vartypmod 131076 
+            :varlevelsup 0 
+            :varnoold 1 
+            :varoattno 8
+            }
+         :resno 8 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+      )
+      :qual <> 
+      :lefttree 
+         {SEQSCAN 
+         :startup_cost 0.00 
+         :total_cost 22.00 
+         :plan_rows 271 
+         :plan_width 121 
+         :targetlist (
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 1 
+               :vartype 1700 
+               :vartypmod 262148 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 1
+               }
+            :resno 1 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 2 
+               :vartype 1043 
+               :vartypmod 14 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 2
+               }
+            :resno 2 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 3 
+               :vartype 1043 
+               :vartypmod 13 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 3
+               }
+            :resno 3 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 4 
+               :vartype 1700 
+               :vartypmod 262148 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 4
+               }
+            :resno 4 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 5 
+               :vartype 1082 
+               :vartypmod -1 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 5
+               }
+            :resno 5 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 6 
+               :vartype 1700 
+               :vartypmod 458758 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 6
+               }
+            :resno 6 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 7 
+               :vartype 1700 
+               :vartypmod 458758 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 7
+               }
+            :resno 7 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 1 
+               :varattno 8 
+               :vartype 1700 
+               :vartypmod 131076 
+               :varlevelsup 0 
+               :varnoold 1 
+               :varoattno 8
+               }
+            :resno 8 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+         )
+         :qual (
+            {BOOLEXPR 
+            :boolop or 
+            :args (
+               {OPEXPR 
+               :opno 98 
+               :opfuncid 67 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {RELABELTYPE 
+                  :arg 
+                     {VAR 
+                     :varno 1 
+                     :varattno 2 
+                     :vartype 1043 
+                     :vartypmod 14 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 2
+                     }
+                  :resulttype 25 
+                  :resulttypmod -1 
+                  :relabelformat 2
+                  }
+                  {CONST 
+                  :consttype 25 
+                  :constlen -1 
+                  :constbyval false 
+                  :constisnull false 
+                  :constvalue 8 [ 8 0 0 0 70 79 82 68 ]
+                  }
+               )
+               }
+               {OPEXPR 
+               :opno 98 
+               :opfuncid 67 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {RELABELTYPE 
+                  :arg 
+                     {VAR 
+                     :varno 1 
+                     :varattno 3 
+                     :vartype 1043 
+                     :vartypmod 13 
+                     :varlevelsup 0 
+                     :varnoold 1 
+                     :varoattno 3
+                     }
+                  :resulttype 25 
+                  :resulttypmod -1 
+                  :relabelformat 2
+                  }
+                  {CONST 
+                  :consttype 25 
+                  :constlen -1 
+                  :constbyval false 
+                  :constisnull false 
+                  :constvalue 9 [ 9 0 0 0 67 76 69 82 75 ]
+                  }
+               )
+               }
+               {OPEXPR 
+               :opno 1752 
+               :opfuncid 1718 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {VAR 
+                  :varno 1 
+                  :varattno 4 
+                  :vartype 1700 
+                  :vartypmod 262148 
+                  :varlevelsup 0 
+                  :varnoold 1 
+                  :varoattno 4
+                  }
+                  {CONST 
+                  :consttype 1700 
+                  :constlen -1 
+                  :constbyval false 
+                  :constisnull false 
+                  :constvalue 10 [ 10 0 0 0 0 0 0 0 108 30 ]
+                  }
+               )
+               }
+               {OPEXPR 
+               :opno 1098 
+               :opfuncid 1090 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {VAR 
+                  :varno 1 
+                  :varattno 5 
+                  :vartype 1082 
+                  :vartypmod -1 
+                  :varlevelsup 0 
+                  :varnoold 1 
+                  :varoattno 5
+                  }
+                  {CONST 
+                  :consttype 1082 
+                  :constlen 4 
+                  :constbyval true 
+                  :constisnull false 
+                  :constvalue 4 [ -65 -25 -1 -1 ]
+                  }
+               )
+               }
+               {OPEXPR 
+               :opno 1757 
+               :opfuncid 1721 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {VAR 
+                  :varno 1 
+                  :varattno 6 
+                  :vartype 1700 
+                  :vartypmod 458758 
+                  :varlevelsup 0 
+                  :varnoold 1 
+                  :varoattno 6
+                  }
+                  {CONST 
+                  :consttype 1700 
+                  :constlen -1 
+                  :constbyval false 
+                  :constisnull false 
+                  :constvalue 10 [ 10 0 0 0 0 0 0 0 -60 9 ]
+                  }
+               )
+               }
+               {OPEXPR 
+               :opno 1752 
+               :opfuncid 1718 
+               :opresulttype 16 
+               :opretset false 
+               :args (
+                  {VAR 
+                  :varno 1 
+                  :varattno 8 
+                  :vartype 1700 
+                  :vartypmod 131076 
+                  :varlevelsup 0 
+                  :varnoold 1 
+                  :varoattno 8
+                  }
+                  {CONST 
+                  :consttype 1700 
+                  :constlen -1 
+                  :constbyval false 
+                  :constisnull false 
+                  :constvalue 10 [ 10 0 0 0 0 0 0 0 20 0 ]
+                  }
+               )
+               }
+            )
+            }
+         )
+         :lefttree <> 
+         :righttree <> 
+         :initPlan <> 
+         :extParam (b)
+         :allParam (b)
+         :nParamExec 0 
+         :scanrelid 1
+         }
+      :righttree <> 
+      :initPlan <> 
+      :extParam (b)
+      :allParam (b)
+      :nParamExec 0 
+      :numCols 1 
+      :sortColIdx 8 
+      :sortOperators 1754
+      }
+   :righttree 
+      {SORT 
+      :startup_cost 44.96 
+      :total_cost 46.51 
+      :plan_rows 620 
+      :plan_width 48 
+      :targetlist (
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 2 
+            :varattno 2 
+            :vartype 1043 
+            :vartypmod 18 
+            :varlevelsup 0 
+            :varnoold 2 
+            :varoattno 2
+            }
+         :resno 1 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+         {TARGETENTRY 
+         :expr 
+            {VAR 
+            :varno 2 
+            :varattno 1 
+            :vartype 1700 
+            :vartypmod 131076 
+            :varlevelsup 0 
+            :varnoold 2 
+            :varoattno 1
+            }
+         :resno 2 
+         :resname <> 
+         :ressortgroupref 0 
+         :resorigtbl 0 
+         :resorigcol 0 
+         :resjunk false
+         }
+      )
+      :qual <> 
+      :lefttree 
+         {SEQSCAN 
+         :startup_cost 0.00 
+         :total_cost 16.20 
+         :plan_rows 620 
+         :plan_width 48 
+         :targetlist (
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 2 
+               :varattno 2 
+               :vartype 1043 
+               :vartypmod 18 
+               :varlevelsup 0 
+               :varnoold 2 
+               :varoattno 2
+               }
+            :resno 1 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+            {TARGETENTRY 
+            :expr 
+               {VAR 
+               :varno 2 
+               :varattno 1 
+               :vartype 1700 
+               :vartypmod 131076 
+               :varlevelsup 0 
+               :varnoold 2 
+               :varoattno 1
+               }
+            :resno 2 
+            :resname <> 
+            :ressortgroupref 0 
+            :resorigtbl 0 
+            :resorigcol 0 
+            :resjunk false
+            }
+         )
+         :qual <> 
+         :lefttree <> 
+         :righttree <> 
+         :initPlan <> 
+         :extParam (b)
+         :allParam (b)
+         :nParamExec 0 
+         :scanrelid 2
+         }
+      :righttree <> 
+      :initPlan <> 
+      :extParam (b)
+      :allParam (b)
+      :nParamExec 0 
+      :numCols 1 
+      :sortColIdx 2 
+      :sortOperators 1754
+      }
+   :initPlan <> 
+   :extParam (b)
+   :allParam (b)
+   :nParamExec 0 
+   :jointype 1 
+   :joinqual <> 
+   :mergeclauses (
+      {OPEXPR 
+      :opno 1752 
+      :opfuncid 1718 
+      :opresulttype 16 
+      :opretset false 
+      :args (
+         {VAR 
+         :varno 65001 
+         :varattno 8 
+         :vartype 1700 
+         :vartypmod 131076 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 8
+         }
+         {VAR 
+         :varno 65000 
+         :varattno 2 
+         :vartype 1700 
+         :vartypmod 131076 
+         :varlevelsup 0 
+         :varnoold 2 
+         :varoattno 1
+         }
+      )
+      }
+   )
+   }
+
+Merge Left Join  (cost=77.91..85.07 rows=271 width=160)
+  Merge Cond: (e.deptno = d.deptno)
+  ->  Sort  (cost=32.95..33.63 rows=271 width=121)
+        Sort Key: e.deptno
+        ->  Seq Scan on emp e  (cost=0.00..22.00 rows=271 width=121)
+              Filter: (((ename)::text = 'FORD'::text) OR ((job)::text = 'CLERK'::text) OR (mgr = 7788::numeric) OR (hiredate >= '1983-01-01'::date) OR (sal >= 2500::numeric) OR (deptno = 20::numeric))
+  ->  Sort  (cost=44.96..46.51 rows=620 width=48)
+        Sort Key: d.deptno
+        ->  Seq Scan on dept d  (cost=0.00..16.20 rows=620 width=48)
+
+
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1640
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.965,"select empno,ename,job,mgr,hiredate, sal,comm,e.deptno,d.dname from emp e left outer join dept d on e.deptno = d.deptno  where  e.ename = ? or e.job = ? or e.mgr = ? or e.hiredate >= ?  or e.sal >= ?  or e.deptno = ? ","jdbc:postgresql://localhost/HelloDB","unknown","searchEmployeeDtoList","examples.jsf.dao.EmployeeDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.965,"searchEmployeeDtoList","examples.jsf.dao.EmployeeDtoDao","unknown","searchEmployeeDtoList","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@c92ed6:[[7934, MILLER, CLERK, 7782, 1982-01-23 00:00:00.0, 1300.00, null, 10, 0, ACCOUNTING] , [7839, KING, PRESIDENT, null, 1981-11-17 00:00:00.0, 5000.00, null, 10, 0, ACCOUNTING] , [7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.00, null, 20, 0, RESEARCH] , [7876, ADAMS, CLERK, 7788, 1983-01-12 00:00:00.0, 1100.00, null, 20, 0, RESEARCH] , [7902, FORD, ANALYST, 7566, 1981-12-03 00:00:00.0, 3000.00, null, 20, 0, RESEARCH] , [7369, SMITH, CLERK, 7902, 1980-12-17 00:00:00.0, 800.00, null, 20, 0, RESEARCH] , [7566, JONES, MANAGER, 7839, 1981-04-02 00:00:00.0, 2975.00, null, 20, 0, RESEARCH] , [7698, BLAKE, MANAGER, 7839, 1981-05-01 00:00:00.0, 2850.00, null, 30, 0, SALES] , [7900, JAMES, CLERK, 7698, 1981-12-03 00:00:00.0, 1950.00, null, 30, 0, SALES]]
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.965,"searchEmployeeDtoList","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeListInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@c92ed6:[[7934, MILLER, CLERK, 7782, 1982-01-23 00:00:00.0, 1300.00, null, 10, 0, ACCOUNTING] , [7839, KING, PRESIDENT, null, 1981-11-17 00:00:00.0, 5000.00, null, 10, 0, ACCOUNTING] , [7788, SCOTT, ANALYST, 7566, 1982-12-09 00:00:00.0, 3000.00, null, 20, 0, RESEARCH] , [7876, ADAMS, CLERK, 7788, 1983-01-12 00:00:00.0, 1100.00, null, 20, 0, RESEARCH] , [7902, FORD, ANALYST, 7566, 1981-12-03 00:00:00.0, 3000.00, null, 20, 0, RESEARCH] , [7369, SMITH, CLERK, 7902, 1980-12-17 00:00:00.0, 800.00, null, 20, 0, RESEARCH] , [7566, JONES, MANAGER, 7839, 1981-04-02 00:00:00.0, 2975.00, null, 20, 0, RESEARCH] , [7698, BLAKE, MANAGER, 7839, 1981-05-01 00:00:00.0, 2850.00, null, 30, 0, SALES] , [7900, JAMES, CLERK, 7698, 1981-12-03 00:00:00.0, 1950.00, null, 30, 0, SALES]]
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/03 21:49:23.965,"initialize","examples.jsf.action.impl.EmployeeListInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Write ,2007/12/03 21:49:24.075,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Return,2007/12/03 21:49:24.075,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/04 17:23:25.823,"/index.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/index.html"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 1977
+args[2] = /s2jsf-example
+args[3] = /index.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 281250000
+thread.currentThreadUserTime = 218750000
+thread.threadInfo.blockedTime = 100000
+thread.threadInfo.blockedCount = 23
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 200
+garbageCollector.collectionCount = 10
+garbageCollector.collectionTime = 840
+memoryPool.peakUsage.usage = 107731488
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 600
+<<javelin.ExtraInfo_END>>
+Read  ,2007/12/04 17:23:26.260,"/index.html","/s2jsf-example","unknown","","","","","/index.html"
+Write ,2007/12/04 17:23:27.995,"/index.html","/s2jsf-example","unknown","","","","","/index.html"
+Return,2007/12/04 17:23:27.995,"/index.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/index.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1156250000
+thread.currentThreadUserTime = 1031250000
+thread.threadInfo.blockedTime = 100000
+thread.threadInfo.blockedCount = 23
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 200
+garbageCollector.collectionCount = 11
+garbageCollector.collectionTime = 1253
+memoryPool.peakUsage.usage = 114673304
+thread.currentThreadCpuTime.delta = 875000000
+thread.currentThreadUserTime.delta = 812500000
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 413
+memoryPool.peakUsage.usage.delta = 6941816
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 600
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/04 17:23:28.823,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 1297
+args[2] = /s2jsf-example
+args[3] = /employee/employeeSearch.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Read  ,2007/12/04 17:23:28.823,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Call  ,2007/12/04 17:23:28.833,"initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/04 17:23:28.843,"getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/04 17:23:28.853,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Call  ,2007/12/04 17:23:28.863,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:postgresql://localhost/HelloDB","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 156
+args[1] = [SQL] SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT
+args[2] = [PLAN]    {SEQSCAN 
+   :startup_cost 0.00 
+   :total_cost 5.00 
+   :plan_rows 620 
+   :plan_width 97 
+   :targetlist (
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 1 
+         :varattno 1 
+         :vartype 1700 
+         :vartypmod 131076 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 1
+         }
+      :resno 1 
+      :resname deptno 
+      :ressortgroupref 0 
+      :resorigtbl 17158 
+      :resorigcol 1 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 1 
+         :varattno 2 
+         :vartype 1043 
+         :vartypmod 18 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 2
+         }
+      :resno 2 
+      :resname dname 
+      :ressortgroupref 0 
+      :resorigtbl 17158 
+      :resorigcol 2 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 1 
+         :varattno 3 
+         :vartype 1043 
+         :vartypmod 17 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 3
+         }
+      :resno 3 
+      :resname loc 
+      :ressortgroupref 0 
+      :resorigtbl 17158 
+      :resorigcol 3 
+      :resjunk false
+      }
+      {TARGETENTRY 
+      :expr 
+         {VAR 
+         :varno 1 
+         :varattno 4 
+         :vartype 1700 
+         :vartypmod 524292 
+         :varlevelsup 0 
+         :varnoold 1 
+         :varoattno 4
+         }
+      :resno 4 
+      :resname versionno 
+      :ressortgroupref 0 
+      :resorigtbl 17158 
+      :resorigcol 4 
+      :resjunk false
+      }
+   )
+   :qual <> 
+   :lefttree <> 
+   :righttree <> 
+   :initPlan <> 
+   :extParam (b)
+   :allParam (b)
+   :nParamExec 0 
+   :scanrelid 1
+   }
+
+Seq Scan on dept  (cost=0.00..16.20 rows=620 width=97)
+
+
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = 10
+<<javelin.ExtraInfo_END>>
+Return,2007/12/04 17:23:28.873,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:postgresql://localhost/HelloDB","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/04 17:23:28.883,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@135236e:[[10, ACCOUNTING, NEW YORK, 0] , [20, RESEARCH, DALLAS, 0] , [30, SALES, CHICAGO, 0] , [40, OPERATIONS, BOSTON, 0]]
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/04 17:23:28.893,"getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@135236e:[[10, ACCOUNTING, NEW YORK, 0] , [20, RESEARCH, DALLAS, 0] , [30, SALES, CHICAGO, 0] , [40, OPERATIONS, BOSTON, 0]]
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Return,2007/12/04 17:23:28.903,"initialize","examples.jsf.action.impl.EmployeeSearchInitActionImpl","unknown","/employee/employeeSearch.html","/s2jsf-example","unknown","","/employee/employeeSearch.html"
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>
+Write ,2007/12/04 17:23:28.913,"/employee/employeeSearch.html","/s2jsf-example","unknown","","","","","/employee/employeeSearch.html"
+Return,2007/12/04 17:23:28.923,"/employee/employeeSearch.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.ExtraInfo_START>>
+duration = 450
+<<javelin.ExtraInfo_END>>

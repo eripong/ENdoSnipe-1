@@ -1,0 +1,52 @@
+Call  ,2007/11/16 17:56:41.281,"This text is not SQL","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                   | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                            |            |     1 |   270 |     4   (1)| 00:00:01 |
+|   1 |   TABLE ACCESS FULL                         | EMP        |    14 |  1218 |     3   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:46.281,"This text is not SQL","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                   | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                            |            |     1 |   270 |     4   (1)| 00:00:01 |
+|   1 |   TABLE ACCESS FULL                         | EMP        |    14 |  1218 |     3   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:51.281,"This text is not SQL","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                   | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                            |            |     1 |   270 |     4   (1)| 00:00:01 |
+|   1 |   TABLE ACCESS FULL                         | EMP        |    14 |  1218 |     3   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:56s.281,"This text is not SQL","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 0
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                   | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                            |            |     1 |   270 |     4   (1)| 00:00:01 |
+|   1 |   TABLE ACCESS FULL                         | EMP        |    14 |  1218 |     3   (0)| 00:00:01 |
+----------------------------------------------------------------------------------------------------------
+
+<<javelin.Args_END>>

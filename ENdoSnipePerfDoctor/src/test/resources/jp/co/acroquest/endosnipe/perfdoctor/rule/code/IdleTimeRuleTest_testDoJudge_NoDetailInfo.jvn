@@ -1,0 +1,4 @@
+Call  ,2007/11/24 19:48:53.425,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/add/add.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@ca2076:[[10, ACCOUNTING, NEW YORK, 0] , [20, RESEARCH, DALLAS, 0] , [30, SALES, CHICAGO, 0] , [40, OPERATIONS, BOSTON, 0]]
+<<javelin.Return_END>>

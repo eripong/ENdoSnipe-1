@@ -1,0 +1,9 @@
+Event ,2009/02/03 18:05:08.807,"LinearSearchDetected","","root","WARN","main@1(java.lang.Thread@1595f51)"
+<<javelin.EventInfo_START>>
+linearsearch.size = 500
+linearsearch.count = 2495
+linearsearch.objectID = TestList@123456
+linearsearch.stackTrace = 	at java.util.ArrayList.get(ArrayList.java:323)
+	at linear.LinearSearchTest.main(LinearSearchTest.java:30)
+
+<<javelin.EventInfo_END>>

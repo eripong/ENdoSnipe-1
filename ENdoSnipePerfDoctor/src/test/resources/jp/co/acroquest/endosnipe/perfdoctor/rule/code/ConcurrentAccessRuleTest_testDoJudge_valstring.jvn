@@ -1,0 +1,70 @@
+Call  ,2008/01/09 17:23:27.995,"/index.html","/s2jsf-example","unknown","unknown","AP-Server","unknown","","/index.html"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1156250000
+thread.currentThreadUserTime = 1031250000
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 23
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 1
+garbageCollector.collectionCount = 11
+garbageCollector.collectionTime = 1253
+memoryPool.peakUsage.usage = 114673304
+thread.currentThreadCpuTime.delta = 875000000
+thread.currentThreadUserTime.delta = 812500000
+garbageCollector.collectionCount.delta = 0
+garbageCollector.collectionTime.delta = 413
+memoryPool.peakUsage.usage.delta = 6941816
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1000
+file.currentFileReadLength = 999
+file.currentFileWriteLength = 0
+net.currentThreadReadLength = 0
+net.currentThreadWriteLength = 0
+<<javelin.ExtraInfo_END>>
+Event ,2008/01/09 17:23:27.995,"ConcurrentAccess","/index.html","/s2jsf-example","ERROR","main@1(java.lang.Thread@7379b5)"
+<<javelin.EventInfo_START>>
+javelin.concurrent.identifier = java.util.HashMap@1b134a0
+javelin.concurrent.thread.0 = Thread-0
+javelin.concurrent.time.0 = 1242994741441
+javelin.concurrent.lock.0 = []
+javelin.concurrent.stackTrace.0 = 	at java.util.HashMap.put(HashMap.java)
+	at org.seasar.extension.dbcp.impl.ConnectionPoolImpl.setConnectionTxActivePool(ConnectionPoolImpl.java:216)
+	at org.seasar.extension.dbcp.impl.ConnectionPoolImpl.checkOut(ConnectionPoolImpl.java:176)
+	at org.seasar.extension.dbcp.impl.DataSourceImpl.getConnection(DataSourceImpl.java:46)
+	at org.seasar.extension.jdbc.util.DataSourceUtil.getConnection(DataSourceUtil.java:36)
+	at org.seasar.extension.jdbc.impl.BasicHandler.getConnection(BasicHandler.java:87)
+	at org.seasar.extension.jdbc.impl.BasicSelectHandler.execute(BasicSelectHandler.java:115)
+	at org.seasar.dao.impl.SelectDynamicCommand.execute(SelectDynamicCommand.java:60)
+	at org.seasar.dao.interceptors.S2DaoInterceptor.invoke(S2DaoInterceptor.java:53)
+	at org.seasar.dao.pager.PagerS2DaoInterceptorWrapper.invoke(PagerS2DaoInterceptorWrapper.java:71)
+	at org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+	at org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:53)
+	at org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+	at org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+	at examples.jsf.dao.DepartmentDtoDao$$EnhancedByS2AOP$$2f580a$$MethodInvocation$$getDname0.proceed(MethodInvocationClassGenerator.java)
+
+javelin.concurrent.thread.1 = Thread-1
+javelin.concurrent.time.1 = 1242994741441
+javelin.concurrent.lock.1 = []
+javelin.concurrent.stackTrace.1 = 	at java.util.HashMap.put(HashMap.java)
+	at org.seasar.extension.dbcp.impl.ConnectionPoolImpl.setConnectionTxActivePool(ConnectionPoolImpl.java:216)
+	at org.seasar.extension.dbcp.impl.ConnectionPoolImpl.checkOut(ConnectionPoolImpl.java:176)
+	at org.seasar.extension.dbcp.impl.DataSourceImpl.getConnection(DataSourceImpl.java:46)
+	at org.seasar.extension.jdbc.util.DataSourceUtil.getConnection(DataSourceUtil.java:36)
+	at org.seasar.extension.jdbc.impl.BasicHandler.getConnection(BasicHandler.java:87)
+	at org.seasar.extension.jdbc.impl.BasicSelectHandler.execute(BasicSelectHandler.java:115)
+	at org.seasar.dao.impl.SelectDynamicCommand.execute(SelectDynamicCommand.java:60)
+	at org.seasar.dao.interceptors.S2DaoInterceptor.invoke(S2DaoInterceptor.java:53)
+	at org.seasar.dao.pager.PagerS2DaoInterceptorWrapper.invoke(PagerS2DaoInterceptorWrapper.java:71)
+	at org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+	at org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:53)
+	at org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+	at org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+	at examples.jsf.dao.EmployeeDtoDao$$EnhancedByS2AOP$$1489b30$$MethodInvocation$$getSearchCount4.proceed(MethodInvocationClassGenerator.java)
+
+
+<<javelin.EventInfo_END>>

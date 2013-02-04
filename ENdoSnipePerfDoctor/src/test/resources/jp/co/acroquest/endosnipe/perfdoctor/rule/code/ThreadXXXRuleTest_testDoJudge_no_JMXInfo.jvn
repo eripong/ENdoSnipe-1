@@ -1,0 +1,8 @@
+Call  ,2008/02/29 16:15:28.284,"executeInstance2InstanceMethodCall","jp.co.acroquest.test.CheckClass","unknown","unknown","AP-Server","unknown","","executeInstance2InstanceMethodCall"
+<<javelin.ExtraInfo_START>>
+duration = 2328
+<<javelin.ExtraInfo_END>>
+Return,2008/02/29 16:15:30.612,"executeInstance2InstanceMethodCall","jp.co.acroquest.test.CheckClass","unknown","unknown","AP-Server","unknown","","executeInstance2InstanceMethodCall"
+<<javelin.ExtraInfo_START>>
+duration = 2328
+<<javelin.ExtraInfo_END>>

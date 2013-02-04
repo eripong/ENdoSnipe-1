@@ -1,0 +1,14 @@
+Event ,2009/06/13 19:00:08.992,"ThreadBlockContinue","","root","WARN","Javelin-Thread-Monitor@7(java.lang.Thread@2b74c4)"
+<<javelin.EventInfo_START>>
+thread.block.duration = 3002
+thread.monitor.thread = ThreadId:31,ThreadName:DeadlockThread2,ThreadState:BLOCKED,LockName:jp.co.acroquest.endosnipe.demo.threadblock.Lock@a80268,LockOwnerId:30,LockOwnerName:DeadlockThread1
+
+	at jp.co.acroquest.endosnipe.demo.logic.impl.DeadLockLogicImpl$2.run(DeadLockLogicImpl.java:64)
+	at java.lang.Thread.run(Thread.java:619)
+
+thread.monitor.owner = ThreadId:30,ThreadName:DeadlockThread1,ThreadState:BLOCKED,LockName:jp.co.acroquest.endosnipe.demo.threadblock.Lock@ac6ca1,LockOwnerId:31,LockOwnerName:DeadlockThread2
+
+	at jp.co.acroquest.endosnipe.demo.logic.impl.DeadLockLogicImpl$1.run(DeadLockLogicImpl.java:46)
+	at java.lang.Thread.run(Thread.java:619)
+
+<<javelin.EventInfo_END>>

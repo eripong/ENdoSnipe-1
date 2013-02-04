@@ -1,0 +1,750 @@
+Throw ,2007/10/27 20:28:31.859,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.869,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.879,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.889,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.899,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.909,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.919,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.929,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.939,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>
+Throw ,2007/10/27 20:28:31.949,java.lang.NullPointerException,1271ba,calculate,examples.jsf.action.impl.AddActionImpl,unknown,/add/add.html
+<<javelin.StackTrace_START>>
+examples.jsf.action.impl.AddActionImpl.calculate(AddActionImpl.java:41)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.$$calculate$$invokeSuperMethod$$(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:55)
+org.seasar.javelin.stats.S2StatsJavelinInterceptor.invoke(S2StatsJavelinInterceptor.java:108)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.ThrowsInterceptor.invoke(ThrowsInterceptor.java:73)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.TraceInterceptor.invoke(TraceInterceptor.java:70)
+org.seasar.framework.aop.impl.NestedMethodInvocation.proceed(NestedMethodInvocation.java:53)
+org.seasar.framework.aop.interceptors.InterceptorChain.invoke(InterceptorChain.java:49)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954$$MethodInvocation$$calculate0.proceed(MethodInvocationClassGenerator.java)
+examples.jsf.action.impl.AddActionImpl$$EnhancedByS2AOP$$1e0e954.calculate(AddActionImpl$$EnhancedByS2AOP$$1e0e954.java)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+org.seasar.teeda.core.el.impl.MethodBindingImpl.invoke(MethodBindingImpl.java:70)
+org.seasar.jsf.util.InvokeUtil.invokeInternal(InvokeUtil.java:92)
+org.seasar.jsf.util.InvokeUtil.invoke(InvokeUtil.java:72)
+org.seasar.jsf.application.ActionListenerImpl.processAction(ActionListenerImpl.java:65)
+javax.faces.component.UICommand.broadcast(UICommand.java:149)
+org.seasar.teeda.extension.component.html.THtmlCommandButton.broadcast(THtmlCommandButton.java:53)
+org.seasar.jsf.component.S2UIViewRoot.broadcastForPhase(S2UIViewRoot.java:119)
+org.seasar.jsf.component.S2UIViewRoot.processApplication(S2UIViewRoot.java:90)
+org.seasar.jsf.lifecycle.LifecycleImpl.invokeApplication(LifecycleImpl.java:179)
+org.seasar.jsf.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:107)
+javax.faces.webapp.FacesServlet.service(FacesServlet.java:92)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.javelin.stats.S2StatsJavelinFilter.doFilter(S2StatsJavelinFilter.java:289)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+jp.co.acroquest.endosnipe.filter.timer.TimerJavelinFilter.doFilter(Unknown Source)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+examples.jsf.util.RequestDumpFilter.doFilter(RequestDumpFilter.java:66)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.extension.filter.EncodingFilter.doFilter(EncodingFilter.java:62)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.seasar.framework.container.filter.S2ContainerFilter.doFilter(S2ContainerFilter.java:63)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:122)
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:263)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:584)
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:447)
+java.lang.Thread.run(Thread.java:619)
+<<javelin.StackTrace_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340015000
+thread.currentThreadUserTime = 1950012500
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 100000000
+thread.currentThreadUserTime.delta = 1357208700
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>

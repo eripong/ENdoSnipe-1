@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleSet name="setA">
+    <rule id="COD.MTRC.METHOD_CPU" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.MethodCpuUsageRule" enabled="TRUE">
+        <ruleLevel level="INFO" enabled="FALSE" durationThreshold="0">
+            <property name="threshold">0</property>
+        </ruleLevel>
+        <ruleLevel level="WARN" enabled="TRUE" durationThreshold="0">
+            <property name="threshold">5000</property>
+        </ruleLevel>
+        <ruleLevel level="ERROR" enabled="FALSE" durationThreshold="100">
+            <property name="threshold">20000</property>
+        </ruleLevel>
+    </rule>
+    <rule id="COD.THRD.WAIT_TIME" className="jp.co.acroquest.endosnipe.perfdoctor.rule.code.ThreadWaitTimeRule" enabled="FALSE">
+        <ruleLevel level="INFO" enabled="FALSE" durationThreshold="500">
+            <property name="threshold">2000</property>
+        </ruleLevel>
+        <ruleLevel level="WARN" enabled="TRUE" durationThreshold="500">
+            <property name="threshold">60000</property>
+        </ruleLevel>
+        <ruleLevel level="ERROR" enabled="FALSE" durationThreshold="500">
+            <property name="threshold">200000</property>
+        </ruleLevel>
+    </rule>
+</ruleSet>

@@ -1,0 +1,512 @@
+Call  ,2007/11/16 17:56:40.281,"SELECT NULL AS table_cat,        t.owner AS table_schem,        t.table_name AS table_name,        t.column_name AS column_name,        DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,                'LONG', -1, 'DATE', 91, 'RAW', -3, 'LONG RAW', -4,                  'BLOB', 2004, 'CLOB', 2005, 'BFILE', -13, 'FLOAT', 6,                 'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101,                 'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102,                 'INTERVAL YEAR(2) TO MONTH', -103,                 'INTERVAL DAY(2) TO SECOND(6)', -104,                 'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,                 1111)               AS data_type,        t.data_type AS type_name,        DECODE (t.data_precision, null, t.data_length, t.data_precision)               AS column_size,        0 AS buffer_length,        t.data_scale AS decimal_digits,        10 AS num_prec_radix,        DECODE (t.nullable, 'N', 0, 1) AS nullable,        NULL AS remarks,        t.data_default AS column_def,        0 AS sql_data_type,        0 AS sql_datetime_sub,        t.data_length AS char_octet_length,        t.column_id AS ordinal_position,        DECODE (t.nullable, 'N', 'NO', 'YES') AS is_nullable FROM all_tab_columns t WHERE t.owner LIKE :1 ESCAPE '/'   AND t.table_name LIKE :2 ESCAPE '/'   AND t.column_name LIKE :3 ESCAPE '/'  ORDER BY table_schem, table_name, ordinal_position ","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 55
+args[1] = [VALUE] SA,DEPT,%
+args[2] = [PLAN] Plan hash value: 1066592194
+ 
+-----------------------------------------------------------------
+| Id  | Operation                           | Name              |
+-----------------------------------------------------------------
+|   0 | SELECT STATEMENT                    |                   |
+|   1 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|*  2 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|   3 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|*  4 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|   5 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|*  6 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|   7 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|*  8 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|   9 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 10 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  11 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|* 12 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|  13 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|* 14 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|  15 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|* 16 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|  17 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|* 18 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|  19 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 20 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  21 |  SORT ORDER BY                      |                   |
+|* 22 |   FILTER                            |                   |
+|  23 |    NESTED LOOPS OUTER               |                   |
+|  24 |     NESTED LOOPS OUTER              |                   |
+|  25 |      NESTED LOOPS OUTER             |                   |
+|  26 |       NESTED LOOPS OUTER            |                   |
+|  27 |        NESTED LOOPS                 |                   |
+|  28 |         NESTED LOOPS                |                   |
+|  29 |          TABLE ACCESS BY INDEX ROWID| USER$             |
+|* 30 |           INDEX RANGE SCAN          | I_USER1           |
+|  31 |          TABLE ACCESS BY INDEX ROWID| OBJ$              |
+|* 32 |           INDEX RANGE SCAN          | I_OBJ2            |
+|* 33 |         TABLE ACCESS CLUSTER        | COL$              |
+|* 34 |          INDEX UNIQUE SCAN          | I_OBJ#            |
+|* 35 |        TABLE ACCESS CLUSTER         | COLTYPE$          |
+|* 36 |       INDEX RANGE SCAN              | I_HH_OBJ#_INTCOL# |
+|* 37 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 38 |       INDEX RANGE SCAN              | I_OBJ3            |
+|  39 |     TABLE ACCESS CLUSTER            | USER$             |
+|* 40 |      INDEX UNIQUE SCAN              | I_USER#           |
+|* 41 |    TABLE ACCESS CLUSTER             | TAB$              |
+|* 42 |     INDEX UNIQUE SCAN               | I_OBJ#            |
+|  43 |     NESTED LOOPS                    |                   |
+|  44 |      FIXED TABLE FULL               | X$KZSRO           |
+|* 45 |      INDEX RANGE SCAN               | I_OBJAUTH2        |
+|* 46 |       FIXED TABLE FULL              | X$KZSPR           |
+-----------------------------------------------------------------
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - access("O"."OBJ#"=:B1)
+   4 - access("O"."OBJ#"=:B1)
+   6 - access("O"."OBJ#"=:B1)
+   8 - access("O"."OBJ#"=:B1)
+  10 - access("O"."OBJ#"=:B1)
+  12 - access("O"."OBJ#"=:B1)
+  14 - access("O"."OBJ#"=:B1)
+  16 - access("O"."OBJ#"=:B1)
+  18 - access("O"."OBJ#"=:B1)
+  20 - access("O"."OBJ#"=:B1)
+  22 - filter(("O"."TYPE#"=3 OR "O"."TYPE#"=4 OR "O"."TYPE#"=2 AND  NOT 
+              EXISTS (SELECT 0 FROM "SYS"."TAB$" "T" WHERE "T"."OBJ#"=:B1 AND 
+              (BITAND("T"."PROPERTY",512)=512 OR BITAND("T"."PROPERTY",8192)=8192))) 
+              AND ("O"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT 0 FROM 
+              "SYS"."OBJAUTH$" "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "OBJ#"=:B2 
+              AND "GRANTEE#"="KZSROROL") OR  EXISTS (SELECT 0 FROM SYS."X$KZSPR" 
+              "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))))
+  30 - access("U"."NAME" LIKE :1 ESCAPE '/')
+       filter("U"."NAME" LIKE :1 ESCAPE '/')
+  32 - access("O"."OWNER#"="U"."USER#" AND "O"."NAME" LIKE :2 ESCAPE 
+              '/')
+       filter("O"."NAME" LIKE :2 ESCAPE '/')
+  33 - filter(DECODE("C"."PROPERTY",0,'NO',DECODE(BITAND("C"."PROPERTY",
+              32),32,'YES','NO'))='NO' AND "C"."NAME" LIKE :3 ESCAPE '/')
+  34 - access("O"."OBJ#"="C"."OBJ#")
+  35 - filter("C"."INTCOL#"="AC"."INTCOL#"(+))
+  36 - access("C"."OBJ#"="H"."OBJ#"(+) AND 
+              "C"."INTCOL#"="H"."INTCOL#"(+))
+  37 - filter("OT"."TYPE#"(+)=13)
+  38 - access("AC"."TOID"="OT"."OID$"(+))
+  40 - access("OT"."OWNER#"="UT"."USER#"(+))
+  41 - filter(BITAND("T"."PROPERTY",512)=512 OR 
+              BITAND("T"."PROPERTY",8192)=8192)
+  42 - access("T"."OBJ#"=:B1)
+  45 - access("GRANTEE#"="KZSROROL" AND "OBJ#"=:B1)
+  46 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR 
+              (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))
+ 
+Note
+-----
+   - rule based optimizer used (consider using cbo)
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:40.531,"SELECT NULL AS table_cat,        c.owner AS table_schem,        c.table_name,        c.column_name,        c.position AS key_seq,        c.constraint_name AS pk_name FROM all_cons_columns c, all_constraints k WHERE k.constraint_type = 'P'   AND k.table_name = :1   AND k.owner like :2 escape '/'   AND k.constraint_name = c.constraint_name    AND k.table_name = c.table_name    AND k.owner = c.owner  ORDER BY column_name ","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 49
+args[1] = [VALUE] DEPT,SA
+args[2] = [PLAN] Plan hash value: 400363371
+ 
+-----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                    | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                             |            |     1 |   270 |    42   (3)| 00:00:01 |
+|   1 |  SORT ORDER BY                               |            |     1 |   270 |    42   (3)| 00:00:01 |
+|*  2 |   FILTER                                     |            |       |       |            |          |
+|   3 |    NESTED LOOPS OUTER                        |            |     1 |   270 |    41   (0)| 00:00:01 |
+|   4 |     NESTED LOOPS                             |            |     1 |   224 |    40   (0)| 00:00:01 |
+|   5 |      NESTED LOOPS                            |            |     1 |   203 |    39   (0)| 00:00:01 |
+|   6 |       NESTED LOOPS                           |            |     1 |   173 |    38   (0)| 00:00:01 |
+|   7 |        NESTED LOOPS OUTER                    |            |     1 |   158 |    36   (0)| 00:00:01 |
+|   8 |         NESTED LOOPS OUTER                   |            |     1 |   155 |    35   (0)| 00:00:01 |
+|   9 |          NESTED LOOPS                        |            |     1 |   152 |    34   (0)| 00:00:01 |
+|  10 |           NESTED LOOPS                       |            |     1 |   140 |    33   (0)| 00:00:01 |
+|  11 |            NESTED LOOPS OUTER                |            |     1 |   119 |    32   (0)| 00:00:01 |
+|  12 |             NESTED LOOPS OUTER               |            |     1 |   112 |    31   (0)| 00:00:01 |
+|  13 |              NESTED LOOPS OUTER              |            |     1 |   107 |    31   (0)| 00:00:01 |
+|  14 |               NESTED LOOPS                   |            |     1 |   102 |    31   (0)| 00:00:01 |
+|  15 |                NESTED LOOPS                  |            |     1 |    88 |    30   (0)| 00:00:01 |
+|  16 |                 NESTED LOOPS                 |            |     2 |   148 |    28   (0)| 00:00:01 |
+|  17 |                  NESTED LOOPS                |            |     2 |   106 |    26   (0)| 00:00:01 |
+|  18 |                   TABLE ACCESS BY INDEX ROWID| OBJ$       |     2 |    66 |    25   (0)| 00:00:01 |
+|* 19 |                    INDEX SKIP SCAN           | I_OBJ2     |     2 |       |    23   (0)| 00:00:01 |
+|* 20 |                   TABLE ACCESS CLUSTER       | CDEF$      |     1 |    20 |     1   (0)| 00:00:01 |
+|* 21 |                    INDEX UNIQUE SCAN         | I_COBJ#    |     1 |       |     0   (0)| 00:00:01 |
+|  22 |                  TABLE ACCESS BY INDEX ROWID | CON$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 23 |                   INDEX UNIQUE SCAN          | I_CON2     |     1 |       |     0   (0)| 00:00:01 |
+|* 24 |                 TABLE ACCESS CLUSTER         | USER$      |     1 |    14 |     1   (0)| 00:00:01 |
+|* 25 |                  INDEX UNIQUE SCAN           | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  26 |                TABLE ACCESS BY INDEX ROWID   | USER$      |     1 |    14 |     1   (0)| 00:00:01 |
+|* 27 |                 INDEX UNIQUE SCAN            | I_USER1    |     1 |       |     0   (0)| 00:00:01 |
+|* 28 |               INDEX UNIQUE SCAN              | I_OBJ1     |     1 |     5 |     0   (0)| 00:00:01 |
+|* 29 |              INDEX UNIQUE SCAN               | I_OBJ1     |     1 |     5 |     0   (0)| 00:00:01 |
+|  30 |             TABLE ACCESS BY INDEX ROWID      | CON$       |     1 |     7 |     1   (0)| 00:00:01 |
+|* 31 |              INDEX UNIQUE SCAN               | I_CON2     |     1 |       |     0   (0)| 00:00:01 |
+|  32 |            TABLE ACCESS BY INDEX ROWID       | CON$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 33 |             INDEX UNIQUE SCAN                | I_CON1     |     1 |       |     0   (0)| 00:00:01 |
+|* 34 |           TABLE ACCESS BY INDEX ROWID        | CDEF$      |     1 |    12 |     1   (0)| 00:00:01 |
+|* 35 |            INDEX UNIQUE SCAN                 | I_CDEF1    |     1 |       |     0   (0)| 00:00:01 |
+|  36 |          TABLE ACCESS CLUSTER                | USER$      |     1 |     3 |     1   (0)| 00:00:01 |
+|* 37 |           INDEX UNIQUE SCAN                  | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  38 |         TABLE ACCESS CLUSTER                 | USER$      |     1 |     3 |     1   (0)| 00:00:01 |
+|* 39 |          INDEX UNIQUE SCAN                   | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  40 |        TABLE ACCESS BY INDEX ROWID           | CCOL$      |     1 |    15 |     2   (0)| 00:00:01 |
+|* 41 |         INDEX RANGE SCAN                     | I_CCOL1    |     1 |       |     1   (0)| 00:00:01 |
+|* 42 |       TABLE ACCESS BY INDEX ROWID            | OBJ$       |     1 |    30 |     1   (0)| 00:00:01 |
+|* 43 |        INDEX UNIQUE SCAN                     | I_OBJ1     |     1 |       |     0   (0)| 00:00:01 |
+|  44 |      TABLE ACCESS BY INDEX ROWID             | COL$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 45 |       INDEX UNIQUE SCAN                      | I_COL3     |     1 |       |     0   (0)| 00:00:01 |
+|* 46 |     TABLE ACCESS CLUSTER                     | ATTRCOL$   |     1 |    46 |     1   (0)| 00:00:01 |
+|  47 |    NESTED LOOPS                              |            |     2 |    42 |     2   (0)| 00:00:01 |
+|* 48 |     INDEX RANGE SCAN                         | I_OBJAUTH1 |     1 |     8 |     2   (0)| 00:00:01 |
+|* 49 |     FIXED TABLE FULL                         | X$KZSRO    |     2 |    26 |     0   (0)| 00:00:01 |
+|* 50 |      FIXED TABLE FULL                        | X$KZSPR    |     1 |    26 |     0   (0)| 00:00:01 |
+|  51 |       NESTED LOOPS                           |            |     2 |    42 |     2   (0)| 00:00:01 |
+|* 52 |        INDEX RANGE SCAN                      | I_OBJAUTH1 |     1 |     8 |     2   (0)| 00:00:01 |
+|* 53 |        FIXED TABLE FULL                      | X$KZSRO    |     2 |    26 |     0   (0)| 00:00:01 |
+|* 54 |         FIXED TABLE FULL                     | X$KZSPR    |     1 |    26 |     0   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------------------------
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - filter(("O"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT /*+ */ 0 FROM "SYS"."OBJAUTH$" 
+              "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "GRANTEE#"="KZSROROL" AND "OBJ#"=:B1) OR  EXISTS (SELECT 
+              /*+ */ 0 FROM SYS."X$KZSPR" "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))) AND 
+              ("C"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT /*+ */ 0 FROM "SYS"."OBJAUTH$" 
+              "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "GRANTEE#"="KZSROROL" AND "OBJ#"=:B2) OR  EXISTS (SELECT 
+              /*+ */ 0 FROM SYS."X$KZSPR" "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))))
+  19 - access("O"."NAME"=:1)
+       filter("O"."NAME"=:1)
+  20 - filter(DECODE("C"."TYPE#",1,'C',2,'P',3,'U',4,'R',5,'V',6,'O',7,'C','?')='P' AND 
+              "C"."TYPE#"<>8 AND "C"."TYPE#"<>12)
+  21 - access("C"."OBJ#"="O"."OBJ#")
+  23 - access("OC"."CON#"="C"."CON#")
+  24 - filter("OU"."NAME" LIKE :2 ESCAPE '/')
+  25 - access("OC"."OWNER#"="OU"."USER#")
+  27 - access("OU"."NAME"="U"."NAME")
+       filter("U"."NAME" LIKE :2 ESCAPE '/')
+  28 - access("C"."ENABLED"="OI"."OBJ#"(+))
+  29 - access("C"."ROBJ#"="RO"."OBJ#"(+))
+  31 - access("C"."RCON#"="RC"."CON#"(+))
+  33 - access("C"."OWNER#"="U"."USER#" AND "OC"."NAME"="C"."NAME")
+  34 - filter("CD"."TYPE#"<>12)
+  35 - access("C"."CON#"="CD"."CON#")
+  37 - access("OI"."OBJ#"="UI"."USER#"(+))
+  39 - access("RC"."OWNER#"="RU"."USER#"(+))
+  41 - access("CD"."CON#"="CC"."CON#")
+  42 - filter("O"."NAME"=:1)
+  43 - access("CC"."OBJ#"="O"."OBJ#")
+  45 - access("CC"."OBJ#"="COL"."OBJ#" AND "CC"."INTCOL#"="COL"."INTCOL#")
+  46 - filter("COL"."OBJ#"="AC"."OBJ#"(+) AND "COL"."INTCOL#"="AC"."INTCOL#"(+))
+  48 - access("OBJ#"=:B1)
+  49 - filter("GRANTEE#"="KZSROROL")
+  50 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR (-"KZSPRPRV")=(-47) OR 
+              (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))
+  52 - access("OBJ#"=:B1)
+  53 - filter("GRANTEE#"="KZSROROL")
+  54 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR (-"KZSPRPRV")=(-47) OR 
+              (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 50
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 25
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 51
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:40.281,"SELECT NULL AS table_cat,        t.owner AS table_schem,        t.table_name AS table_name,        t.column_name AS column_name,        DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,                'LONG', -1, 'DATE', 91, 'RAW', -3, 'LONG RAW', -4,                  'BLOB', 2004, 'CLOB', 2005, 'BFILE', -13, 'FLOAT', 6,                 'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101,                 'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102,                 'INTERVAL YEAR(2) TO MONTH', -103,                 'INTERVAL DAY(2) TO SECOND(6)', -104,                 'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,                 1111)               AS data_type,        t.data_type AS type_name,        DECODE (t.data_precision, null, t.data_length, t.data_precision)               AS column_size,        0 AS buffer_length,        t.data_scale AS decimal_digits,        10 AS num_prec_radix,        DECODE (t.nullable, 'N', 0, 1) AS nullable,        NULL AS remarks,        t.data_default AS column_def,        0 AS sql_data_type,        0 AS sql_datetime_sub,        t.data_length AS char_octet_length,        t.column_id AS ordinal_position,        DECODE (t.nullable, 'N', 'NO', 'YES') AS is_nullable FROM all_tab_columns t WHERE t.owner LIKE :1 ESCAPE '/'   AND t.table_name LIKE :2 ESCAPE '/'   AND t.column_name LIKE :3 ESCAPE '/'  ORDER BY table_schem, table_name, ordinal_position ","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 55
+args[1] = [VALUE] SA,DEPT,%
+args[2] = [PLAN] Plan hash value: 1066592194
+ 
+-----------------------------------------------------------------
+| Id  | Operation                           | Name              |
+-----------------------------------------------------------------
+|   0 | SELECT STATEMENT                    |                   |
+|   1 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|*  2 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|   3 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|*  4 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|   5 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|*  6 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|   7 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|*  8 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|   9 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 10 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  11 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|* 12 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|  13 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|* 14 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|  15 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|* 16 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|  17 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|* 18 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|  19 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 20 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  21 |  SORT ORDER BY                      |                   |
+|* 22 |   FILTER                            |                   |
+|  23 |    NESTED LOOPS OUTER               |                   |
+|  24 |     NESTED LOOPS OUTER              |                   |
+|  25 |      NESTED LOOPS OUTER             |                   |
+|  26 |       NESTED LOOPS OUTER            |                   |
+|  27 |        NESTED LOOPS                 |                   |
+|  28 |         NESTED LOOPS                |                   |
+|  29 |          TABLE ACCESS BY INDEX ROWID| USER$             |
+|* 30 |           INDEX RANGE SCAN          | I_USER1           |
+|  31 |          TABLE ACCESS BY INDEX ROWID| OBJ$              |
+|* 32 |           INDEX RANGE SCAN          | I_OBJ2            |
+|* 33 |         TABLE ACCESS CLUSTER        | COL$              |
+|* 34 |          INDEX UNIQUE SCAN          | I_OBJ#            |
+|* 35 |        TABLE ACCESS CLUSTER         | COLTYPE$          |
+|* 36 |       INDEX RANGE SCAN              | I_HH_OBJ#_INTCOL# |
+|* 37 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 38 |       INDEX RANGE SCAN              | I_OBJ3            |
+|  39 |     TABLE ACCESS CLUSTER            | USER$             |
+|* 40 |      INDEX UNIQUE SCAN              | I_USER#           |
+|* 41 |    TABLE ACCESS CLUSTER             | TAB$              |
+|* 42 |     INDEX UNIQUE SCAN               | I_OBJ#            |
+|  43 |     NESTED LOOPS                    |                   |
+|  44 |      FIXED TABLE FULL               | X$KZSRO           |
+|* 45 |      INDEX RANGE SCAN               | I_OBJAUTH2        |
+|* 46 |       FIXED TABLE FULL              | X$KZSPR           |
+-----------------------------------------------------------------
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - access("O"."OBJ#"=:B1)
+   4 - access("O"."OBJ#"=:B1)
+   6 - access("O"."OBJ#"=:B1)
+   8 - access("O"."OBJ#"=:B1)
+  10 - access("O"."OBJ#"=:B1)
+  12 - access("O"."OBJ#"=:B1)
+  14 - access("O"."OBJ#"=:B1)
+  16 - access("O"."OBJ#"=:B1)
+  18 - access("O"."OBJ#"=:B1)
+  20 - access("O"."OBJ#"=:B1)
+  22 - filter(("O"."TYPE#"=3 OR "O"."TYPE#"=4 OR "O"."TYPE#"=2 AND  NOT 
+              EXISTS (SELECT 0 FROM "SYS"."TAB$" "T" WHERE "T"."OBJ#"=:B1 AND 
+              (BITAND("T"."PROPERTY",512)=512 OR BITAND("T"."PROPERTY",8192)=8192))) 
+              AND ("O"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT 0 FROM 
+              "SYS"."OBJAUTH$" "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "OBJ#"=:B2 
+              AND "GRANTEE#"="KZSROROL") OR  EXISTS (SELECT 0 FROM SYS."X$KZSPR" 
+              "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))))
+  30 - access("U"."NAME" LIKE :1 ESCAPE '/')
+       filter("U"."NAME" LIKE :1 ESCAPE '/')
+  32 - access("O"."OWNER#"="U"."USER#" AND "O"."NAME" LIKE :2 ESCAPE 
+              '/')
+       filter("O"."NAME" LIKE :2 ESCAPE '/')
+  33 - filter(DECODE("C"."PROPERTY",0,'NO',DECODE(BITAND("C"."PROPERTY",
+              32),32,'YES','NO'))='NO' AND "C"."NAME" LIKE :3 ESCAPE '/')
+  34 - access("O"."OBJ#"="C"."OBJ#")
+  35 - filter("C"."INTCOL#"="AC"."INTCOL#"(+))
+  36 - access("C"."OBJ#"="H"."OBJ#"(+) AND 
+              "C"."INTCOL#"="H"."INTCOL#"(+))
+  37 - filter("OT"."TYPE#"(+)=13)
+  38 - access("AC"."TOID"="OT"."OID$"(+))
+  40 - access("OT"."OWNER#"="UT"."USER#"(+))
+  41 - filter(BITAND("T"."PROPERTY",512)=512 OR 
+              BITAND("T"."PROPERTY",8192)=8192)
+  42 - access("T"."OBJ#"=:B1)
+  45 - access("GRANTEE#"="KZSROROL" AND "OBJ#"=:B1)
+  46 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR 
+              (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))
+ 
+Note
+-----
+   - rule based optimizer used (consider using cbo)
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:40.531,"SELECT NULL AS table_cat,        c.owner AS table_schem,        c.table_name,        c.column_name,        c.position AS key_seq,        c.constraint_name AS pk_name FROM all_cons_columns c, all_constraints k WHERE k.constraint_type = 'P'   AND k.table_name = :1   AND k.owner like :2 escape '/'   AND k.constraint_name = c.constraint_name    AND k.table_name = c.table_name    AND k.owner = c.owner  ORDER BY column_name ","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 49
+args[1] = [VALUE] DEPT,SA
+args[2] = [PLAN] Plan hash value: 400363371
+ 
+-----------------------------------------------------------------------------------------------------------
+| Id  | Operation                                    | Name       | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                             |            |     1 |   270 |    42   (3)| 00:00:01 |
+|   1 |  SORT ORDER BY                               |            |     1 |   270 |    42   (3)| 00:00:01 |
+|*  2 |   FILTER                                     |            |       |       |            |          |
+|   3 |    NESTED LOOPS OUTER                        |            |     1 |   270 |    41   (0)| 00:00:01 |
+|   4 |     NESTED LOOPS                             |            |     1 |   224 |    40   (0)| 00:00:01 |
+|   5 |      NESTED LOOPS                            |            |     1 |   203 |    39   (0)| 00:00:01 |
+|   6 |       NESTED LOOPS                           |            |     1 |   173 |    38   (0)| 00:00:01 |
+|   7 |        NESTED LOOPS OUTER                    |            |     1 |   158 |    36   (0)| 00:00:01 |
+|   8 |         NESTED LOOPS OUTER                   |            |     1 |   155 |    35   (0)| 00:00:01 |
+|   9 |          NESTED LOOPS                        |            |     1 |   152 |    34   (0)| 00:00:01 |
+|  10 |           NESTED LOOPS                       |            |     1 |   140 |    33   (0)| 00:00:01 |
+|  11 |            NESTED LOOPS OUTER                |            |     1 |   119 |    32   (0)| 00:00:01 |
+|  12 |             NESTED LOOPS OUTER               |            |     1 |   112 |    31   (0)| 00:00:01 |
+|  13 |              NESTED LOOPS OUTER              |            |     1 |   107 |    31   (0)| 00:00:01 |
+|  14 |               NESTED LOOPS                   |            |     1 |   102 |    31   (0)| 00:00:01 |
+|  15 |                NESTED LOOPS                  |            |     1 |    88 |    30   (0)| 00:00:01 |
+|  16 |                 NESTED LOOPS                 |            |     2 |   148 |    28   (0)| 00:00:01 |
+|  17 |                  NESTED LOOPS                |            |     2 |   106 |    26   (0)| 00:00:01 |
+|  18 |                   TABLE ACCESS BY INDEX ROWID| OBJ$       |     2 |    66 |    25   (0)| 00:00:01 |
+|* 19 |                    INDEX SKIP SCAN           | I_OBJ2     |     2 |       |    23   (0)| 00:00:01 |
+|* 20 |                   TABLE ACCESS CLUSTER       | CDEF$      |     1 |    20 |     1   (0)| 00:00:01 |
+|* 21 |                    INDEX UNIQUE SCAN         | I_COBJ#    |     1 |       |     0   (0)| 00:00:01 |
+|  22 |                  TABLE ACCESS BY INDEX ROWID | CON$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 23 |                   INDEX UNIQUE SCAN          | I_CON2     |     1 |       |     0   (0)| 00:00:01 |
+|* 24 |                 TABLE ACCESS CLUSTER         | USER$      |     1 |    14 |     1   (0)| 00:00:01 |
+|* 25 |                  INDEX UNIQUE SCAN           | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  26 |                TABLE ACCESS BY INDEX ROWID   | USER$      |     1 |    14 |     1   (0)| 00:00:01 |
+|* 27 |                 INDEX UNIQUE SCAN            | I_USER1    |     1 |       |     0   (0)| 00:00:01 |
+|* 28 |               INDEX UNIQUE SCAN              | I_OBJ1     |     1 |     5 |     0   (0)| 00:00:01 |
+|* 29 |              INDEX UNIQUE SCAN               | I_OBJ1     |     1 |     5 |     0   (0)| 00:00:01 |
+|  30 |             TABLE ACCESS BY INDEX ROWID      | CON$       |     1 |     7 |     1   (0)| 00:00:01 |
+|* 31 |              INDEX UNIQUE SCAN               | I_CON2     |     1 |       |     0   (0)| 00:00:01 |
+|  32 |            TABLE ACCESS BY INDEX ROWID       | CON$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 33 |             INDEX UNIQUE SCAN                | I_CON1     |     1 |       |     0   (0)| 00:00:01 |
+|* 34 |           TABLE ACCESS BY INDEX ROWID        | CDEF$      |     1 |    12 |     1   (0)| 00:00:01 |
+|* 35 |            INDEX UNIQUE SCAN                 | I_CDEF1    |     1 |       |     0   (0)| 00:00:01 |
+|  36 |          TABLE ACCESS CLUSTER                | USER$      |     1 |     3 |     1   (0)| 00:00:01 |
+|* 37 |           INDEX UNIQUE SCAN                  | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  38 |         TABLE ACCESS CLUSTER                 | USER$      |     1 |     3 |     1   (0)| 00:00:01 |
+|* 39 |          INDEX UNIQUE SCAN                   | I_USER#    |     1 |       |     0   (0)| 00:00:01 |
+|  40 |        TABLE ACCESS BY INDEX ROWID           | CCOL$      |     1 |    15 |     2   (0)| 00:00:01 |
+|* 41 |         INDEX RANGE SCAN                     | I_CCOL1    |     1 |       |     1   (0)| 00:00:01 |
+|* 42 |       TABLE ACCESS BY INDEX ROWID            | OBJ$       |     1 |    30 |     1   (0)| 00:00:01 |
+|* 43 |        INDEX UNIQUE SCAN                     | I_OBJ1     |     1 |       |     0   (0)| 00:00:01 |
+|  44 |      TABLE ACCESS BY INDEX ROWID             | COL$       |     1 |    21 |     1   (0)| 00:00:01 |
+|* 45 |       INDEX UNIQUE SCAN                      | I_COL3     |     1 |       |     0   (0)| 00:00:01 |
+|* 46 |     TABLE ACCESS CLUSTER                     | ATTRCOL$   |     1 |    46 |     1   (0)| 00:00:01 |
+|  47 |    NESTED LOOPS                              |            |     2 |    42 |     2   (0)| 00:00:01 |
+|* 48 |     INDEX RANGE SCAN                         | I_OBJAUTH1 |     1 |     8 |     2   (0)| 00:00:01 |
+|* 49 |     FIXED TABLE FULL                         | X$KZSRO    |     2 |    26 |     0   (0)| 00:00:01 |
+|* 50 |      FIXED TABLE FULL                        | X$KZSPR    |     1 |    26 |     0   (0)| 00:00:01 |
+|  51 |       NESTED LOOPS                           |            |     2 |    42 |     2   (0)| 00:00:01 |
+|* 52 |        INDEX RANGE SCAN                      | I_OBJAUTH1 |     1 |     8 |     2   (0)| 00:00:01 |
+|* 53 |        FIXED TABLE FULL                      | X$KZSRO    |     2 |    26 |     0   (0)| 00:00:01 |
+|* 54 |         FIXED TABLE FULL                     | X$KZSPR    |     1 |    26 |     0   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------------------------
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - filter(("O"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT /*+ */ 0 FROM "SYS"."OBJAUTH$" 
+              "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "GRANTEE#"="KZSROROL" AND "OBJ#"=:B1) OR  EXISTS (SELECT 
+              /*+ */ 0 FROM SYS."X$KZSPR" "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))) AND 
+              ("C"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT /*+ */ 0 FROM "SYS"."OBJAUTH$" 
+              "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "GRANTEE#"="KZSROROL" AND "OBJ#"=:B2) OR  EXISTS (SELECT 
+              /*+ */ 0 FROM SYS."X$KZSPR" "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))))
+  19 - access("O"."NAME"=:1)
+       filter("O"."NAME"=:1)
+  20 - filter(DECODE("C"."TYPE#",1,'C',2,'P',3,'U',4,'R',5,'V',6,'O',7,'C','?')='P' AND 
+              "C"."TYPE#"<>8 AND "C"."TYPE#"<>12)
+  21 - access("C"."OBJ#"="O"."OBJ#")
+  23 - access("OC"."CON#"="C"."CON#")
+  24 - filter("OU"."NAME" LIKE :2 ESCAPE '/')
+  25 - access("OC"."OWNER#"="OU"."USER#")
+  27 - access("OU"."NAME"="U"."NAME")
+       filter("U"."NAME" LIKE :2 ESCAPE '/')
+  28 - access("C"."ENABLED"="OI"."OBJ#"(+))
+  29 - access("C"."ROBJ#"="RO"."OBJ#"(+))
+  31 - access("C"."RCON#"="RC"."CON#"(+))
+  33 - access("C"."OWNER#"="U"."USER#" AND "OC"."NAME"="C"."NAME")
+  34 - filter("CD"."TYPE#"<>12)
+  35 - access("C"."CON#"="CD"."CON#")
+  37 - access("OI"."OBJ#"="UI"."USER#"(+))
+  39 - access("RC"."OWNER#"="RU"."USER#"(+))
+  41 - access("CD"."CON#"="CC"."CON#")
+  42 - filter("O"."NAME"=:1)
+  43 - access("CC"."OBJ#"="O"."OBJ#")
+  45 - access("CC"."OBJ#"="COL"."OBJ#" AND "CC"."INTCOL#"="COL"."INTCOL#")
+  46 - filter("COL"."OBJ#"="AC"."OBJ#"(+) AND "COL"."INTCOL#"="AC"."INTCOL#"(+))
+  48 - access("OBJ#"=:B1)
+  49 - filter("GRANTEE#"="KZSROROL")
+  50 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR (-"KZSPRPRV")=(-47) OR 
+              (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))
+  52 - access("OBJ#"=:B1)
+  53 - filter("GRANTEE#"="KZSROROL")
+  54 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR (-"KZSPRPRV")=(-47) OR 
+              (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR (-"KZSPRPRV")=(-50)))
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 50
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 25
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>
+Call  ,2007/11/16 17:56:41.968,"SELECT DEPT.deptno, DEPT.dname, DEPT.loc, DEPT.versionno FROM DEPT","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch.html"
+<<javelin.Args_START>>
+args[0] = [Time] 51
+args[1] = [PLAN] Plan hash value: 3383998547
+ 
+--------------------------------------------------------------------------
+| Id  | Operation         | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |      |     4 |    88 |     3   (0)| 00:00:01 |
+|   1 |  TABLE ACCESS FULL| DEPT |     4 |    88 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------
+
+<<javelin.Args_END>>

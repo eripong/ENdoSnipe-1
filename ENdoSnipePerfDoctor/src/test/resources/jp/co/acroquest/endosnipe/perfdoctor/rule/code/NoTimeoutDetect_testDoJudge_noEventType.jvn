@@ -1,0 +1,49 @@
+Call  ,2009/02/13 13:49:56.657,"main","EchoServer","unknown","unknown","root","unknown","","main@1(java.lang.Thread@cd5f8b)"
+<<javelin.Args_START>>
+args[0] = [Ljava.lang.String;@13adc56
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 4546875000
+thread.currentThreadUserTime = 4390625000
+thread.threadInfo.blockedTime = 1
+thread.threadInfo.blockedCount = 1
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 170
+garbageCollector.collectionTime = 344
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 1
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 438
+<<javelin.ExtraInfo_END>>
+Throw ,2009/02/13 13:49:57.095,"java.net.SocketException","fbb7cb","main","EchoServer","unknown","main@1(java.lang.Thread@cd5f8b)"
+<<javelin.StackTrace_START>>
+java.net.SocketException:Connection reset
+java.net.SocketInputStream.read(SocketInputStream.java:168)
+jp.co.acroquest.endosnipe.javelin.converter.net.monitor.InputStreamMonitor.read(InputStreamMonitor.java:106)
+jp.co.acroquest.endosnipe.javelin.converter.net.monitor.TimeoutMonitor.read(TimeoutMonitor.java:93)
+sun.nio.cs.StreamDecoder$CharsetSD.readBytes(StreamDecoder.java:411)
+sun.nio.cs.StreamDecoder$CharsetSD.implRead(StreamDecoder.java:453)
+sun.nio.cs.StreamDecoder.read(StreamDecoder.java:183)
+java.io.InputStreamReader.read(InputStreamReader.java:167)
+java.io.BufferedReader.fill(BufferedReader.java:136)
+java.io.BufferedReader.readLine(BufferedReader.java:299)
+java.io.BufferedReader.readLine(BufferedReader.java:362)
+EchoServer.main(EchoServer.java:18)
+<<javelin.StackTrace_END>>
+Return,2009/02/13 13:49:57.095,"main","EchoServer","unknown","unknown","root","unknown","","main@1(java.lang.Thread@cd5f8b)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 4546875000
+thread.currentThreadUserTime = 4390625000
+thread.threadInfo.blockedTime = 1
+thread.threadInfo.blockedCount = 1
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 171
+garbageCollector.collectionTime = 345
+memoryPool.peakUsage.usage = 0
+garbageCollector.collectionCount.delta = 1
+garbageCollector.collectionTime.delta = 1
+<<javelin.JMXInfo_END>>

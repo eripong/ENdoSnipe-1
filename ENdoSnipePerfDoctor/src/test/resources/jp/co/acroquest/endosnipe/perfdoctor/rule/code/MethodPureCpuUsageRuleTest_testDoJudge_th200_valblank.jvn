@@ -1,0 +1,102 @@
+Call  ,2008/04/17 17:21:42.177,"/index.html","/s2jsf-example","unknown","unknown","unknown","unknown","","21"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 2297
+args[2] = /s2jsf-example
+args[3] = /index.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 390.625
+thread.currentThreadUserTime = 375.0
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 18
+garbageCollector.collectionTime = 1101
+memoryPool.peakUsage.usage = 102118400
+thread.currentThreadCpuTime.delta = 60
+thread.currentThreadUserTime.delta = 593.75
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 674
+memoryPool.peakUsage.usage.delta = 9765536
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1547
+<<javelin.ExtraInfo_END>>
+Call  ,2008/04/17 17:21:42.177,"/index.html","/s2jsf-example2","unknown","unknown","/s2jsf-example","unknown","","21"
+<<javelin.Args_START>>
+args[0] = 127.0.0.1
+args[1] = 2297
+args[2] = /s2jsf-example
+args[3] = /index.html
+args[4] = GET
+args[5] = {}
+<<javelin.Args_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 390.625
+thread.currentThreadUserTime = 375.0
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 18
+garbageCollector.collectionTime = 1101
+memoryPool.peakUsage.usage = 102118400
+thread.currentThreadCpuTime.delta = 
+thread.currentThreadUserTime.delta = 593.75
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 674
+memoryPool.peakUsage.usage.delta = 9765536
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1547
+<<javelin.ExtraInfo_END>>
+Return,2008/04/17 17:21:43.724,"/index.html","/s2jsf-example2","unknown","unknown","/s2jsf-example","unknown","","21"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1046.875
+thread.currentThreadUserTime = 968.75
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 20
+garbageCollector.collectionTime = 1775
+memoryPool.peakUsage.usage = 111883936
+thread.currentThreadCpuTime.delta = 
+thread.currentThreadUserTime.delta = 593.75
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 674
+memoryPool.peakUsage.usage.delta = 9765536
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1547
+<<javelin.ExtraInfo_END>>
+Return,2008/04/17 17:21:43.724,"/index.html","/s2jsf-example","unknown","unknown","unknown","unknown","","21"
+<<javelin.Return_START>>
+text/html;charset=Windows-31j
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 1046.875
+thread.currentThreadUserTime = 968.75
+thread.threadInfo.blocksedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+garbageCollector.collectionCount = 20
+garbageCollector.collectionTime = 1775
+memoryPool.peakUsage.usage = 111883936
+thread.currentThreadCpuTime.delta = 60
+thread.currentThreadUserTime.delta = 593.75
+garbageCollector.collectionCount.delta = 2
+garbageCollector.collectionTime.delta = 674
+memoryPool.peakUsage.usage.delta = 9765536
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 1547
+<<javelin.ExtraInfo_END>>

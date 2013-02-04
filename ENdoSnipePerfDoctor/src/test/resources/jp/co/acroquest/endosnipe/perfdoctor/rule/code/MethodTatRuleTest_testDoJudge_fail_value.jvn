@@ -1,0 +1,13 @@
+Call  ,2007/12/07 22:22:39.965,"create table bindtest (bigintkey bigint,bigserialkey bigserial,booleankey boolean,boxkey box,byteakey bytea,charkey char(10),varcharkey varchar(10),circlekey circle,datekey date,doublekey double precision,integerkey integer,intervalkey interval,lsegkey lseg,numerickey numeric,pathkey path,pointkey point,polygonkey polygon,realkey real,smallintkey smallint,serialkey serial,textkey text,timekey time,timewithzonekey time with time zone,timestampkey timestamp,timestampwithzonekey timestamp with time zone);","jdbc:postgresql:postgres://localhost:5432;databaseName=DBName","unknown","unknown","AP-Server","unknown","","main@java.lang.Thread@dda25b"
+<<javelin.Args_START>>
+args[0] = [Time] 235
+args[1] = [SQL] create table bindtest (bigintkey bigint,bigserialkey bigserial,booleankey boolean,boxkey box,byteakey bytea,charkey char(10),varcharkey varchar(10),circlekey circle,datekey date,doublekey double precision,integerkey integer,intervalkey interval,lsegkey lseg,numerickey numeric,pathkey path,pointkey point,polygonkey polygon,realkey real,smallintkey smallint,serialkey serial,textkey text,timekey time,timewithzonekey time with time zone,timestampkey timestamp,timestampwithzonekey timestamp with time zone);
+<<javelin.Args_END>>
+<<javelin.ExtraInfo_START>>
+duration = string
+<<javelin.ExtraInfo_END>>
+Return,2007/12/07 22:22:40.200,"create table bindtest (bigintkey bigint,bigserialkey bigserial,booleankey boolean,boxkey box,byteakey bytea,charkey char(10),varcharkey varchar(10),circlekey circle,datekey date,doublekey double precision,integerkey integer,intervalkey interval,lsegkey lseg,numerickey numeric,pathkey path,pointkey point,polygonkey polygon,realkey real,smallintkey smallint,serialkey serial,textkey text,timekey time,timewithzonekey time with time zone,timestampkey timestamp,timestampwithzonekey timestamp with time zone);","jdbc:postgresql:postgres://localhost:5432;databaseName=DBName","unknown","unknown","AP-Server","unknown","","main@java.lang.Thread@dda25b"
+<<javelin.ExtraInfo_START>>
+duration = string
+<<javelin.ExtraInfo_END>>
+

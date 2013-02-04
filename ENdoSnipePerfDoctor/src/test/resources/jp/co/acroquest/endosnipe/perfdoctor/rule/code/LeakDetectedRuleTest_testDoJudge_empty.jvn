@@ -1,0 +1,48 @@
+Call  ,2009/01/18 14:53:16.355,"put","java.util.HashMap","unknown","unknown","root","unknown","","http-8080-1@27(java.lang.Thread@12aa789)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 609375000
+thread.currentThreadUserTime = 593750000
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 1
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 5
+garbageCollector.collectionCount = 80
+garbageCollector.collectionTime = 2247
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>
+<<javelin.ExtraInfo_START>>
+duration = 0
+<<javelin.ExtraInfo_END>>
+Event ,2009/01/18 14:53:16.355,"LeakDetected","put","java.util.HashMap","http-8080-1@27(java.lang.Thread@12aa789)"
+<<javelin.EventInfo_START>>
+javelin.leak.identifier = 
+javelin.leak.threshold =
+javelin.leak.stackTrace = 	at java.util.HashMap.put(HashMap.java)
+	at org.apache.catalina.loader.WebappClassLoader.findResourceInternal(WebappClassLoader.java:2099)
+	at org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:1757)
+	at org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:872)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1325)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1204)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+	at org.apache.myfaces.component.html.util.ExtensionsFilter.doFilter(ExtensionsFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:230)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+
+<<javelin.EventInfo_END>>
+Return,2009/01/18 14:53:16.355,"put","java.util.HashMap","unknown","unknown","root","unknown","","http-8080-1@27(java.lang.Thread@12aa789)"
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 609375000
+thread.currentThreadUserTime = 593750000
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 1
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 5
+garbageCollector.collectionCount = 80
+garbageCollector.collectionTime = 2247
+memoryPool.peakUsage.usage = 0
+<<javelin.JMXInfo_END>>

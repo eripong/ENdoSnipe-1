@@ -1,0 +1,18 @@
+Call  ,2007/11/24 19:48:53.425,"getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","getAllDepartments","examples.jsf.logic.impl.EmployeeLogicImpl","unknown","","/employee/employeeSearch.html"
+<<javelin.Return_START>>
+class java.util.ArrayList@ca2076:[[10, ACCOUNTING, NEW YORK, 0] , [20, RESEARCH, DALLAS, 0] , [30, SALES, CHICAGO, 0] , [40, OPERATIONS, BOSTON, 0]]
+<<javelin.Return_END>>
+<<javelin.JMXInfo_START>>
+thread.currentThreadCpuTime = 2340.015
+thread.currentThreadUserTime = 1950.0125
+thread.threadInfo.blockedTime = 0
+thread.threadInfo.blockedCount = 0
+thread.threadInfo.waitedTime = 0
+thread.threadInfo.waitedCount = 0
+thread.currentThreadCpuTime.delta = 10.000001
+thread.currentThreadUserTime.delta = 1357.2087
+thread.threadInfo.blockedTime.delta = 0
+thread.threadInfo.blockedCount.delta = 0
+thread.threadInfo.waitedTime.delta = 0
+thread.threadInfo.waitedCount.delta = 0
+<<javelin.JMXInfo_END>>

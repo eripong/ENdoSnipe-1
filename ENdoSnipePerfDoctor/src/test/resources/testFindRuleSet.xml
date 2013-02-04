@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleSet name="testFindRuleSet">
+    <rule id="TEST01_NORMAL"
+          className="jp.co.acroquest.endosnipe.perfdoctor.rule.Test01"
+          enabled="FALSE"
+          durationThreshold="100">
+        <ruleLevel
+              level="INFO"
+              durationThreshold="100"
+              enabled="TRUE">
+            <property name="PARAM01">"aaa"</property>
+            <property name="PARAM02">123</property>
+        </ruleLevel>
+        <ruleLevel
+              level="ERROR"
+              durationThreshold="0"
+              enabled="FALSE">
+        </ruleLevel>
+    </rule>
+    <rule id="TEST02_USE_DEFAULT"
+          className="jp.co.acroquest.endosnipe.perfdoctor.rule.Test02"/>
+</ruleSet>

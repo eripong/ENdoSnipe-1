@@ -1,0 +1,142 @@
+Call  ,2007/11/16 17:56:40.281,"SELECT NULL AS table_cat,        t.owner AS table_schem,        t.table_name AS table_name,        t.column_name AS column_name,        DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,                'LONG', -1, 'DATE', 91, 'RAW', -3, 'LONG RAW', -4,                  'BLOB', 2004, 'CLOB', 2005, 'BFILE', -13, 'FLOAT', 6,                 'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101,                 'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102,                 'INTERVAL YEAR(2) TO MONTH', -103,                 'INTERVAL DAY(2) TO SECOND(6)', -104,                 'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101,                 1111)               AS data_type,        t.data_type AS type_name,        DECODE (t.data_precision, null, t.data_length, t.data_precision)               AS column_size,        0 AS buffer_length,        t.data_scale AS decimal_digits,        10 AS num_prec_radix,        DECODE (t.nullable, 'N', 0, 1) AS nullable,        NULL AS remarks,        t.data_default AS column_def,        0 AS sql_data_type,        0 AS sql_datetime_sub,        t.data_length AS char_octet_length,        t.column_id AS ordinal_position,        DECODE (t.nullable, 'N', 'NO', 'YES') AS is_nullable FROM all_tab_columns t WHERE t.owner LIKE :1 ESCAPE '/'   AND t.table_name LIKE :2 ESCAPE '/'   AND t.column_name LIKE :3 ESCAPE '/'  ORDER BY table_schem, table_name, ordinal_position ","jdbc:oracle:thin:@localhost:1521:orcl","unknown","getAllDepartments","examples.jsf.dao.DepartmentDtoDao","unknown","","/employee/employeeSearch2.html"
+<<javelin.Args_START>>
+args[0] = [Time] 100002
+args[1] = [SQL] SELECT NULL AS table_cat,
+       t.owner AS table_schem,
+       t.table_name AS table_name,
+       t.column_name AS column_name,
+       DECODE (t.data_type, 'CHAR', 1, 'VARCHAR2', 12, 'NUMBER', 3,
+               'LONG', -1, 'DATE', 91, 'RAW', -3, 'LONG RAW', -4,  
+               'BLOB', 2004, 'CLOB', 2005, 'BFILE', -13, 'FLOAT', 6, 
+               'TIMESTAMP(6)', 93, 'TIMESTAMP(6) WITH TIME ZONE', -101, 
+               'TIMESTAMP(6) WITH LOCAL TIME ZONE', -102, 
+               'INTERVAL YEAR(2) TO MONTH', -103, 
+               'INTERVAL DAY(2) TO SECOND(6)', -104, 
+               'BINARY_FLOAT', 100, 'BINARY_DOUBLE', 101, 
+               1111)
+              AS data_type,
+       t.data_type AS type_name,
+       DECODE (t.data_precision, null, t.data_length, t.data_precision)
+              AS column_size,
+       0 AS buffer_length,
+       t.data_scale AS decimal_digits,
+       10 AS num_prec_radix,
+       DECODE (t.nullable, 'N', 0, 1) AS nullable,
+       NULL AS remarks,
+       t.data_default AS column_def,
+       0 AS sql_data_type,
+       0 AS sql_datetime_sub,
+       t.data_length AS char_octet_length,
+       t.column_id AS ordinal_position,
+       DECODE (t.nullable, 'N', 'NO', 'YES') AS is_nullable
+FROM all_tab_columns t
+WHERE t.owner LIKE :1 ESCAPE '/'
+  AND t.table_name LIKE :2 ESCAPE '/'
+  AND t.column_name LIKE :3 ESCAPE '/'
+
+ORDER BY table_schem, table_name, ordinal_position
+
+args[2] = [VALUE] SA,DEPT,%
+args[3] = [PLAN] Plan hash value: 1066592194
+ 
+-----------------------------------------------------------------
+| Id  | Operation                           | Name              |
+-----------------------------------------------------------------
+|   0 | SELECT STATEMENT                    |                   |
+|   1 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|*  2 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|   3 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|*  4 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|   5 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|*  6 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|   7 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|*  8 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|   9 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 10 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  11 |  TABLE ACCESS BY INDEX ROWID        | OBJ$              |
+|* 12 |   INDEX UNIQUE SCAN                 | I_OBJ1            |
+|  13 |   TABLE ACCESS BY INDEX ROWID       | OBJ$              |
+|* 14 |    INDEX UNIQUE SCAN                | I_OBJ1            |
+|  15 |    TABLE ACCESS BY INDEX ROWID      | OBJ$              |
+|* 16 |     INDEX UNIQUE SCAN               | I_OBJ1            |
+|  17 |     TABLE ACCESS BY INDEX ROWID     | OBJ$              |
+|* 18 |      INDEX UNIQUE SCAN              | I_OBJ1            |
+|  19 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 20 |       INDEX UNIQUE SCAN             | I_OBJ1            |
+|  21 |  SORT ORDER BY                      |                   |
+|* 22 |   FILTER                            |                   |
+|  23 |    NESTED LOOPS OUTER               |                   |
+|  24 |     NESTED LOOPS OUTER              |                   |
+|  25 |      NESTED LOOPS OUTER             |                   |
+|  26 |       NESTED LOOPS OUTER            |                   |
+|  27 |        NESTED LOOPS                 |                   |
+|  28 |         NESTED LOOPS                |                   |
+|  29 |          TABLE ACCESS BY INDEX ROWID| USER$             |
+|* 30 |           INDEX RANGE SCAN          | I_USER1           |
+|  31 |          TABLE ACCESS BY INDEX ROWID| OBJ$              |
+|* 32 |           INDEX RANGE SCAN          | I_OBJ2            |
+|* 33 |         TABLE ACCESS CLUSTER        | COL$              |
+|* 34 |          INDEX UNIQUE SCAN          | I_OBJ#            |
+|* 35 |        TABLE ACCESS CLUSTER         | COLTYPE$          |
+|* 36 |       INDEX RANGE SCAN              | I_HH_OBJ#_INTCOL# |
+|* 37 |      TABLE ACCESS BY INDEX ROWID    | OBJ$              |
+|* 38 |       INDEX RANGE SCAN              | I_OBJ3            |
+|  39 |     TABLE ACCESS CLUSTER            | USER$             |
+|* 40 |      INDEX UNIQUE SCAN              | I_USER#           |
+|* 41 |    TABLE ACCESS CLUSTER             | TAB$              |
+|* 42 |     INDEX UNIQUE SCAN               | I_OBJ#            |
+|  43 |     NESTED LOOPS                    |                   |
+|  44 |      FIXED TABLE FULL               | X$KZSRO           |
+|* 45 |      INDEX RANGE SCAN               | I_OBJAUTH2        |
+|* 46 |       FIXED TABLE FULL              | X$KZSPR           |
+-----------------------------------------------------------------
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - access("O"."OBJ#"=:B1)
+   4 - access("O"."OBJ#"=:B1)
+   6 - access("O"."OBJ#"=:B1)
+   8 - access("O"."OBJ#"=:B1)
+  10 - access("O"."OBJ#"=:B1)
+  12 - access("O"."OBJ#"=:B1)
+  14 - access("O"."OBJ#"=:B1)
+  16 - access("O"."OBJ#"=:B1)
+  18 - access("O"."OBJ#"=:B1)
+  20 - access("O"."OBJ#"=:B1)
+  22 - filter(("O"."TYPE#"=3 OR "O"."TYPE#"=4 OR "O"."TYPE#"=2 AND  NOT 
+              EXISTS (SELECT 0 FROM "SYS"."TAB$" "T" WHERE "T"."OBJ#"=:B1 AND 
+              (BITAND("T"."PROPERTY",512)=512 OR BITAND("T"."PROPERTY",8192)=8192))) 
+              AND ("O"."OWNER#"=USERENV('SCHEMAID') OR  EXISTS (SELECT 0 FROM 
+              "SYS"."OBJAUTH$" "OBJAUTH$",SYS."X$KZSRO" "X$KZSRO" WHERE "OBJ#"=:B2 
+              AND "GRANTEE#"="KZSROROL") OR  EXISTS (SELECT 0 FROM SYS."X$KZSPR" 
+              "X$KZSPR" WHERE "INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) 
+              OR (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))))
+  30 - access("U"."NAME" LIKE :1 ESCAPE '/')
+       filter("U"."NAME" LIKE :1 ESCAPE '/')
+  32 - access("O"."OWNER#"="U"."USER#" AND "O"."NAME" LIKE :2 ESCAPE 
+              '/')
+       filter("O"."NAME" LIKE :2 ESCAPE '/')
+  33 - filter(DECODE("C"."PROPERTY",0,'NO',DECODE(BITAND("C"."PROPERTY",
+              32),32,'YES','NO'))='NO' AND "C"."NAME" LIKE :3 ESCAPE '/')
+  34 - access("O"."OBJ#"="C"."OBJ#")
+  35 - filter("C"."INTCOL#"="AC"."INTCOL#"(+))
+  36 - access("C"."OBJ#"="H"."OBJ#"(+) AND 
+              "C"."INTCOL#"="H"."INTCOL#"(+))
+  37 - filter("OT"."TYPE#"(+)=13)
+  38 - access("AC"."TOID"="OT"."OID$"(+))
+  40 - access("OT"."OWNER#"="UT"."USER#"(+))
+  41 - filter(BITAND("T"."PROPERTY",512)=512 OR 
+              BITAND("T"."PROPERTY",8192)=8192)
+  42 - access("T"."OBJ#"=:B1)
+  45 - access("GRANTEE#"="KZSROROL" AND "OBJ#"=:B1)
+  46 - filter("INST_ID"=USERENV('INSTANCE') AND ((-"KZSPRPRV")=(-45) OR 
+              (-"KZSPRPRV")=(-47) OR (-"KZSPRPRV")=(-48) OR (-"KZSPRPRV")=(-49) OR 
+              (-"KZSPRPRV")=(-50)))
+ 
+Note
+-----
+   - rule based optimizer used (consider using cbo)
+
+<<javelin.Args_END>>

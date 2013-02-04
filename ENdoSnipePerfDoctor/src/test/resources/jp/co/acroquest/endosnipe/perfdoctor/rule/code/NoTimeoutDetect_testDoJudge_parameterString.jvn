@@ -1,0 +1,14 @@
+Event ,2009/02/13 13:42:36.527,"NoTimeoutDetected","","root","ERROR","main@1(java.lang.Thread@3820e)"
+<<javelin.EventInfo_START>>
+javelin.notimeout.identifier = java.net.SocksSocketImpl@f0c0d3
+javelin.notimeout.timeout = test
+javelin.notimeout.stackTrace = 	at sun.nio.cs.StreamDecoder$CharsetSD.readBytes(StreamDecoder.java:411)
+	at sun.nio.cs.StreamDecoder$CharsetSD.implRead(StreamDecoder.java:453)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:183)
+	at java.io.InputStreamReader.read(InputStreamReader.java:167)
+	at java.io.BufferedReader.fill(BufferedReader.java:136)
+	at java.io.BufferedReader.readLine(BufferedReader.java:299)
+	at java.io.BufferedReader.readLine(BufferedReader.java:362)
+	at Test.main(EchoServer.java:18)
+
+<<javelin.EventInfo_END>>
