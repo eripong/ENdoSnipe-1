@@ -459,33 +459,11 @@ public class DataCollectorServer implements CommunicationServer, Runnable
                 ConnectNotifyData notifyData = client.getConnectNotifyData();
                 switch (notifyData.getKind())
                 {
-                case ConnectNotifyData.KIND_JAVELIN:
-                    client.setTelegramListener(javelinClientTelegramListener_);
-
-                    String dbNameBase = notifyData.getDbName();
-                    if (dbNameBase == null || dbNameBase.equals(""))
-                    {
-                        client.stop();
-                        return;
-                    }
-
-                    String hostName = client.getHostName();
-                    String ipAddr = client.getIpAddr();
-                    dbNameBase = createDbNameBase(dbNameBase, hostName, ipAddr);
-                    notifyData.setDbName(dbNameBase);
-
-                    int no = getJavelinSequenceNo(dbNameBase);
-                    String dbName = createDbName(notifyData, no);
-                    client.setDbName(dbName);
-                    client.setDbNo(no);
-                    break;
-
                 case ConnectNotifyData.KIND_CONTROLLER:
                     switch (notifyData.getPurpose())
                     {
                     case ConnectNotifyData.PURPOSE_GET_RESOURCE:
                         client.setTelegramListener(controlClientTelegramListener_);
-                        client.setDbName(notifyData.getDbName());
                         break;
                     case ConnectNotifyData.PURPOSE_GET_DATABASE:
                         // èàóùÇ»Çµ

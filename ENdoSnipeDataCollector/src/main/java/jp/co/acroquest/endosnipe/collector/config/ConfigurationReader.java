@@ -159,7 +159,7 @@ public class ConfigurationReader
                                                                                  "datacollector.acceptport.";
 
     /** データベース名を表す接頭辞 */
-    private static final String          DATABASE_NAME                         = "database.name.";
+    private static final String          DATABASE_NAME                         = "database.name";
 
     /** データベースの種類を表す接頭辞 */
     private static final String          DATABASE_TYPE                         = "database.type";
@@ -476,19 +476,6 @@ public class ConfigurationReader
                             AgentSetting.DEF_ACCEPT_PORT);
             }
         }
-        else if (key.equals(DATABASE_NAME))
-        {
-            // database.name = xxx
-            if (isValidDBName(value))
-            {
-                config__.setDatabaseName(value);
-            }
-            else
-            {
-                logger_.log(LogMessageCodes.FAIL_TO_READ_PARAMETER, configFilePath_, key);
-                throw new InitializeException("Invalid Unit.");
-            }
-        }
         else if (key.startsWith(DATABASE_NAME))
         {
             // database.name.n = xxx
@@ -629,7 +616,19 @@ public class ConfigurationReader
         {
             config.setDatabasePort(value);
         }
-        // database.name --> see #setValue();
+        else if (key.equals(DATABASE_NAME))
+        {
+            // database.name = xxx
+            if (isValidDBName(value))
+            {
+                config.setDatabaseName(value);
+            }
+            else
+            {
+                logger_.log(LogMessageCodes.FAIL_TO_READ_PARAMETER, configFilePath_, key);
+                throw new InitializeException("Invalid Unit.");
+            }
+        }
         else if (DATABASE_USERNAME.equals(key))
         {
             config.setDatabaseUserName(value);
