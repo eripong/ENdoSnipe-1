@@ -476,8 +476,22 @@ public class ConfigurationReader
                             AgentSetting.DEF_ACCEPT_PORT);
             }
         }
+        else if (key.equals(DATABASE_NAME))
+        {
+            // database.name = xxx
+            if (isValidDBName(value))
+            {
+                config__.setDatabaseName(value);
+            }
+            else
+            {
+                logger_.log(LogMessageCodes.FAIL_TO_READ_PARAMETER, configFilePath_, key);
+                throw new InitializeException("Invalid Unit.");
+            }
+        }
         else if (key.startsWith(DATABASE_NAME))
         {
+            // database.name.n = xxx
             if (isValidDBName(value))
             {
                 setting.databaseName = value;
@@ -615,6 +629,7 @@ public class ConfigurationReader
         {
             config.setDatabasePort(value);
         }
+        // database.name --> see #setValue();
         else if (DATABASE_USERNAME.equals(key))
         {
             config.setDatabaseUserName(value);

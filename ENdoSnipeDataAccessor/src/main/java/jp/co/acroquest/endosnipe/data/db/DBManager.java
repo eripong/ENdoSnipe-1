@@ -178,11 +178,12 @@ public class DBManager
      * @param dbDir データベース基準ディレクトリ
      * @param host ホスト名
      * @param port ポート番号
+     * @param dbName データベース名
      * @param userName ユーザ名
      * @param password パスワード
      */
     public static synchronized void updateSettings(boolean useDefault, String dbDir, String host,
-        String port, String userName, String password)
+        String port, String dbName, String userName, String password)
     {
         useDefault__ = useDefault;
         if (useDefault__ == true)
@@ -193,6 +194,7 @@ public class DBManager
         {
             hostName__ = host;
             port__ = port;
+            dbName__ = dbName;
             userName__ = userName;
             password__ = password;
         }

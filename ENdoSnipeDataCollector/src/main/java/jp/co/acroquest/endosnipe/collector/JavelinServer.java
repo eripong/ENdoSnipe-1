@@ -91,17 +91,22 @@ public class JavelinServer implements TelegramSender
     private final List<Telegram>                        waitingTelegramList_ =
                                                                                new ArrayList<Telegram>();
 
+    /** 接続するデータベース名。 */
+    private String                                      dbName_;
+
     /**
      * サーバを開始する。
+     * 
      * @param port ポート番号
      * @param queue データキュー
-     * @param alarmRepository アラームリポジトリ
+     * @param dbName 接続するデータベース名。
      * @param resourceGetter システムリソース取得
      * @param behaviorMode DataCollectorの動作モード
      */
-    public void start(final int port, final JavelinDataQueue queue,
+    public void start(final int port, final JavelinDataQueue queue, final String dbName,
             final SystemResourceGetter resourceGetter, final BehaviorMode behaviorMode)
     {
+        dbName_ = dbName;
         queue_ = queue;
         resourceGetter_ = resourceGetter;
         behaviorMode_ = behaviorMode;
@@ -120,13 +125,13 @@ public class JavelinServer implements TelegramSender
                 switch (notifyData.getKind())
                 {
                 case ConnectNotifyData.KIND_JAVELIN:
-                    notifyJavelinDisconnected(client.getDbName(), forceDisconnected);
-                    removeJavelinClient(client.getDbName());
-                    notifyDelJavelin(client.getDbName());
+                    notifyJavelinDisconnected(dbName_, forceDisconnected);
+                    removeJavelinClient(dbName_);
+                    notifyDelJavelin(dbName_);
                     break;
 
                 case ConnectNotifyData.KIND_CONTROLLER:
-                    removeControlClient(client.getDbName());
+                    removeControlClient(dbName_);
                     break;
 
                 default:
@@ -149,7 +154,7 @@ public class JavelinServer implements TelegramSender
                     addJavelinClient(client);
                     initializeJavelinClient(client);
                     sendWaitingTelegram(client);
-                    notifyAddJavelin(client.getDbName());
+                    notifyAddJavelin(dbName_);
                     break;
 
                 case ConnectNotifyData.KIND_CONTROLLER:
@@ -240,7 +245,7 @@ public class JavelinServer implements TelegramSender
         if (behaviorMode_.equals(BehaviorMode.PLUGIN_MODE))
         {
             // プラグインモードで動作しているなら、リスナに通知する。
-            String dbName = javelinClient.getDbName();
+            String dbName = dbName_;
             List<TelegramNotifyListener> notifyListenerList = notifyListenerMap_.get(dbName);
             if (notifyListenerList != null)
             {
@@ -257,7 +262,7 @@ public class JavelinServer implements TelegramSender
         {
             // サービスモードで動作しているなら、接続されている制御クライアントに
             // 電文を送信する。
-            Set<DataCollectorClient> controlClientSet = getControlClient(javelinClient.getDbName());
+            Set<DataCollectorClient> controlClientSet = getControlClient(dbName_);
             if (controlClientSet != null)
             {
                 for (DataCollectorClient controlClient : controlClientSet)
@@ -324,7 +329,7 @@ public class JavelinServer implements TelegramSender
     {
         setTelegramSenders();
 
-        String dbName = client.getDbName();
+        String dbName = dbName_;
         String hostName = client.getHostName();
         String ipAddress = client.getIpAddr();
         int port = client.getPort();
@@ -443,7 +448,7 @@ public class JavelinServer implements TelegramSender
      */
     private synchronized void initializeControlClient(final DataCollectorClient client)
     {
-        DataCollectorClient javelinClient = getJavelinClient(client.getDbName());
+        DataCollectorClient javelinClient = getJavelinClient(dbName_);
         if (javelinClient != null)
         {
             bindJavelinAndControlClient(javelinClient, client);
@@ -595,7 +600,7 @@ public class JavelinServer implements TelegramSender
     {
         synchronized (javelinClientList_)
         {
-            javelinClientList_.put(client.getDbName(), client);
+            javelinClientList_.put(dbName_, client);
         }
     }
 
@@ -632,7 +637,7 @@ public class JavelinServer implements TelegramSender
     {
         synchronized (controlClientList_)
         {
-            Set<DataCollectorClient> clientList = controlClientList_.get(client.getDbName());
+            Set<DataCollectorClient> clientList = controlClientList_.get(dbName_);
             if (clientList == null)
             {
                 clientList = new HashSet<DataCollectorClient>();
@@ -642,7 +647,7 @@ public class JavelinServer implements TelegramSender
             {
                 clientList.add(client);
             }
-            controlClientList_.put(client.getDbName(), clientList);
+            controlClientList_.put(dbName_, clientList);
         }
     }
 

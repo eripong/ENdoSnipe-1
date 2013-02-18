@@ -44,11 +44,22 @@ import jp.co.acroquest.endosnipe.data.dao.JavelinLogDao;
 import jp.co.acroquest.endosnipe.data.db.DBManager;
 import jp.co.acroquest.endosnipe.data.entity.JavelinLog;
 
+/**
+ * ENdoSnipeのデータをCSVファイルに出力するエクスポート・ユーティリティ。
+ * 
+ * @author Acroquest Technology
+ */
 public class ExportUtil
 {
     /** 開始／終了時刻を指定する文字列形式。 */
     private static final String TIME_FORMAT = "yyyyMMdd_HHmmss";
 
+    /**
+     * プログラムエントリ。
+     * 
+     * @param args コマンドライン引数。<br/>
+     *             (DBホスト名) (DBポート番号) (DBユーザ名) (DBパスワード) (DB名) [(開始時刻) [(終了時刻)]]
+     */
     public static void main(String[] args)
     {
         if (args.length < 5)
@@ -82,7 +93,7 @@ public class ExportUtil
         String reportPath = "./jvn_logs";
 
         // レポート作成に使用するDBを指定する
-        DBManager.updateSettings(false, "", dbHost, dbPort, dbUser, dbPass);
+        DBManager.updateSettings(false, "", dbHost, dbPort, dbName, dbUser, dbPass);
 
         SimpleDateFormat format = new SimpleDateFormat(TIME_FORMAT);
         Timestamp start = null;
@@ -210,4 +221,10 @@ public class ExportUtil
         return true;
     }
 
+    /**
+     * ユーティリティクラスのためインスタンス化禁止。
+     */
+    private ExportUtil()
+    {
+    }
 }

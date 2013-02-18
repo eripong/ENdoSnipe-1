@@ -120,7 +120,7 @@ public class DBPreferenceUtil
         {
             useDefaultDb = false;
         }
-        DBManager.updateSettings(useDefaultDb, dbDir, host, port, userName, password);
+        DBManager.updateSettings(useDefaultDb, dbDir, host, port, dbName, userName, password);
     }
 
     /**

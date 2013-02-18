@@ -88,6 +88,10 @@ public class DataCollectorConfig
     private String                                databasePort_                      =
                                                                                        DEF_DATABASE_PORT;
 
+    /** データベース名 */
+    private String                                databaseName_                      =
+                                                                                       DEF_DATABASE_NAME;
+
     /** データベースログインユーザ名 */
     private String                                databaseUserName_                  =
                                                                                        DEF_DATABASE_USER;
@@ -139,6 +143,10 @@ public class DataCollectorConfig
 
     /** データベースのポート番号のデフォルト値 */
     private static final String                   DEF_DATABASE_PORT                  = "5432";
+
+    /** データベース名のデフォルト値 */
+    private static final String                   DEF_DATABASE_NAME                  =
+                                                                                       "endosnipedb";
 
     /** データベースログインユーザ名のデフォルト値 */
     private static final String                   DEF_DATABASE_USER                  = "";
@@ -411,6 +419,26 @@ public class DataCollectorConfig
     public void setDatabasePort(final String port)
     {
         this.databasePort_ = port;
+    }
+
+    /**
+     * データベース名を取得します。<br />
+     * 
+     * @return DataCollectorが書き込みに使用するデータベース名。
+     */
+    public String getDatabaseName()
+    {
+        return databaseName_;
+    }
+
+    /**
+     * データベース名を設定します。<br />
+     * 
+     * @param dbname DataCollectorが書き込みに使用するデータベース名。
+     */
+    public void setDatabaseName(final String dbname)
+    {
+        this.databaseName_ = dbname;
     }
 
     /**

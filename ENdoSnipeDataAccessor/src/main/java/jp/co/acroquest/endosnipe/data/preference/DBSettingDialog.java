@@ -107,6 +107,9 @@ public class DBSettingDialog extends TitleAreaDialog
     /** 親ページ */
     private DataAccessorPreferencePage   parent_;
 
+    /** 接続先データベース名。 */
+    private static final String DATABASE_NAME = "endosnipedb"; 
+    
     /**
      * コンストラクタです。
      * @param parentShell 親Shell
@@ -318,8 +321,9 @@ public class DBSettingDialog extends TitleAreaDialog
             ConnectionManager manager = ConnectionManager.getInstance();
             manager.closeAll();
 
+            String dbName = DATABASE_NAME;
             DBManager.updateSettings(useDefaultDb, this.baseDirText_.getText(),
-                                     this.hostText_.getText(), this.portText_.getText(),
+                                     this.hostText_.getText(), this.portText_.getText(), dbName,
                                      this.userNameText_.getText(), this.passwordText_.getText());
             storeSettings();
             

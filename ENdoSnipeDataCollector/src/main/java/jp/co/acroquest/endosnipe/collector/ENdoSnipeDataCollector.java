@@ -187,10 +187,11 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
             }
             String databaseHost = config_.getDatabaseHost();
             String databasePort = config_.getDatabasePort();
+            String databaseName = config_.getDatabaseName();
             String databaseUserName = config_.getDatabaseUserName();
             String databasePassword = config_.getDatabasePassword();
             DBManager.updateSettings(useDefaultDatabase, baseDir, databaseHost, databasePort,
-                                     databaseUserName, databasePassword);
+                                     databaseName, databaseUserName, databasePassword);
             ConnectionManager.getInstance().setBaseDir(baseDir);
             LOGGER.log(DATABASE_BASE_DIR, baseDir);
             if (useDefaultDatabase == false)
@@ -380,7 +381,7 @@ public class ENdoSnipeDataCollector implements CommunicationClientRepository, Lo
         server_ = new JavelinServer();
         JavelinDataQueue queue = this.javelinDataLogger_.getQueue();
         server_.setTelegramNotifyListener(this.telegramNotifyListenersMap_);
-        server_.start(port, queue, resourceGetterTask_, behaviorMode_);
+        server_.start(port, queue, config_.getDatabaseName(), resourceGetterTask_, behaviorMode_);
     }
 
     /**
