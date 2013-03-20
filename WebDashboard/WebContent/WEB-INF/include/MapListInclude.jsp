@@ -55,8 +55,6 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceMapMenuView.js">	
 </script>
-
-<%-- resource state --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceStateView.js">	
 </script>

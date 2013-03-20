@@ -1,46 +1,21 @@
-ENS.resourceModel = Backbone.Model.extend({
-	defaults : {
-		elementId : null,
-		elementType : "",
-		x : null,
-		y : null,
-		width : null,
-		height : null
-	},
-	idAttribute : "elementId",
-});
-
-ENS.resourceList = Backbone.Collection.extend({
-	model : ENS.resourceModel
-})
-
-ENS.ResourceMapView = Backbone.View.extend({
+ENS.ResourceMapView = wgp.MapView.extend({
 	tagName : "div",
-	initialize : function() {
+	initialize : function(argument) {
 		_.bindAll();
-		var innerDiv = $("<div></div>");
-		innerDiv.css({width:'100%', height:'100%'});
-		innerDiv.addClass("resourceMap");
-		$("#" + this.$el.attr("id")).append(innerDiv);
 
-		this.innerDiv_ = innerDiv;
-		this.collection = new ENS.resourceList();
-		this.collectionIndex_ = 0;
-		var instance = this;
+		var width = $("#" + this.$el.attr("id")).width();
+		var height = $("#" + this.$el.attr("id")).height();
+		_.extend(argument, {width : width, height : height});
 
-		// 要素が追加された際に、自身の領域に要素のタイプに応じて描画要素を追加する。
-		this.collection.on("add", function(model){
-			var elementType = model.get("elementType");
+		var ajaxhandler = new wgp.AjaxHandler();		
 
-			if("graph" == elementType){
-				instance._addGraphDivision(model);
-			}
-		});
+		// 継承元の初期化メソッド実行
+		this.__proto__.__proto__.initialize.apply(this, [argument]);
 
+		// グラフリソースリンクがドロップされた際にグラフを描画する。
 		var instance = this;
 		$("#" + this.$el.attr("id")).droppable({
 			accept: function(element){
-				console.log(element);
 				if(element.find("A").length > 0){
 					return true;
 				}else{
@@ -61,18 +36,37 @@ ENS.ResourceMapView = Backbone.View.extend({
 
 				// TODO 指定したリソースが一位に特定できるか確認する。
 
-				var resourceModel = new ENS.resourceModel();
+				var resourceModel = new wgp.MapElement();
 				resourceModel.set({
-					elementId : resourceId,
-					elementType : "graph",
-					x : event.clientX,
-					y : event.clientY 
+					objectId : resourceId,
+					objectName : "resourceGraph",
+					pointX : event.clientX,
+					pointY : event.clientY,
+					width : 300,
+					height : 300,
+					zIndex : 1
 				});
 				instance.collection.add(resourceModel);
+
+				var stateModel = new ENS.resourceStateElementModel();
+				stateModel.set({
+					objectId : resourceId + "_State",
+					objectName : "resourceState",
+					pointX : event.clientX - 190,
+					pointY : event.clientY - 140,
+					width : 50,
+					height : 50,
+					zIndex : 1,
+					stateId : "normal",
+					linkId : "group1"
+				});
+				instance.collection.add(stateModel);
 			}
 		
 		});
 
+		// 継承先のrenderメソッド実行
+		this.__proto__.__proto__.render.apply(this);
 		this.render();
 	},
 	render : function(){
@@ -81,9 +75,26 @@ ENS.ResourceMapView = Backbone.View.extend({
 	destroy : function (){
 		this.$el.children().remove();
 	},
+	// 要素が追加された際に、自身の領域に要素のタイプに応じて描画要素を追加する。
+	onAdd : function(model){
+		var objectName = model.get("objectName");
 
+		// リソースグラフの場合はグラフを描画する。
+		if("resourceGraph" == objectName){
+			this._addGraphDivision(model);
+
+		}else if("resourceState" == objectName){
+			this._addStateElement(model);
+
+		}else{
+
+			// 継承元の追加メソッドを実行する。
+			this.__proto__.__proto__.initialize.onAdd(this, [model]);
+		}
+
+	},
 	_addGraphDivision : function(model) {
-		var graphId = model.get("elementId");
+		var graphId = model.get("objectId");
 		var tempId = graphId.split("/");
 		var dataId = tempId[tempId.length - 1];
 		var treeSettings = {
@@ -113,9 +124,9 @@ ENS.ResourceMapView = Backbone.View.extend({
 		var newDivAreaId = this.$el.attr("id") + "_" + model.cid;
 		var newDivArea = $("<div id='" + newDivAreaId + "'></div>");
 
-		this.innerDiv_.append(newDivArea);
-		newDivArea.width(300);
-		newDivArea.height(300);
+		$("#" + this.$el.attr("id")).append(newDivArea);
+		newDivArea.width(model.get("width"));
+		newDivArea.height(model.get("height"));
 
 		$.extend(true, viewAttribute, {
 			id : newDivAreaId
@@ -124,8 +135,21 @@ ENS.ResourceMapView = Backbone.View.extend({
 			new ENS.ResourceGraphElementView(viewAttribute, treeSettings);
 
 		// 後で移動する。
-		newDivArea.offset({top : model.get("y"), left : model.get("x") });
+		newDivArea.offset({
+			top : model.get("pointY"),
+			left : model.get("pointX")
+		});
 		newDivArea.draggable();
+		return view;
+	},
+	_addStateElement : function(model){
+		var argument = {
+			paper : this.paper,
+			model : model
+		};
+
+		var view =
+			new ENS.ResourceStateElementView(argument);
 		return view;
 	}
 });

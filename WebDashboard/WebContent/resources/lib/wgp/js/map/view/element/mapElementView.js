@@ -17,7 +17,7 @@ wgp.MapElementView = Backbone.View.extend({
 		this.model = model;
 
 		// モデルに描画を行ったビューを紐付ける。
-		model.set("view", this);
+		model.set({view : this}, { silent : true});
 		return this;
 	},
 	change : function(){
