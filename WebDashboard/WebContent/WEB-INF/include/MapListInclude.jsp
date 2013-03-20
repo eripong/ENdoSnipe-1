@@ -52,6 +52,11 @@
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceMapListView.js">	
 </script>
 
+<%-- resource state --%>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceStateView.js">	
+</script>
+
 <%-- nodeInfo graph --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/nodeInfoParentView.js">
