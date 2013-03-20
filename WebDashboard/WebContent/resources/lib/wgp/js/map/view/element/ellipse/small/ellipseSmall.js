@@ -28,7 +28,7 @@
 function ellipseSmall(x, y, width, height, paper) {
 
 	// ポジションリスト
-	var positionArray = new Array();
+	var positionArray = [];
 	// 位置情報
 	var position = new Position(parseFloat(x), parseFloat(y),
 			parseFloat(width), parseFloat(height));

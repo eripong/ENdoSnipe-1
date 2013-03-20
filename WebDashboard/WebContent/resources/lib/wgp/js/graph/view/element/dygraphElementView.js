@@ -1,30 +1,28 @@
-/*****************************************************************
- WGP  1.0B  - Web Graphical Platform
-   (https://sourceforge.net/projects/wgp/)
-
- The MIT License (MIT)
- 
- Copyright (c) 2012 Acroquest Technology Co.,Ltd.
- 
- Permission is hereby granted, free of charge, to any person obtaining 
- a copy of this software and associated documentation files
- (the "Software"), to deal in the Software without restriction, 
- including without limitation the rights to use, copy, modify, merge,
- publish, distribute, sublicense, and/or sell copies of the Software,
- and to permit persons to whom the Software is furnished to do so, 
- subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be 
- included in all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*****************************************************************/
+/*******************************************************************************
+ * WGP 1.0B - Web Graphical Platform (https://sourceforge.net/projects/wgp/)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
 wgp.DygraphAttribute = [ "colors", "labels", "valueRange", "xlabel", "ylabel",
 		"strokeWidth", "legend", "labelsDiv", "width", "height" ];
 
@@ -51,7 +49,7 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 			var settings = {
 				url : url,
 				data : JSON.stringify(dataMap)
-			}
+			};
 
 			appView.onSearch(settings);
 		}
@@ -63,7 +61,7 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 			graphMaxNumber : 50,
 			maxValue : 100
 		};
-		var argument = $.extend(true, defauldSettings, argument);
+		argument = $.extend(true, defauldSettings, argument);
 
 		this.viewType = wgp.constants.VIEW_TYPE.VIEW;
 		this.parentId = argument.parentId;
@@ -107,10 +105,10 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 		}
 		this.data = this.getData();
 		var updateOption = {
-			'file' : this.data,
-//			valueRange: [0, this.maxValue * 1.5]
+			'file' : this.data
+		// ,valueRange: [0, this.maxValue * 1.5]
 		};
-		if (this.data.length != 0) {
+		if (this.data.length !== 0) {
 			updateOption['dateWindow'] = [ this.data[1][0],
 					this.data[this.data.length - 1][0] ];
 		}
@@ -119,13 +117,13 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 	onComplete : function() {
 		this.data = this.getData();
 		var updateOption = {
-			'file' : this.data,
-//			valueRange: [0, this.maxValue * 1.5]
+			'file' : this.data
+		// ,valueRange: [0, this.maxValue * 1.5]
 		};
-		if (this.data.length != 0) {
-			if (this.data.length != 1) {
+		if (this.data.length !== 0) {
+			if (this.data.length !== 1) {
 				updateOption['dateWindow'] = [ this.data[1][0],
-				           					this.data[this.data.length - 1][0] ];				
+						this.data[this.data.length - 1][0] ];
 			}
 		}
 		this.entity.updateOptions(updateOption);
@@ -155,15 +153,15 @@ wgp.DygraphElementView = wgp.AbstractView.extend({
 		tmpAppView.stopSyncData([ this.graphId ]);
 		this.entity = null;
 	},
-	_parseModel : function (model) {
+	_parseModel : function(model) {
 		var timeString = model.get("measurementTime");
-		var time = parseInt(timeString);
+		var time = parseInt(timeString, 10);
 		var date = new Date(time);
 		var valueString = model.get("measurementValue");
 		var value = parseFloat(valueString);
 		if (this.maxValue < value) {
 			this.maxValue = value;
 		}
-		return [ date, value ]; 
+		return [ date, value ];
 	}
 });

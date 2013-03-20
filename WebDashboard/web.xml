@@ -46,7 +46,7 @@
 		<servlet-class>jp.co.acroquest.endosnipe.web.dashboard.servlet.DashBoardNotifyServlet</servlet-class>
 		<init-param>
 			<param-name>collector.property</param-name>
-			<param-value>C:\AcroWorks\Works\halook\git\WebDashboard\conf\collector.properties</param-value>
+			<param-value>C:\Tools\MSysGit\msysgit\home\ENdoSnipe\Tools\DataCollector\conf\collector.properties</param-value>
 		</init-param>
 		<init-param>
 			<param-name>report.directory</param-name>

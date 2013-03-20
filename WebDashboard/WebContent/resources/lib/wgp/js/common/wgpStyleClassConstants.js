@@ -32,31 +32,31 @@ wgp.styleClassConstants.STYLE_ADD_SETTING = {};
 /** パースペクティブテーブルのスタイルクラス属性名定義 */
 
 // ドロップエリア
-wgp.styleClassConstants.PERSPECTIVE_DROP_AREA ="perspactive_drop_Area";
+wgp.styleClassConstants.PERSPECTIVE_DROP_AREA ="perspective_drop_Area";
 
 // ユーティリティバー
-wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR = "perspactive_util_bar";
+wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR = "perspective_util_bar";
 
-wgp.styleClassConstants.PERSPECTIVE_ICON = "perspactive_icon";
+wgp.styleClassConstants.PERSPECTIVE_ICON = "perspective_icon";
 
 // 非表示ボタン
-wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_HIDE = "perspactive_util_bar_hide";
+wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_HIDE = "perspective_util_bar_hide";
 
 // 最小化ボタン
-wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN = "perspactive_util_bar_min";
+wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN = "perspective_util_bar_min";
 
 // 元に戻すボタン
-wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE = "perspactive_util_bar_restore";
+wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_RESTORE = "perspective_util_bar_restore";
 
 // ビューエリア
-wgp.styleClassConstants.PERSPECTIVE_VIEW_AREA = "perspactive_view_Area";
+wgp.styleClassConstants.PERSPECTIVE_VIEW_AREA = "perspective_view_Area";
 
 // 全てのドロップエリアを囲むクラス
-wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL = "perspactive_drop_Area_all";
+wgp.styleClassConstants.PERSPECTIVE_DROP_AREA_ALL = "perspective_drop_Area_all";
 
 // 特定のスタイルクラスの場合に追加するスタイルクラスの設定
 wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_DROP_AREA] = [ "ui-widget-content" ];
-wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR] = [ "ui-widget-header" ];
+wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR] = [ "ui-widget-header", "wgp-tabs" ];
 wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_ICON] = [ "ui-icon" ];
 wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_HIDE] = [ " ui-icon-circle-close"];
 wgp.styleClassConstants.STYLE_ADD_SETTING[wgp.styleClassConstants.PERSPECTIVE_UTIL_BAR_MIN] = [ " ui-icon-circle-minus"];

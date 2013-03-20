@@ -149,12 +149,14 @@ public class DashBoardNotifyServlet extends HttpServlet
 
         String port = config.getDatabasePort();
 
+        String dbName = config.getDatabaseName();
+
         String userName = config.getDatabaseUserName();
 
         String password = config.getDatabasePassword();
 
         String dbDir = config.getBaseDir();
-
+        
         DatabaseType dbType = config.getDatabaseType();
 
         boolean useDefaultDb = true;
@@ -163,7 +165,7 @@ public class DashBoardNotifyServlet extends HttpServlet
             useDefaultDb = false;
         }
 
-        DBManager.updateSettings(useDefaultDb, dbDir, host, port, userName, password);
+        DBManager.updateSettings(useDefaultDb, dbDir, host, port, dbName, userName, password);
     }
 
     /**

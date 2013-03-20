@@ -24,16 +24,16 @@
  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*****************************************************************/
+ *****************************************************************/
 /**
  * コンテキストメニュー内の1メニューを表すクラス
  */
-function contextMenu(menuId , menuName ){
+function contextMenu(menuId, menuName) {
 	this.menu_id = menuId;
 	this.menu_name = menuName;
 	this.children = [];
-};
+}
 
-contextMenu.prototype.addChildren = function( contextMenuArray ){
-	this.children = this.children.concat( contextMenuArray );
+contextMenu.prototype.addChildren = function(contextMenuArray) {
+	this.children = this.children.concat(contextMenuArray);
 };

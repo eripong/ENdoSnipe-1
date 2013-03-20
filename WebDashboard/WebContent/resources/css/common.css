@@ -28,6 +28,11 @@ body {
 #tree_area {
 	background: none;
 }
+
+#list_area {
+	background: none;
+}
+
 #contents_area {
 	background-color: #000;
 }

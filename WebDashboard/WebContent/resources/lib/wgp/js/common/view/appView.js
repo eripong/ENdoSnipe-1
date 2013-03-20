@@ -60,7 +60,7 @@ wgp.AppView = Backbone.View
 						startSyncIdList.push(id);
 					}
 				});
-				if (startSyncIdList.length == 0) {
+				if (startSyncIdList.length === 0) {
 					return;
 				}
 				var syncData = {
@@ -82,7 +82,7 @@ wgp.AppView = Backbone.View
 						stopSyncIdList.push(id);
 					}
 				});
-				if (stopSyncIdList.length == 0) {
+				if (stopSyncIdList.length === 0) {
 					return;
 				}
 				var syncData = {
@@ -133,7 +133,7 @@ wgp.AppView = Backbone.View
 			},
 			_update : function(updateCollection, updateData) {
 				var targetModel = updateCollection.models[updateData.id];
-				if (targetModel == null || targetModel == undefined) {
+				if (targetModel === null || targetModel === undefined) {
 					console.log('Model is not exists');
 				} else {
 					targetModel.set(updateData.updateData);

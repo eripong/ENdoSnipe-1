@@ -1,39 +1,40 @@
-/*****************************************************************
- WGP  1.0B  - Web Graphical Platform
-   (https://sourceforge.net/projects/wgp/)
-
- The MIT License (MIT)
- 
- Copyright (c) 2012 Acroquest Technology Co.,Ltd.
- 
- Permission is hereby granted, free of charge, to any person obtaining 
- a copy of this software and associated documentation files
- (the "Software"), to deal in the Software without restriction, 
- including without limitation the rights to use, copy, modify, merge,
- publish, distribute, sublicense, and/or sell copies of the Software,
- and to permit persons to whom the Software is furnished to do so, 
- subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be 
- included in all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*****************************************************************/
+/*******************************************************************************
+ * WGP 1.0B - Web Graphical Platform (https://sourceforge.net/projects/wgp/)
+ * 
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2012 Acroquest Technology Co.,Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ ******************************************************************************/
 function mapElement() {
 	this.moveX_ = 0;
 	this.moveY_ = 0;
-};
+}
 
 /**
  * create method on map.
- * @param positionArray array.
- * @param paper paper.
+ * 
+ * @param positionArray
+ *            array.
+ * @param paper
+ *            paper.
  */
 mapElement.prototype.createMapElement = function(positionArray, paper) {
 	var path = this.createPathString(positionArray);
@@ -45,20 +46,23 @@ mapElement.prototype.createMapElement = function(positionArray, paper) {
 
 /**
  * get element size.
+ * 
  * @returns element size
  */
 mapElement.prototype.getElementSize = function() {
 	return $.extend(true, {}, {
-		x : this.x
-		,y : this.y
-		,width : this.width
-		,height : this.height
+		x : this.x,
+		y : this.y,
+		width : this.width,
+		height : this.height
 	});
 };
 
 /**
  * convert array to path string.
- * @param positionArray positions
+ * 
+ * @param positionArray
+ *            positions
  * @returns path
  */
 mapElement.prototype.createPathString = function(positionArray) {
@@ -82,8 +86,11 @@ mapElement.prototype.setEventFunction = function(mapAreaViewItem) {
 
 /**
  * move object.
- * @param moveX moment of move x
- * @param moveY moment of move y
+ * 
+ * @param moveX
+ *            moment of move x
+ * @param moveY
+ *            moment of move y
  */
 mapElement.prototype.moveElement = function(moveX, moveY) {
 
@@ -113,28 +120,35 @@ mapElement.prototype.moveElement = function(moveX, moveY) {
 
 /**
  * move to use transform method
- * @param moveX moment of moveX
- * @param moveY moment of moveY
+ * 
+ * @param moveX
+ *            moment of moveX
+ * @param moveY
+ *            moment of moveY
  */
 mapElement.prototype._moveElementObject = function(moveX, moveY) {
 	this.moveX_ = this.moveX_ + moveX;
 	this.moveY_ = this.moveY_ + moveY;
 	var transValue = "t" + this.moveX_ + "," + this.moveY_;
-	this.object.transform(transValue);	
+	this.object.transform(transValue);
 };
 
 /**
  * resize of path.
- * @param ratioX moment of resize ratio x
- * @param ratioY moment of resize ratio y
- * @param ellipsePosition small ellipse position
+ * 
+ * @param ratioX
+ *            moment of resize ratio x
+ * @param ratioY
+ *            moment of resize ratio y
+ * @param ellipsePosition
+ *            small ellipse position
  */
 mapElement.prototype.resize = function(ratioX, ratioY, ellipsePosition) {
 	// resize element
 	var paths = this.object.attr("path");
 	var originX = this.x - this.moveX_;
 	var originY = this.y - this.moveY_;
-	$.each(paths, function(index, path){
+	$.each(paths, function(index, path) {
 		if (path.length == 3) {
 			path[1] = originX + (path[1] - originX) * ratioX;
 			path[2] = originY + (path[2] - originY) * ratioY;
@@ -163,29 +177,34 @@ mapElement.prototype.resize = function(ratioX, ratioY, ellipsePosition) {
 		ellipseMoveY = moveY;
 	} else {
 		moveY = 0;
-		ellipseMoveY =  afterHeight - this.height;
+		ellipseMoveY = afterHeight - this.height;
 	}
 	this._moveElementObject(moveX, moveY);
-	
+
 	this.x = this.x + moveX;
 	this.y = this.y + moveY;
 	this.width = afterWidth;
 	this.height = afterHeight;
-	
+
 	this.resizeFrame(ellipseMoveX, ellipseMoveY, ellipsePosition);
 	this.refactorConnectLine();
 };
 
 /**
  * move frame when object resized.
- * @param moveX moment of move x
- * @param moveY moment of move y
- * @param ellipsePosition position of frame ellipse.
+ * 
+ * @param moveX
+ *            moment of move x
+ * @param moveY
+ *            moment of move y
+ * @param ellipsePosition
+ *            position of frame ellipse.
  */
 mapElement.prototype.resizeFrame = function(moveX, moveY, ellipsePosition) {
 	if (this.frame == null) {
 		return;
-	};
+	}
+
 	if (ellipsePosition == raphaelMapConstants.LEFT_UPPER
 			|| ellipsePosition == raphaelMapConstants.LEFT_UNDER) {
 		this.frame[raphaelMapConstants.LEFT_UPPER].object.translate(moveX, 0);
@@ -236,7 +255,7 @@ mapElement.prototype.setFrame = function() {
 				this.y + this.height - (RADIUS_SIZE / 2), RADIUS_SIZE,
 				RADIUS_SIZE, paper);
 		this._setFrameId(frameLeftBottom, raphaelMapConstants.LEFT_UNDER);
-		
+
 		var frameRightUpper = new ellipseSmall(this.x + this.width
 				- (RADIUS_SIZE / 2), this.y - (RADIUS_SIZE / 2), RADIUS_SIZE,
 				RADIUS_SIZE, paper);
@@ -261,16 +280,18 @@ mapElement.prototype.setFrame = function() {
 
 /**
  * set ellipse id.
- * @param frameObject target object
- * @param ellipsePosition ellipse position
+ * 
+ * @param frameObject
+ *            target object
+ * @param ellipsePosition
+ *            ellipse position
  */
-mapElement.prototype._setFrameId = function(frameObject, ellipsePosition){
+mapElement.prototype._setFrameId = function(frameObject, ellipsePosition) {
 	frameObject.parentObject_ = this;
+	frameObject.object.node.setAttribute(raphaelMapConstants.OBJECT_ID_NAME,
+			this.objectId);
 	frameObject.object.node.setAttribute(
-			raphaelMapConstants.OBJECT_ID_NAME, this.objectId);
-	frameObject.object.node.setAttribute(
-			raphaelMapConstants.SMALL_ELLIPSE_POSITION,
-			ellipsePosition);
+			raphaelMapConstants.SMALL_ELLIPSE_POSITION, ellipsePosition);
 };
 
 mapElement.prototype.setZIndex = function(zIndex) {
@@ -283,23 +304,27 @@ mapElement.prototype.getZIndex = function() {
 
 /**
  * get front node object
+ * 
  * @returns {Raphael} node object
  */
-mapElement.prototype.getFrontNode = function(){
+mapElement.prototype.getFrontNode = function() {
 	return this.object;
 };
 
 /**
  * z index adjust method
+ * 
  * @returns {Raphael} node object
  */
-mapElement.prototype.getBottomNode = function(){
+mapElement.prototype.getBottomNode = function() {
 	return this.object;
 };
 
 /**
  * move to front on target
- * @param target {Raphael} raphael object
+ * 
+ * @param target
+ *            {Raphael} raphael object
  */
 mapElement.prototype.moveFront = function(target) {
 	$(target.node).after(this.object.node);
@@ -307,10 +332,12 @@ mapElement.prototype.moveFront = function(target) {
 
 /**
  * move to back on target
- * @param target {Raphael} raphael object
+ * 
+ * @param target
+ *            {Raphael} raphael object
  */
 mapElement.prototype.moveBack = function(target) {
-	$(target.node).before(this.object.node);	
+	$(target.node).before(this.object.node);
 };
 
 /**
@@ -349,7 +376,9 @@ mapElement.prototype.hideFrame = function() {
 
 /**
  * set attributes data
- * @param elementProperty attributes data
+ * 
+ * @param elementProperty
+ *            attributes data
  */
 mapElement.prototype.setAttributes = function(elementProperty) {
 	var instance = this;
@@ -364,6 +393,7 @@ mapElement.prototype.setAttributes = function(elementProperty) {
 
 /**
  * get attributes data.
+ * 
  * @returns {Object} attributes data
  */
 mapElement.prototype.getAttributes = function() {
@@ -372,22 +402,22 @@ mapElement.prototype.getAttributes = function() {
 	};
 };
 
-mapElement.prototype.getProperty = function(){
+mapElement.prototype.getProperty = function() {
 	return this._getBaseElement();
 };
 
 /**
  * get base data.
  */
-mapElement.prototype._getBaseElement = function(){
+mapElement.prototype._getBaseElement = function() {
 	var data = {
 		objectType : this.objectType_,
-        objectId : this.objectId,
-        pointX : this.x,
-        pointY : this.y,
-        width : this.width,
-        height : this.height,
-        objectName : this.elementName_
+		objectId : this.objectId,
+		pointX : this.x,
+		pointY : this.y,
+		width : this.width,
+		height : this.height,
+		objectName : this.elementName_
 	};
 	return data;
 };
@@ -400,4 +430,4 @@ function Position(x, y, width, height, value) {
 	this.initValue = value;
 	this.URL = null;
 	return this;
-};
+}

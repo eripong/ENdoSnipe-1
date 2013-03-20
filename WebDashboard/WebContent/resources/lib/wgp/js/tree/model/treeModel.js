@@ -30,7 +30,8 @@ wgp.TreeModel = Backbone.Model.extend({
 		attr : {},
 		parentTreeId : null,
 		children : {},
-		element : null
+		element : null,
+		viewSettingName : ""
 	},
 	idAttribute : "treeId",
 	addChildren : function(treeModel) {

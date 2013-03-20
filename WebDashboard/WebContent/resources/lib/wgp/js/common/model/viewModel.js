@@ -40,7 +40,7 @@ wgp.ViewModelList = Backbone.Collection.extend({
 
 wgp.WgpModel = Backbone.Model.extend({
 	destroy : function(){
-		this.trigger(destroy, this);
+		this.trigger("destroy", this);
 	}
 });
 

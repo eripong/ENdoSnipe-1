@@ -80,13 +80,13 @@ wgp.AbstractView = Backbone.View.extend({
 		var attributes = this.attributes;
 		var attributeValues = {};
 
-		if (attributes == null || attributes == undefined) {
+		if (attributes === null || attributes === undefined) {
 			return attributeValues;
 		}
 
 		_.each(attributesKey, function(attribute, index) {
 			var value = attributes[attribute];
-			if (value != null && value != undefined) {
+			if (value !== null && value !== undefined) {
 				attributeValues[attribute] = value;
 			}
 		});

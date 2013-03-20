@@ -21,16 +21,16 @@
 		viewArea2.rowspan = 1;
 		viewArea2.colspan = 1;
 
-		var table = [ [ new wgp.PerspactiveModel(viewArea1),
-				new wgp.PerspactiveModel(viewArea2) ] ];
-		var perspactiveView = new wgp.PerspactiveView({
+		var table = [ [ new wgp.PerspectiveModel(viewArea1),
+				new wgp.PerspectiveModel(viewArea2) ] ];
+		var perspectiveView = new wgp.PerspectiveView({
 			id : "persArea",
 			collection : table,
 			minimum : false,
 			close : false
 		});
-		perspactiveView.dropView("persArea_drop_0_0", "tree_area");
-		perspactiveView.dropView("persArea_drop_0_1", "contents_area");
+		perspectiveView.dropView("persArea_drop_0_0", "tree_area");
+		perspectiveView.dropView("persArea_drop_0_1", "contents_area");
 
 		var appView = new ENS.AppView();
 	</script>

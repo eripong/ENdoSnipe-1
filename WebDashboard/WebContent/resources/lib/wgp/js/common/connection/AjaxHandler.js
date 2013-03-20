@@ -26,7 +26,7 @@
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *****************************************************************/
 wgp.AjaxHandler = function() {
-	this.settings_;
+	this.settings_ = null;
 	this.errorCallObject_ = null;
 	this.errorCallFunction_ = null;
 	this.successCallObject_ = null;

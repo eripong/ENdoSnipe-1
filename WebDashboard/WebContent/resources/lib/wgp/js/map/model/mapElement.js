@@ -34,8 +34,9 @@ wgp.MapElement = Backbone.Model.extend({
         width : null,
         height : null,
         zIndex : null,
-        URL : null,
-        text : null
+
+        // 自身と紐づくビュークラス
+        view : null
     },
     idAttribute:"objectId"
 });

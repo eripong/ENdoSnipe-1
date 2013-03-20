@@ -25,36 +25,32 @@
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *****************************************************************/
-.perspactive_drop_Area {
+.perspective_drop_Area {
 }
 
-.perspactive_util_bar {
-	height:18px;
+.perspective_util_bar {
+	height: 18px;
 }
 
-.perspactive_util_bar_hide {
+.perspective_util_bar_hide {
 	width:15px;
 	height:15px;
 	float:right;
 }
 
-.perspactive_util_bar_min {
+.perspective_util_bar_min {
 	width:15px;
 	height:15px;
 	float:right;
 }
 
-.perspactive_util_bar_restore {
+.perspective_util_bar_restore {
 	width:15px;
 	height:15px;
 	float:right;
 }
 
-.perspactive_view_Area {
-	background-color:white;
-}
-
-.perspactive_drop_Area_all {
+.perspective_drop_Area_all {
 	position:absolute;
 	top:57px;
 	left:8px;
@@ -140,4 +136,22 @@
 
 .save_icon {
 	barckground : url(/resources/img/icon/saveIcon.png);
+}
+
+
+.wgp-tabs ul {
+	list-style : none outside none;
+	margin : 0;
+	outline : 0 none;
+	padding : 0;
+	text-decoration : none;
+}
+
+.wgp-tabs li {
+	line-style : none outside none;
+	margin-left : 2px;
+	margin-right : 2px;
+	float : left;
+	height : inherit;
+	border : none;
 }

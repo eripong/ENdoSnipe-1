@@ -59,7 +59,7 @@ wgp.common.createQueryString = function(data) {
 	var queryString = "";
 	var index = 0;
 	$.each(data, function(key, value) {
-		if (index == 0) {
+		if (index === 0) {
 			queryString = queryString + "?" + key + "="
 					+ wgp.common.escapeURL(value);
 			index++;
@@ -184,7 +184,7 @@ wgp.common.createTable = function(settings) {
 																			} catch (ex) {
 																				// 何もしない
 																			}
-																			if (isJSON == false) {
+																			if (isJSON === false) {
 																				if (!cellObject.length) {
 																					object[rowIndex][cellIndex] = cellObject;
 																				} else {

@@ -53,7 +53,7 @@ wgp.MapView = wgp.AbstractView.extend({
 	},
 	onAdd : function(mapElement) {
 		var id = mapElement.id;
-		if (id == null) {
+		if (id === null) {
 			id = this.maxId;
 			this.maxId++;
 
