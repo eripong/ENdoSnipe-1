@@ -1,6 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/common.css"
+	type="text/css" media="all">
 <%@ include file="../include/ext/javaScriptInclude.jsp"%>
 <%@ include file="../include/MapListInclude.jsp"%>
 </head>
@@ -8,38 +12,49 @@
 	<div id="persArea"></div>
 	<input id="treeData" type="hidden" value='${treeData}' />
 	<script type="text/javascript">
-		var viewArea1 = {};
-		var viewArea2 = {};
-
-		viewArea1.width = 300;
-		viewArea1.height = 600;
-		viewArea1.rowspan = 1;
-		viewArea1.colspan = 1;
-
-		viewArea2.width = 900;
-		viewArea2.height = 600;
-		viewArea2.rowspan = 1;
-		viewArea2.colspan = 1;
+		var viewArea1 = {
+			width : 300,
+			height : 600,
+			rowspan : 2,
+			colspan : 1
+		};
+		var viewArea2 = {
+			width : 900,
+			height : 550,
+			rowspan : 1,
+			colspan : 1
+		};
+		var viewArea3 = {
+			width : 900,
+			height : 50,
+			rowspan : 1,
+			colspan : 1
+		};
 
 		var table = [ [ new wgp.PerspectiveModel(viewArea1),
-				new wgp.PerspectiveModel(viewArea2) ] ];
-		var perspactiveView = new wgp.PerspectiveView({
+				new wgp.PerspectiveModel(viewArea2) ], 
+				[new wgp.PerspectiveModel(viewArea3)]];
+		var perspectiveView = new wgp.PerspectiveView({
 			id : "persArea",
 			collection : table,
 			minimum : false,
 			close : false
 		});
-		perspactiveView.dropView("persArea_drop_0_0", "tree_area", "GraphTree");
-		perspactiveView.dropView("persArea_drop_0_0", "list_area", "MapList");
-		perspactiveView.dropView("persArea_drop_0_1", "contents_area", "MapView");
+		
+		// TODO WGPを改修し、barを非表示にする。
+		$('#persArea_bar_1_0').hide();
+		
+		perspectiveView.dropView("persArea_drop_0_0", "tree_area", "GraphTree");
+		perspectiveView.dropView("persArea_drop_0_0", "list_area", "MapList");
+		perspectiveView.dropView("persArea_drop_0_1", "contents_area", "MapView");
 
 		var appView = new ENS.AppView();
-	</script>
-
-	<script src="<%=request.getContextPath()%>/resources/js/common/user.js"
-		type="text/javaScript"></script>
-
-	<script>
+		</script>
+		
+		<script src="<%=request.getContextPath()%>/resources/js/common/user.js"
+	type="text/javaScript"></script>
+		
+	<script type="text/javascript">
 		var resourceTreeView = new ENS.ResourceTreeView({
 			id : "tree_area",
 			targetId : "contents_area",
@@ -87,10 +102,23 @@
 		resourceMapListView.collection.add(rootTreeModel);
 		resourceMapListView.collection.add(groupTreeModel1);
 		resourceMapListView.collection.add(groupTreeModel2);
+		
+		// Create Menu View
+		var mapMenuModel = new ENS.mapMenuModel({
+			width : 25,
+			height : 25,
+			styleClass : 'map_menu_icon',
+			src : '<%=request.getContextPath()%>/resources/images/map/saveIcon.png',
+			alt : 'save',
+		});
+		
+		var menuView = new ENS.mapMenuView({
+				id : "persArea_drop_1_0",
+				collection : [mapMenuModel]
+			},
+			{}
+		);
 
 	</script>
 </body>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/common.css"
-	type="text/css" media="all">
 </html>
