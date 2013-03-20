@@ -43,13 +43,17 @@
 </script>
 
 <%-- resource map --%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/nodeinfomation/map.css"
+	type="text/css" media="all">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceMapView.js">	
 </script>
-
-<%-- resource map --%>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceMapListView.js">	
+</script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/nodeinfomation/view/resourceMapMenuView.js">	
 </script>
 
 <%-- nodeInfo graph --%>

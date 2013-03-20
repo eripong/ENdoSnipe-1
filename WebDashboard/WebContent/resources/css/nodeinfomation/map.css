@@ -1,0 +1,7 @@
+.map_menu_icon {
+	margin: 10px;
+}
+
+.map_menu_icon:hover {
+	cursor: pointer;
+}
