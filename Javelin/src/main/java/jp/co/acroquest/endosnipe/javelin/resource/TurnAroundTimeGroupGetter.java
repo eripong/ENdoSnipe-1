@@ -120,8 +120,10 @@ public class TurnAroundTimeGroupGetter implements ResourceGroupGetter, TelegramC
             ResourceItem tatMinEntry = new ResourceItem();
             ResourceItem tatCountEntry = new ResourceItem();
 
-            // ResourceEntryにNameを設定する
-            String name = invocation.getRootInvocationManagerKey().replace("/", "_");
+            // ResourceEntryにNameを設定する。
+            // スラッシュは区切り文字のため、スラッシュがある場合には文字参照に変換する
+            String name = invocation.getRootInvocationManagerKey().replace("/", "&#47;");
+
             tatEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_AVERAGE + "/" + name);
             tatMaxEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_MAX + "/" + name);
             tatMinEntry.setName(ITEMNAME_PROCESS_RESPONSE_TIME_MIN + "/" + name);
