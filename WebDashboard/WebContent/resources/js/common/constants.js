@@ -90,3 +90,4 @@ ENS.nodeinfo.ONEDAY_MILLISEC = 86400000;
 ENS.ResourceGraphAttribute = [ "colors", "labels", "valueRange", "xlabel",
 		"ylabel", "strokeWidth", "legend", "labelsDiv", "width", "height" ];
 ENS.nodeinfo.GRAPH_HEIGHT_MARGIN = 2;
+ENS.nodeinfo.GRAPH_TITLE_LENGTH = 30;

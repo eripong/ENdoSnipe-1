@@ -39,12 +39,14 @@
 		type="text/javaScript"></script>
 
 	<script>
-		var treeView = new wgp.TreeView({
+		var treeView = new ENS.treeView({
 			id : "tree_area",
 			targetId : "contents_area",
 			themeUrl : wgp.common.getContextPath()
 			+ "/resources/css/jsTree/style.css"
 		});
+		// ツリー連携を追加。
+		treeView.setClickEvent("contents_area");
 		appView.addView(treeView, wgp.constants.TREE.DATA_ID);
 		websocketClient = new wgp.WebSocketClient(appView, "notifyEvent");
 		websocketClient.initialize();

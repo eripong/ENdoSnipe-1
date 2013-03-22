@@ -79,10 +79,19 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		this.dateWindow = argument["dateWindow"];
 		this.maxId = 0;
 
-		 this.graphMaxNumber = 50;//argument.graphMaxNumber;
-		 this.maxValue = 100;//argument.maxValue;
+		this.graphMaxNumber = 50;// argument.graphMaxNumber;
+		this.maxValue = 100;// argument.maxValue;
 	},
 	render : function() {
+		var graphId = this.$el.attr("id") + "_ensgraph";
+		var graphdiv = $("<div id='" + graphId + "'><div>");
+		$("#" + this.$el.attr("id")).append(graphdiv);
+
+		var labelId = this.$el.attr("id") + "_enslabel";
+		var labeldiv = $("<div id='" + labelId + "' class='ensLabel'><div>");
+		$("#" + this.$el.attr("id")).append(labeldiv);
+		var labelDom = document.getElementById(labelId);
+
 		var data = this.getData();
 		var optionSettings = {
 			title : this.title,
@@ -90,7 +99,7 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 			ylabel : this.labelY,
 			axisLabelColor : "#FFFFFF",
 			labelsDivStyles : {
-				background: "none repeat scroll 0 0 #000000"
+				background : "none repeat scroll 0 0 #000000"
 			}
 		};
 
@@ -98,19 +107,49 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		var attributes = this.getAttributes(ENS.ResourceGraphAttribute);
 
 		optionSettings = $.extend(true, optionSettings, attributes);
+		optionSettings.labelsDiv = labelDom;
 
-		var element = document.getElementById(this.$el.attr("id"));
+		// title‚ª’·‚·‚¬‚éê‡‚É‚ÍA•ÏŠ·‚ðs‚¤B
+		optionSettings.title = optionSettings.title.split("&#47;").join("/");
+		var tmpTitle = optionSettings.title;
+		var isShort = false;
+		if (optionSettings.title.length > ENS.nodeinfo.GRAPH_TITLE_LENGTH) {
+			optionSettings.title = optionSettings.title.substring(0,
+					ENS.nodeinfo.GRAPH_TITLE_LENGTH)
+					+ "......";
+			isShort = true;
+		}
+		
+		var element = document.getElementById(graphId);
 		this.entity = new Dygraph(element, data, optionSettings);
 		this.entity.resize(this.width, this.graphHeight);
-		$("#" + this.$el.attr("id")).height(this.height);
+		$("#" + graphId).height(this.height);
 		this.getGraphObject().updateOptions({
 			dateWindow : this.dateWindow,
 			axisLabelFontSize : 10,
 			titleHeight : 22
 		});
+		$("#" + graphId).mouseover(function(event){
+			if (!isShort) {
+				return;
+			}
+			var target  = event.target;
+			if ($(target).hasClass("dygraph-title")) {
+				$(target).text(tmpTitle);
+			}
+		});
+		$("#" + graphId).mouseout(function(event){
+			if (!isShort) {
+				return;
+			}
+			var target  = event.target;
+			if ($(target).hasClass("dygraph-title")) {
+				$(target).text(optionSettings.title);
+			}
+		});
 	},
 	onAdd : function(graphModel) {
-		
+
 		if (this.isRealTime) {
 			if (this.collection.length > this.graphMaxNumber) {
 				this.collection.shift(wgp.constants.BACKBONE_EVENT.SILENT);
@@ -146,7 +185,7 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 			'file' : this.data,
 		};
 		this.entity.updateOptions(updateOption);
-		
+
 		var tmpAppView = new ENS.AppView();
 		tmpAppView.syncData([ this.graphId ]);
 	},
@@ -186,7 +225,7 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		} else {
 			this.isRealTime = false;
 		}
-		
+
 		var startTime = new Date(new Date().getTime() - from);
 		var endTime = new Date(new Date().getTime() - to);
 		appView.getTermData([ graphId ], startTime, endTime);

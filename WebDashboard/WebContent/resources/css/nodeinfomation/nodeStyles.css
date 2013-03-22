@@ -107,5 +107,12 @@
 		79%, #666666 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient(      startColorstr='#666666',
 		endColorstr='#87bcea', GradientType=1 );
+	word-wrap: break-word;
 	/* IE6-9 fallback on horizontal gradient */
+}
+
+/* dygraph legend */
+.ensLabel {
+    background-color: #000000;
+    margin-top: 5px;
 }
