@@ -65,7 +65,7 @@ public class MapInfoDao extends AbstractDao
         {
             conn = getConnection(database);
             String sql =
-                "insert into " + MAP_INFO_TABLE + "(NAME, " + "DATA" + ")" + " values (?, ?)";
+                "insert into " + MAP_INFO_TABLE + "(NAME, DATA, LAST_UPDATE)" + " values (?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             // CHECKSTYLE:OFF
             pstmt.setString(1, mapInfo.name);
@@ -139,10 +139,12 @@ public class MapInfoDao extends AbstractDao
             pstmt.setLong(1, mapId);
             rs = pstmt.executeQuery();
             // CHECKSTYLE:OFF
-            mapInfo.mapId = rs.getLong(1);
-            mapInfo.name = rs.getString(2);
-            mapInfo.data = rs.getString(3);
-            mapInfo.lastUpdate = rs.getTimestamp(4);
+            if(rs.next()){
+                mapInfo.mapId = rs.getLong(1);
+                mapInfo.name = rs.getString(2);
+                mapInfo.data = rs.getString(3);
+                mapInfo.lastUpdate = rs.getTimestamp(4);
+            }
             // CHECKSTYLE:ON
         }
         finally
@@ -171,7 +173,7 @@ public class MapInfoDao extends AbstractDao
         {
             conn = getConnection(database, true);
             String sql =
-                "update " + MAP_INFO_TABLE + "set data = ? , last_update = ? where MAP_ID = ?";
+                "update " + MAP_INFO_TABLE + " set data = ? , last_update = ? where MAP_ID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, mapInfo.data);
             Timestamp current = new Timestamp(System.currentTimeMillis());
