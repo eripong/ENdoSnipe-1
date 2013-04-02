@@ -49,7 +49,9 @@ ENS.mapMenuView = wgp.AbstractView.extend({
 			imgTag.attr("alt", alt);
 			imgTag.attr("class", styleClass);
 			if (onclick != null && typeof onclick === "function") {
-				imgTag.attr("onclick", onclick);
+				imgTag.click(function(){
+					onclick();
+				});
 			}
 			$("#" + this.divId).append(imgTag);
 		}

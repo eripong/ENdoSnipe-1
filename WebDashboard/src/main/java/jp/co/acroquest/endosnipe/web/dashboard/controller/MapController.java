@@ -86,7 +86,8 @@ public class MapController {
 	 * Insert Map.
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public void insert(@RequestParam(value = "data") final String data,
+	public void insert(
+			@RequestParam(value = "data") final String data,
 			@RequestParam(value = "name") final String name) {
 		MapInfo mapInfo = new MapInfo();
 		mapInfo.data = data;
@@ -95,10 +96,11 @@ public class MapController {
 	}
 
 	/**
-	 * Insert Map.
+	 * Update Map.
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void update(@RequestParam(value = "mapId") final String mapId,
+	public void update(
+			@RequestParam(value = "mapId") final String mapId,
 			@RequestParam(value = "data") final String data,
 			@RequestParam(value = "name") final String name) {
 		MapInfo mapInfo = new MapInfo();
@@ -106,5 +108,16 @@ public class MapController {
 		mapInfo.data = data;
 		mapInfo.name = name;
 		this.mapService.update(mapInfo);
+	}
+
+	/**
+	 * Get Map.
+	 */
+	@RequestMapping(value = "/getById", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> getById(
+			@RequestParam(value = "mapId") final String mapId){
+		Map<String, String> responseMap = this.mapService.getById(Long.valueOf(mapId));
+		return responseMap;
 	}
 }

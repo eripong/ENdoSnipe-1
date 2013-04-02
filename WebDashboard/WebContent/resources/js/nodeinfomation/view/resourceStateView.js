@@ -30,15 +30,7 @@ ENS.ResourceStateElementView = wgp.MapElementView.extend({
 		// 状態を表す画像を描画する。
 		this.element = new image(elementProperty, this._paper);
 	},
-	registerModelEvent : function(){
-
-		// When Model Change
-		this.model.on('change', this.onChange, this);
-
-		// WHen Model Remove
-		this.model.on('remove', this.onRemove, this);
-	},
-	onChange : function(model) {
+	change : function(model) {
 
 		var elementProperty  = {
 			pointX : model.get("pointX"),
@@ -51,7 +43,7 @@ ENS.ResourceStateElementView = wgp.MapElementView.extend({
 		// 再度設定する。
 		this.element.setProperty(elementProperty);
 	},
-	onRemove : function(model){
+	remove : function(model){
 		this.element.remove();
 		this.destroy();
 	}

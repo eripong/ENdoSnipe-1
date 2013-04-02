@@ -29,8 +29,16 @@ body {
 	background: none;
 }
 
+#tree_area a {
+	color: #FFFFFF;
+}
+
 #list_area {
 	background: none;
+}
+
+#list_area a {
+	color: #FFFFFF;
 }
 
 #contents_area {

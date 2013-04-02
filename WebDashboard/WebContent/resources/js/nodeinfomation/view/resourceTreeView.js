@@ -24,39 +24,40 @@ ENS.ResourceTreeView = wgp.TreeView.extend({
 		// リソース配置モードの場合はドラッグ時にリソースを配置する。
 		}else if("arrangement" === this.mode){
 
-			// TODO パースペクティブから取得する。
+			// パースペクティブから取得する。
 			$("#" + this.$el.attr("id")).draggable({
 				helper : "clone",
 				handle : "A",
 				start  : function(event, ui){
-					ui.helper.hide();
-
 					var selectResource = ui.helper.find("A.jstree-hovered").parent("li");
 					selectResource.addClass("dragTarget");
 
 					var selectTop = selectResource.offset()["top"];
 					var selectLeft = selectResource.offset()["left"];
 
-					ui.helper.appendTo("body");
-
 					ui.helper.css("zIndex", 1000);
 					ui.helper.find("ul[class!=dragTarget]").remove();
 					ui.helper.append(selectResource);
+
+					var dragSupport = $("<div id='resourceTreeDragSupport'></div>");
+					$("body").append(dragSupport);
+					dragSupport.css("position", "absolute");
+					dragSupport.css({
+						top : event.clientY - 35,
+						left : event.clientX - 35						
+					});
 
 					ui.helper.removeClass("jstree-focused");
 					ui.helper.css("position", "absolute");
 					ui.helper.width("auto");
 					ui.helper.height("auto");
+					ui.helper.appendTo(dragSupport);
 				},
 				drag : function(event, ui){
 
-					setTimeout(function(){
-						ui.helper.css({
-							top : event.clientY,
-							left : event.clientX
-						});
-						ui.helper.show();
-					});
+				},
+				stop : function(event, ui){
+					ui.helper.parent().remove();
 				}
 			});
 		}

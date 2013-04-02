@@ -109,7 +109,7 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 		optionSettings = $.extend(true, optionSettings, attributes);
 		optionSettings.labelsDiv = labelDom;
 
-		// title‚ª’·‚·‚¬‚éê‡‚É‚ÍA•ÏŠ·‚ğs‚¤B
+		// titleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‚ÍAï¿½ÏŠï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½B
 		optionSettings.title = optionSettings.title.split("&#47;").join("/");
 		var tmpTitle = optionSettings.title;
 		var isShort = false;
@@ -240,6 +240,12 @@ ENS.ResourceGraphElementView = wgp.DygraphElementView.extend({
 			this.maxValue = value;
 		}
 		return [ date, value ];
+	},
+	change : function(){
+		//TODO å®Ÿè£…å†…å®¹æ¤œè¨
+	},
+	remove : function(){
+		this.destroy();
+		$("#" + this.$el.attr("id")).remove();
 	}
-
 });

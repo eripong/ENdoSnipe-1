@@ -63,12 +63,7 @@ public class MapService {
 
 		List<Map<String, String>> resultList = new ArrayList<Map<String, String>>();
 		for (MapInfo mapInfo : mapList) {
-			Map<String, String> dataMap = new HashMap<String, String>();
-			dataMap.put("id", String.valueOf(mapInfo.mapId));
-			dataMap.put("parentTreeId", "");
-			dataMap.put("data", mapInfo.name);
-			dataMap.put("treeId", String.valueOf(mapInfo.mapId));
-			dataMap.put("mapData", mapInfo.data);
+			Map<String,String> dataMap = this.converDataMap(mapInfo);
 			resultList.add(dataMap);
 		}
 		return resultList;
@@ -90,7 +85,7 @@ public class MapService {
 	}
 
 	/**
-	 * マップを登録する。
+	 * マップを更新する。
 	 * 
 	 * @param
 	 */
@@ -102,5 +97,37 @@ public class MapService {
 		} catch (SQLException ex) {
 			LOGGER.log(LogMessageCodes.SQL_EXCEPTION);
 		}
+	}
+
+	/**
+	 * マップを取得する。
+	 * @param mapId
+	 * @return
+	 */
+	public Map<String, String> getById(long mapId){
+		DatabaseManager dbMmanager = DatabaseManager.getInstance();
+		String dbName = dbMmanager.getDataBaseName(1);
+		try {
+			MapInfo mapInfo = MapInfoDao.selectById(dbName, mapId);
+			return this.converDataMap(mapInfo);
+		} catch (SQLException ex) {
+			LOGGER.log(LogMessageCodes.SQL_EXCEPTION);
+			return null;
+		}
+	}
+
+	/**
+	 * マップ情報をMap形式に変換する。
+	 * @param mapInfo
+	 * @return
+	 */
+	private Map<String, String> converDataMap(MapInfo mapInfo){
+		Map<String, String> dataMap = new HashMap<String, String>();
+		dataMap.put("id", String.valueOf(mapInfo.mapId));
+		dataMap.put("parentTreeId", "");
+		dataMap.put("data", mapInfo.name);
+		dataMap.put("treeId", String.valueOf(mapInfo.mapId));
+		dataMap.put("mapData", mapInfo.data);
+		return dataMap;
 	}
 }

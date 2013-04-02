@@ -7,8 +7,11 @@ ENS.ResourceMapView = wgp.MapView.extend({
 		var height = $("#" + this.$el.attr("id")).height();
 		_.extend(argument, {width : width, height : height});
 
-		var ajaxhandler = new wgp.AjaxHandler();		
+		var ajaxHandler = new wgp.AjaxHandler();
+		this.ajaxHandler = ajaxHandler;
 
+		this.mapId = argument["mapId"];
+		
 		// 継承元の初期化メソッド実行
 		this.__proto__.__proto__.initialize.apply(this, [argument]);
 
@@ -26,9 +29,9 @@ ENS.ResourceMapView = wgp.MapView.extend({
 			drop : function(event, ui){
 
 				// ドロップ時の位置を特定しておく。
-				var perspactiveModel =
-					perspactiveView.findPerspectiveFromId(instance.$el.attr("id"));
-				var drop_area_id = perspactiveModel.get("drop_area_id");
+				var perspectiveModel =
+					perspectiveView.findPerspectiveFromId(instance.$el.attr("id"));
+				var drop_area_id = perspectiveModel.get("drop_area_id");
 				var dropAreaOffset = $("#" + drop_area_id).offset();
 
 				var resourceId = ui.helper.find("A").attr("id");
@@ -65,11 +68,11 @@ ENS.ResourceMapView = wgp.MapView.extend({
 		
 		});
 
-		// 継承先のrenderメソッド実行
-		this.__proto__.__proto__.render.apply(this);
-		this.render();
+		// 本クラスのrenderメソッド実行
+		this.renderExtend();
 	},
-	render : function(){
+	renderExtend : function(){
+		this.onLoad();
 		return this;
 	},
 	destroy : function (){
@@ -81,10 +84,12 @@ ENS.ResourceMapView = wgp.MapView.extend({
 
 		// リソースグラフの場合はグラフを描画する。
 		if("resourceGraph" == objectName){
-			this._addGraphDivision(model);
+			var graphView = this._addGraphDivision(model);
+			this.viewCollection[model.id] = graphView;
 
 		}else if("resourceState" == objectName){
-			this._addStateElement(model);
+			var stateView = this._addStateElement(model);
+			this.viewCollection[model.id] = stateView;
 
 		}else{
 
@@ -151,5 +156,101 @@ ENS.ResourceMapView = wgp.MapView.extend({
 		var view =
 			new ENS.ResourceStateElementView(argument);
 		return view;
+	},
+	onCreate : function(){
+		var instance = this;
+		console.log("click create");
+
+		var createMapDialog = $("<div title='Create new Map'></div>");
+		createMapDialog.append("<p> Please enter new Map name</p>");
+
+		var mapNameLabel = $("<label for='mapName'>Map Name</label>");
+		var mapNameText = 
+			$("<input type='text' name='mapName' id='mapName' class='text ui-widget-content ui-corner-all'>");
+		createMapDialog.append(mapNameLabel);
+		createMapDialog.append(mapNameText);
+
+		createMapDialog.dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			buttons : {
+				"OK" : function(){
+
+					if(mapNameText.val().length == 0){
+						alert("Map Name is require");
+						return;
+					}
+					
+					var setting = {
+						data : {
+							name : mapNameText.val(),
+							data : "{}"
+						},
+						url : wgp.common.getContextPath() + "/map/insert"
+					}
+					instance.ajaxHandler.requestServerSync(setting);
+					createMapDialog.dialog("close");
+
+				},
+				"CANCEL" : function(){
+					createMapDialog.dialog("close");
+				}
+			},
+			close : function(event){
+				createMapDialog.remove();
+			}
+		});
+
+		createMapDialog.dialog("open");
+	},
+	onSave : function(treeModel){
+		console.log("click save");
+		var resourceArray = [];
+		_.each(this.collection.models, function(model, index){
+			resourceArray.push(model.toJSON());
+		});
+
+		var resourceMap = {
+			resources : resourceArray
+		}
+
+		var setting = {
+			data : {
+				mapId : treeModel.get("id"),
+				name : treeModel.get("data"),
+				data : JSON.stringify(resourceMap)
+			},
+			url : wgp.common.getContextPath() + "/map/update"
+		}
+		this.ajaxHandler.requestServerSync(setting);
+	},
+	onLoad : function(){
+
+		// コレクションをリセット
+		this.collection.reset();
+		
+		// マップ情報取得
+		var mapId = this.mapId;
+		var mapData = this.getMapData(mapId);
+		var resources = mapData["resources"];
+		var instance = this;
+		_.each(resources, function(resource, index){
+			var mapElement = new wgp.MapElement(resource);
+			instance.collection.add(mapElement);
+		});
+
+	},
+	getMapData : function(mapId){
+		var setting = {
+			data : {
+				mapId : mapId
+			},
+			url : wgp.common.getContextPath() + "/map/getById"
+		}
+		var result = this.ajaxHandler.requestServerSync(setting);
+		var mapInfo = $.parseJSON(result);
+		return $.parseJSON(mapInfo["mapData"]);
 	}
 });

@@ -15,10 +15,15 @@ wgp.MapElementView = Backbone.View.extend({
 		// 基底ビュークラスの共通的な処理
 		// モデルをビュー自身に設定する。
 		this.model = model;
-
-		// モデルに描画を行ったビューを紐付ける。
-		model.set({view : this}, { silent : true});
 		return this;
+	},
+	registerModelEvent : function(){
+
+		// When Model Change
+		this.model.on('change', this.change, this);
+
+		// WHen Model Remove
+		this.model.on('remove', this.remove, this);
 	},
 	change : function(){
 		// changeメソッドは各継承先にてオーバーライドする。

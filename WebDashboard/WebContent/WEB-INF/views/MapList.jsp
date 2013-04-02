@@ -76,45 +76,69 @@
 			+ "/resources/css/jsTree/style.css"
 		});
 
-		var rootTreeModel = new wgp.TreeModel({
-			id : "mapRoot",
-			treeId : "mapRoot",
-			data : "root",
-			parentTreeId : "",
-		});
+//		var rootTreeModel = new wgp.TreeModel({
+//			id : "mapRoot",
+//			treeId : "mapRoot",
+//			data : "root",
+//			parentTreeId : "",
+//		});
 
-		var groupTreeModel1 = new wgp.TreeModel({
-			id : "mapGroup1",
-			treeId : "mapGroup1",
-			data : "group1",
-			parentTreeId : "mapRoot"
-		});
+//		var groupTreeModel1 = new wgp.TreeModel({
+//			id : "mapGroup1",
+//			treeId : "mapGroup1",
+//			data : "group1",
+//			parentTreeId : "mapRoot"
+//		});
 
-		var groupTreeModel2 = new wgp.TreeModel({
-			id : "mapGroup2",
-			treeId : "mapGroup2",
-			data : "group2",
-			parentTreeId : "mapRoot"
-		});
+//		var groupTreeModel2 = new wgp.TreeModel({
+//			id : "mapGroup2",
+//			treeId : "mapGroup2",
+//			data : "group2",
+//			parentTreeId : "mapRoot"
+//		});
 
-		resourceMapListView.collection = new TreeModelList();
-		resourceMapListView.registerCollectionEvent();
-		resourceMapListView.collection.add(rootTreeModel);
-		resourceMapListView.collection.add(groupTreeModel1);
-		resourceMapListView.collection.add(groupTreeModel2);
+//		resourceMapListView.collection = new TreeModelList();
+//		resourceMapListView.registerCollectionEvent();
+//		resourceMapListView.collection.add(rootTreeModel);
+//		resourceMapListView.collection.add(groupTreeModel1);
+//		resourceMapListView.collection.add(groupTreeModel2);
 		
 		// Create Menu View
-		var mapMenuModel = new ENS.mapMenuModel({
+		var createMapMenuModel = new ENS.mapMenuModel({
+			width : 25,
+			height : 25,
+			styleClass : 'map_menu_icon',
+			src : '<%=request.getContextPath()%>/resources/images/map/createIcon.png',
+			alt : 'save',
+			onclick : (function(event){
+				if(resourceMapListView.childView){
+					resourceMapListView.childView.onCreate();
+				}else{
+					console.log("please select a map");
+				}
+			})
+		});
+
+		var saveMapMenuModel = new ENS.mapMenuModel({
 			width : 25,
 			height : 25,
 			styleClass : 'map_menu_icon',
 			src : '<%=request.getContextPath()%>/resources/images/map/saveIcon.png',
 			alt : 'save',
+			onclick : (function(event){
+				if(resourceMapListView.childView){
+					var selectedId = $("#" + resourceMapListView.id).find(".jstree-clicked")[0].id;
+					var treeModel = resourceMapListView.collection.where({id : selectedId})[0];
+					resourceMapListView.childView.onSave(treeModel);
+				}else{
+					console.log("please select a map");
+				}
+			})
 		});
-		
+
 		var menuView = new ENS.mapMenuView({
 				id : "persArea_drop_1_0",
-				collection : [mapMenuModel]
+				collection : [createMapMenuModel, saveMapMenuModel]
 			},
 			{}
 		);
